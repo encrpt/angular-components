@@ -1,6 +1,25 @@
 .container {
-  height: 100vh;
+  max-height: calc(100vh - 64px);;
   max-width: 1920px;
   margin: auto;
 }
 
+.demo-menu {
+  min-width: 300px;
+  width: 300px;
+  overflow-x: auto;
+}
+
+.component-demo {
+  overflow: auto;
+}
+
+@media (max-width: 599px) {
+  .demo-menu {
+    min-width: 200px;
+    width: 200px;
+  }
+  .container {
+    max-height: calc(100vh - 56px);
+  }
+}

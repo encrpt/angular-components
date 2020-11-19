@@ -1,0 +1,25 @@
+.loading-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.infotext {
+  position: relative;
+  text-align: center;
+}
+
+.spinner-infotext {
+    width: 100%;
+    font-size: 26px;
+}
+
+.spinner-infotext-wrapper {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  border-radius: 123px;
+  opacity: 0.8;
+  align-items: center;
+  display: flex;
+}

@@ -13,7 +13,16 @@ export class DemoMenuComponent implements OnInit {
   routes: any[];
 
   ngOnInit(): void {
-    this.routes = this.router.config.filter(i => i.path).map(i => { return { uri: i.path, label: i.component.name } })
+    this.routes = this.router.config
+      .filter(i => i.path)
+      .map(i => {
+        return {
+          uri: i.path,
+          label: i.component.name,
+          title: i.data ? i.data.title : '',
+          description: i.data ? i.data.description : ''
+        }
+      });
   }
 
 }

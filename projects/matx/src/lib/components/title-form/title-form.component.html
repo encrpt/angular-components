@@ -1,0 +1,44 @@
+<form
+  [style.width]="data.message && data.width ? data.width + 'px' : 'inherit'"
+  (ngSubmit)="submitForm()"
+  [formGroup]="form"
+  class="mat-typography"
+>
+  <div>{{ data.message }}</div>
+  <!-- just a message -->
+  <div *ngIf="data.textOnly; else inputField">
+    <div [style.marginBottom]="'6px'">{{ data.placeholder }}</div>
+    <button
+      [style.width]="
+        data.textOnly && data.buttonWidth ? data.buttonWidth : 'inherit'
+      "
+      mat-raised-button
+      type="submit"
+      class="btn btn-success"
+    >
+      {{ data.buttonLabel }}
+    </button>
+  </div>
+  <!-- data input -->
+  <ng-template #inputField>
+    <app-error-message [control]="form"></app-error-message>
+    <mat-form-field
+      class="input-field"
+      color="accent"
+      [style.width]="
+        !data.message && data.width ? data.width + 'px' : 'inherit'
+      "
+    >
+      <input
+        matInput
+        type="{{ data.isPassword ? 'password' : 'text' }}"
+        placeholder="{{ data.placeholder }}"
+        formControlName="title"
+      />
+      <mat-error>This field is required</mat-error>
+    </mat-form-field>
+    <button mat-raised-button type="submit" class="btn btn-success">
+      {{ data.buttonLabel }}
+    </button>
+  </ng-template>
+</form>

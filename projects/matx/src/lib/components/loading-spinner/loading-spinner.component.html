@@ -1,0 +1,17 @@
+<div
+  class="{{ center ? 'loading-row' : '' }}"
+  [style.height]="pageHeight ? pageHeight : 'inherit'"
+>
+  <div class="infotext">
+    <mat-spinner [diameter]="size" color="accent"></mat-spinner>
+    <div
+      class="spinner-infotext-wrapper"
+      [style.top]="size / 2 + 'px'"
+      [style.left]="size / 2 + 'px'"
+    >
+      <div class="spinner-infotext" [style.fontSize]="fontSize + 'px'">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

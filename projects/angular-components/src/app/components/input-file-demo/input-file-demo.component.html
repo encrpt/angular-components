@@ -1,0 +1,51 @@
+<div class="flex-row">
+  <button
+    mat-raised-button
+    color="primary"
+    [matMenuTriggerFor]="localmenu"
+    aria-label="localmenu"
+    matTooltip="import / export"
+  >
+    File
+  </button>
+  <mat-menu #localmenu="matMenu">
+    <app-input-file
+      selectType="webkitdirectory"
+      class
+      matIcon="vertical_align_top"
+      color="none"
+      buttonType="mat-menu-item"
+      (onFileSelect)="submitAction($event)"
+      [showFileNames]="false"
+      (onSelectStart)="submitAction($event)"
+      label="Load directory (Chrome)"
+    >
+      <span class="nofiles"></span>
+    </app-input-file>
+    <app-input-file
+      selectType="multiple"
+      accept=".json"
+      matIcon="vertical_align_top"
+      color="none"
+      buttonType="mat-menu-item"
+      (onFileSelect)="submitAction($event)"
+      [showFileNames]="false"
+      (onSelectStart)="submitAction($event)"
+      label="Load multiple files"
+    >
+      <span class="nofiles"></span>
+    </app-input-file>
+    <app-input-file
+      accept=".json"
+      matIcon="vertical_align_top"
+      color="none"
+      buttonType="mat-menu-item"
+      (onFileSelect)="submitAction($event)"
+      [showFileNames]="true"
+      (onSelectStart)="submitAction($event)"
+      label="load single file"
+    >
+      <span class="nofiles">No file selected</span>
+    </app-input-file>
+  </mat-menu>
+</div>

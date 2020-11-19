@@ -1,0 +1,33 @@
+<span>
+  <ng-container [ngSwitch]="selectType">
+    <ng-container *ngSwitchCase="'webkitdirectory'">
+      <input [accept]="accept" type="file" (change)="onNativeInputFileSelect($event)" webkitdirectory #inputFile
+        hidden />
+    </ng-container>
+    <ng-container *ngSwitchCase="'multiple'">
+      <input [accept]="accept" type="file" (change)="onNativeInputFileSelect($event)" multiple #inputFile hidden />
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+      <input [accept]="accept" type="file" (change)="onNativeInputFileSelect($event)" #inputFile hidden />
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="buttonType === 'mat-raised-button'">
+    <button mat-raised-button (click)="selectFile()" [disabled]="disabled" color={{color}} [style.width]="buttonWidth">
+      <mat-icon>{{matIcon}}</mat-icon>
+      <ng-content *ngIf="!fileCount" select=".nofiles"></ng-content>
+      <ng-container *ngIf="fileCount">
+        <span>{{fileCount > 1 ? fileCount + ' files':fileName}}</span>
+      </ng-container>
+    </button>
+  </ng-container>
+  <ng-container *ngIf="buttonType === 'mat-menu-item'">
+    <button mat-menu-item (click)="selectFile()" [disabled]="disabled">
+      <mat-icon>{{matIcon}}</mat-icon>
+      <ng-container *ngIf="!fileCount || !showFileNames">{{label}}</ng-container>
+      <ng-container *ngIf="fileCount && showFileNames">
+        <span>{{fileCount > 1 ? fileCount + ' files':fileName}}</span>
+      </ng-container>
+    </button>
+  </ng-container>
+
+</span>

@@ -17,8 +17,8 @@ export class SliderCircleDemoComponent implements OnInit {
   title = 'angular-demo';
   useBasicExamples = false;
 
-  renderSizes = [30, 40, 80, 100, 120, 150, 200, 800]
-  strokeWidths = [3, 5, 10, 12, 20, 24, 30, 50, 80, 100]
+  renderSizes = [30, 40, 80, 100, 120, 150, 200, 400, 600, 800, 1200]
+  strokeWidths = [3, 5, 10, 12, 20, 24, 30, 50, 60]
 
   sliderExamples: SliderCircleConfigExample[][] = [];
 
@@ -48,7 +48,11 @@ export class SliderCircleDemoComponent implements OnInit {
           };
           return scc;
         });
-      this.sliderExamples.push(sliderExamplesRow)
+        if(size>200) {
+          this.sliderExamples.push(sliderExamplesRow.reverse())
+        } else {
+          this.sliderExamples.push(sliderExamplesRow)
+        }
     });
 
     console.log(this.sliderExamples);

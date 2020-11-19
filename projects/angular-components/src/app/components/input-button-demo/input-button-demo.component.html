@@ -1,0 +1,122 @@
+<div class="flex-row">
+  <div>
+    <button
+      mat-flat-button
+      [matMenuTriggerFor]="localmenu"
+      aria-label="localmenu"
+      matTooltip="import / export"
+    >
+      Menu
+    </button>
+    <mat-menu #localmenu="matMenu">
+      <app-input-button
+        width="300"
+        label="Upload"
+        [disabled]="true"
+        matTooltip="Upload disabled"
+        type="menu"
+        iconBefore="vertical_align_top"
+        placeholder="Filename - '.json' will be added"
+        required="true"
+        value="filename"
+        (onSubmit)="submitAction($event)"
+      >
+      </app-input-button>
+      <app-input-button
+        width="200"
+        label="Download"
+        [disabled]="false"
+        matTooltip="Export to disk"
+        type="menu"
+        iconBefore="vertical_align_bottom"
+        placeholder="Filename - '.json' will be added"
+        required="true"
+        value="Example"
+        (onSubmit)="submitAction($event)"
+      >
+      </app-input-button>
+    </mat-menu>
+  </div>
+  <app-input-button
+    type="raised"
+    color="primary"
+    width="300"
+    label="Download"
+    matTooltip="Export to disk"
+    iconBefore="vertical_align_bottom"
+    placeholder="Filename for export"
+    required="true"
+    (onSubmit)="submitAction($event)"
+  >
+  </app-input-button>
+
+  <app-input-button
+    label="Delete"
+    matTooltip="Delete file permanently"
+    type="raised"
+    color="warn"
+    [width]="200"
+    [textOnly]="true"
+    message="Warning: This action will permanently delete dbxyz. To confirm the deletion of the database and all of the database's documents press delete."
+    iconBefore="delete_forever"
+    placeholder="Delete data permanently?"
+    buttonLabel="Yes"
+    (onSubmit)="submitAction($event)"
+    buttonwidth="100%"
+  >
+  </app-input-button>
+  <app-input-button
+    matTooltip="Delete file permanently"
+    type="icon"
+    [width]="200"
+    [textOnly]="false"
+    icon="delete_forever"
+    message="Warning: This action will permanently delete dbxyz. To confirm the deletion of the database and all of the database's documents, you must enter the database's name."
+    placeholder="Type name of the database:"
+    buttonLabel="Yes"
+    (onSubmit)="submitAction($event)"
+    buttonwidth="100%"
+  >
+  </app-input-button>
+  <app-input-button
+    label="Delete"
+    matTooltip="Delete file permanently"
+    type="mini-fab"
+    color="accent"
+    [width]="200"
+    [textOnly]="true"
+    icon="plus_one"
+    placeholder="Delete data permanently?"
+    buttonLabel="Yes"
+    (onSubmit)="submitAction($event)"
+    buttonwidth="100%"
+  >
+  </app-input-button>
+  <app-input-button
+    label="Delete"
+    matTooltip="Delete file permanently"
+    type="fab"
+    color="accent"
+    [width]="200"
+    [textOnly]="true"
+    icon="home"
+    placeholder="Leave page?"
+    buttonLabel="Yes"
+    (onSubmit)="submitAction($event)"
+    buttonwidth="100%"
+  >
+  </app-input-button>
+  <app-input-button
+    label="Encrpt"
+    matTooltip="Save as encrypted file"
+    type="raised"
+    [width]="200"
+    iconBefore="security"
+    placeholder="Type your password:"
+    isPassword="true"
+    buttonLabel="encrpt now"
+    (onSubmit)="submitAction($event)"
+    buttonwidth="100%"
+  >
+  </app-input-button>
+</div>

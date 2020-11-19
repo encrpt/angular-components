@@ -1,0 +1,9 @@
+{
+  "name": "ngx-markjs",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^10.0.14",
+    "@angular/core": "^10.0.14",
+    "mark.js": "^8.11.1"
+  }
+}

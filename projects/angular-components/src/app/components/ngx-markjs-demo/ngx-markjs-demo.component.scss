@@ -1,0 +1,41 @@
+header {
+  margin-left: 20px;
+}
+.content {
+  position: relative;
+  font-size: 20px;
+  margin: 20px;
+  width: 70%;
+  height: 30vh;
+  min-height: 30vh;
+  max-height: 30vh;
+  overflow: auto;
+  border: 1px solid silver;
+  padding: 20px;
+
+  &.inner {
+    height: 30vh;
+    min-height: 30vh;
+    max-height: 30vh;
+  }
+  &.wrapper {
+    height: 36vh;
+    min-height: 36vh;
+    max-height: 36vh;
+  }
+}
+
+
+.search_input {
+  width: 70%;
+  margin: 20px;
+  height: 50px;
+  line-height: 50px;
+
+  input {
+    font-size: 20px;
+    width: 70%;
+    padding-left: 10px;
+    border-radius: 10px;
+  }
+}

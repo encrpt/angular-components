@@ -1,0 +1,100 @@
+<div
+  class="slider-circle"
+  [style.width]="size + 'px'"
+  [style.height]="size + 'px'"
+>
+  <mat-slider
+    [color]="color"
+    *ngIf="editMode"
+    [style.minWidth]="size - startX * 2 + 'px'"
+    [style.top]="size / 2 - 24 + 'px'"
+    [style.left]="startX + 'px'"
+    [min]="min"
+    [max]="max"
+    [step]="step"
+    [value]="value"
+    [tickInterval]="tickInterval"
+    (input)="changeValue($event)"
+  ></mat-slider>
+  <svg class="svg-circle" [style.width]="size" [style.height]="size">
+    <g [attr.stroke]="areaColor" stroke-linecap="square">
+      <path
+        fill="none"
+        [attr.stroke-width]="strokeWidth"
+        [attr.d]="
+          'M ' +
+          startX +
+          ' ' +
+          startY +
+          ' A ' +
+          startY / 2 +
+          ' ' +
+          startY / 2 +
+          ', 0, 1 1, ' +
+          (size - startX) +
+          ' ' +
+          startY +
+          ''
+        "
+      ></path>
+    </g>
+    <g stroke-linecap="square">
+      <path
+        #circlepath
+        fill="none"
+        [attr.stroke-opacity]="strokeOpacity"
+        [attr.stroke]="circleColor"
+        [attr.stroke-width]="strokeWidth"
+        [attr.d]="
+          'M ' +
+          startX +
+          ' ' +
+          startY +
+          ' A ' +
+          startY / 2 +
+          ' ' +
+          startY / 2 +
+          ', 0, 1 1, ' +
+          (size - startX) +
+          ' ' +
+          startY +
+          ''
+        "
+      ></path>
+    </g>
+  </svg>
+  <div *ngIf="showValueLabel">
+    <div
+      *ngIf="!valueInput"
+      id="view-edit-field"
+      [class]="
+        editMode
+          ? 'value-label slider-circle-label-' + size + '-' + strokeWidth
+          : 'value-label-readonly slider-circle-label-' +
+            size +
+            '-' +
+            strokeWidth
+      "
+      [style.bottom]="editMode ? size / 10 + 'px' : null"
+    >
+      {{ value }}
+    </div>
+    <div
+      *ngIf="valueInput"
+      id="view-edit-field"
+      class="value-label"
+      [style.bottom]="0 + 'px'"
+    >
+      <mat-form-field [style.width]="10 + size / 4 + 'px'">
+        <input
+          [min]="min"
+          [max]="max"
+          matInput
+          type="number"
+          [(ngModel)]="valueUserInput"
+          [class]="'slider-circle-input-' + size + '-' + strokeWidth"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+</div>

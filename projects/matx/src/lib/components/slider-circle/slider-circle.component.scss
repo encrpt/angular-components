@@ -1,0 +1,30 @@
+.slider-circle {
+  position: relative;
+
+  .mat-slider {
+    position: absolute;
+  }
+
+  .svg-circle {
+    width: 100%;
+    height: 100%;
+  }
+  .value-label {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+  .value-label-readonly {
+    position: absolute;
+    top: 30%;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+:host ::ng-deep .mat-form-field-underline {
+  bottom: 8px;
+}
+:host ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 8px;
+}

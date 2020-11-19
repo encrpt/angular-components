@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+a,
+a:hover,
+a:visited {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  padding-bottom: 6px;
+}
+
+.flex-row {
+  display: flex;
+  > * {
+    margin-right: 12px;
+  }
+}

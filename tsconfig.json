@@ -6,5 +6,18 @@
 */
 {
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./projects/matx/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/matx/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/angular-components/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/angular-components/tsconfig.spec.json"
+    }
+]
 }

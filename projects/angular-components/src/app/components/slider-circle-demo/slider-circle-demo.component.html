@@ -1,0 +1,47 @@
+<div *ngIf="useBasicExamples" class="container">
+  <ng-container *ngFor="let renderSize of renderSizes">
+    <div class="row">
+      <div>{{ renderSize }}px</div>
+      <ng-container *ngFor="let strokeWidth of strokeWidths">
+        <app-slider-circle
+          *ngIf="strokeWidth * 4 < renderSize && strokeWidth * 20 > renderSize"
+          [size]="renderSize"
+          [strokeWidth]="strokeWidth"
+          [showValueLabel]="renderSize > 20"
+          (change)="changeValue(renderSize + '/' + strokeWidth, $event)"
+        ></app-slider-circle>
+        <app-slider-circle
+          *ngIf="strokeWidth * 4 < renderSize"
+          class="example-slider"
+          [circleColor]="'blue'"
+          [size]="renderSize"
+          [strokeWidth]="strokeWidth"
+          [showValueLabel]="renderSize > 20"
+          [value]="strokeWidth * 2 | random: 20"
+        ></app-slider-circle>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>
+<div *ngIf="!useBasicExamples" class="container">
+  <ng-container *ngFor="let sliderExampleRow of sliderExamples">
+    <div class="row row-c1">
+      <ng-container *ngFor="let sliderExample of sliderExampleRow">
+        <app-slider-circle
+          [areaColor]="sliderExample.areaColor"
+          [circleColor]="sliderExample.circleColor"
+          [class]="sliderExample.cssClass"
+          [size]="sliderExample.size"
+          [color]="sliderExample.color"
+          [min]="sliderExample.min"
+          [max]="sliderExample.max"
+          [value]="sliderExample.value"
+          [strokeWidth]="sliderExample.strokeWidth"
+          [editMode]="sliderExample.editMode"
+          [animationSec]="sliderExample.animationSec"
+          (change)="changeValue(sliderExample.id, $event)"
+        ></app-slider-circle>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>

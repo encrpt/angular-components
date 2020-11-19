@@ -14,7 +14,7 @@ export class DemoMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.routes = this.router.config
-      .filter(i => i.path)
+      .filter(i => i.path && i.path !== 'home')
       .map(i => {
         return {
           uri: i.path,

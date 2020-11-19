@@ -11,6 +11,11 @@ import { SliderCircleDemoComponent } from './components/slider-circle-demo/slide
 export const appRoutes: Routes = [
   {
     path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
     component: DemoHomeComponent,
   },
   {

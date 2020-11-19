@@ -18,6 +18,12 @@
     },
     {
       "path": "./projects/angular-components/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/content/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/content/tsconfig.spec.json"
     }
 ]
 }

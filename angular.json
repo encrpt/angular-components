@@ -133,7 +133,6 @@
               "projects/angular-components/src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "projects/angular-components/src/styles.scss"
             ],
             "scripts": []
@@ -162,6 +161,46 @@
             "production": {
               "devServerTarget": "angular-components:serve:production"
             }
+          }
+        }
+      }
+    },
+    "content": {
+      "projectType": "library",
+      "root": "projects/content",
+      "sourceRoot": "projects/content/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/content/tsconfig.lib.json",
+            "project": "projects/content/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/content/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/content/src/test.ts",
+            "tsConfig": "projects/content/tsconfig.spec.json",
+            "karmaConfig": "projects/content/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/content/tsconfig.lib.json",
+              "projects/content/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

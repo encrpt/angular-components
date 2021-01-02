@@ -15,6 +15,7 @@ export class NgxMarkjsDemoComponent {
 
   searchText$: Observable<string>;
   searchConfig = { separateWordSearch: false };
+  url = "source: https://medium.com/angular-in-depth/wrapping-commonjs-library-in-angular-8-directive-on-the-example-of-mark-js-976cbcd5d10a";
 
   ngAfterViewInit() {
     // create stream from inpout change event with rxjs 'from' function

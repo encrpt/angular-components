@@ -1,5 +1,5 @@
 <div class="search_input">
-  <input placeholder="Search..." #search type="text" />
+  <input placeholder="Search... f.e. demo" #search type="text" />
 </div>
 <div class="content wrapper">
   <div
@@ -145,5 +145,5 @@
       Integer malesuada nunc vel risus. Non blandit massa enim nec dui.
     </p>
   </div>
-  <div>https://medium.com/angular-in-depth/wrapping-commonjs-library-in-angular-8-directive-on-the-example-of-mark-js-976cbcd5d10a</div>
+  <div [innerHTML]="url | renderLink"></div>
 </div>

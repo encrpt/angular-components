@@ -15,11 +15,12 @@ import { RandomPipe } from './pipes/random.pipe';
 import { InputFileDemoComponent } from './components/input-file-demo/input-file-demo.component';
 import { InputButtonDemoComponent } from './components/input-button-demo/input-button-demo.component';
 import { LoadingSpinnerDemoComponent } from './components/loading-spinner-demo/loading-spinner-demo.component';
+import { RenderLinkPipe } from './pipes/render-link.pipe';
 
 @NgModule({
   declarations: [
     RandomPipe, AppComponent, DemoMenuComponent, SliderCircleDemoComponent,
-    NgxMarkjsDemoComponent, DemoHomeComponent, InputFileDemoComponent, InputButtonDemoComponent, LoadingSpinnerDemoComponent
+    NgxMarkjsDemoComponent, DemoHomeComponent, InputFileDemoComponent, InputButtonDemoComponent, LoadingSpinnerDemoComponent, RenderLinkPipe
   ],
   imports: [
     CommonModule,

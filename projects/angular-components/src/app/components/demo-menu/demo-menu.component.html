@@ -1,7 +1,6 @@
 <ul class="main-nav">
   <li *ngFor="let route of routes">
     <mat-card class="example-card" color="primary">
-
       <mat-card-header>
         <mat-card-title>{{ route.title }}</mat-card-title>
         <mat-card-subtitle>{{ route.label }}</mat-card-subtitle>
@@ -12,7 +11,7 @@
         alt="Preview image"
       />
       <mat-card-content>
-        <p>{{ route.description }}</p>
+        <p [innerHTML]="route.description | renderLink"></p>
       </mat-card-content>
       <mat-card-actions>
         <a mat-stroked-button color="accent" [routerLink]="route.uri">Launch</a>

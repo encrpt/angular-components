@@ -1,7 +1,13 @@
-.main-nav{
+.main-nav {
   overflow-y: auto;
+  padding-bottom: 64px;
 }
 
-.mat-card-subtitle{
+.mat-card-subtitle {
   word-break: break-all;
+}
+
+.example-card {
+  margin-top: 6px;
+  margin-right: 6px;
 }

@@ -12,19 +12,10 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "matx": [
-        "dist/matx/matx",
-        "dist/matx"
-      ],
-      "content": [
-        "dist/content/content",
-        "dist/content"
-      ]
+      "matx": ["dist/matx/matx", "dist/matx"],
+      "content": ["dist/content/content", "dist/content"]
     }
   },
   "angularCompilerOptions": {

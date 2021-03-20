@@ -16,27 +16,27 @@
     </button>
     <mat-menu #localmenu="matMenu">
       <app-input-button
-        width="300"
+        [width]="300"
         label="Upload"
         [disabled]="true"
         matTooltip="Upload disabled"
         type="menu"
         iconBefore="vertical_align_top"
         placeholder="Filename - '.json' will be added"
-        required="true"
+        [required]="true"
         value="filename"
         (onSubmit)="submitAction($event)"
       >
       </app-input-button>
       <app-input-button
-        width="200"
+        [width]="200"
         label="Download"
         [disabled]="false"
         matTooltip="Export to disk"
         type="menu"
         iconBefore="vertical_align_bottom"
         placeholder="Filename - '.json' will be added"
-        required="true"
+        [required]="true"
         value="Example"
         (onSubmit)="submitAction($event)"
       >
@@ -46,12 +46,12 @@
   <app-input-button
     type="raised"
     color="primary"
-    width="300"
+    [width]="300"
     label="Download"
     matTooltip="Export to disk"
     iconBefore="vertical_align_bottom"
     placeholder="Filename for export"
-    required="true"
+    [required]="true"
     (onSubmit)="submitAction($event)"
   >
   </app-input-button>
@@ -119,7 +119,7 @@
     [width]="200"
     iconBefore="security"
     placeholder="Type your password:"
-    isPassword="true"
+    [isPassword]="true"
     buttonLabel="encrpt now"
     (onSubmit)="submitAction($event)"
     buttonwidth="100%"

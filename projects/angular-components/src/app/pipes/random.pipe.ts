@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class RandomPipe implements PipeTransform {
 
-  transform(value: number, minValue: number): unknown {
+  transform(value: number, minValue: number): number {
     return value * Math.random() + minValue;
   }
 

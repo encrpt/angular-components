@@ -5,19 +5,19 @@
   ><mat-icon> launch </mat-icon>Source</a
 >
 <div class="flex-row">
-  <app-loading-spinner size="48" fontSize="12">
+  <app-loading-spinner [size]="48" [fontSize]="12">
     <span>Auth</span>
   </app-loading-spinner>
 
   <mat-divider></mat-divider>
   <div class="example-page">
-    <app-loading-spinner size="100" center="true">
+    <app-loading-spinner [size]="100" [center]="true">
       <span>Pull data</span>
     </app-loading-spinner>
   </div>
 
   <div class="example-page">
-    <app-loading-spinner size="100" center="true" pageHeight="800px">
+    <app-loading-spinner [size]="100" [center]="true" pageHeight="800px">
       <span>Check Hash</span>
     </app-loading-spinner>
   </div>

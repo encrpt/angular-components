@@ -16,11 +16,13 @@ import { InputFileDemoComponent } from './components/input-file-demo/input-file-
 import { InputButtonDemoComponent } from './components/input-button-demo/input-button-demo.component';
 import { LoadingSpinnerDemoComponent } from './components/loading-spinner-demo/loading-spinner-demo.component';
 import { RenderLinkPipe } from './pipes/render-link.pipe';
+import { ExtenableFormGridDemoComponent } from './components/extenable-form-grid-demo/extenable-form-grid-demo.component';
+import { TreeSelectDemoComponent } from './components/tree-select-demo/tree-select-demo.component';
 
 @NgModule({
   declarations: [
     RandomPipe, AppComponent, DemoMenuComponent, SliderCircleDemoComponent,
-    NgxMarkjsDemoComponent, DemoHomeComponent, InputFileDemoComponent, InputButtonDemoComponent, LoadingSpinnerDemoComponent, RenderLinkPipe
+    NgxMarkjsDemoComponent, DemoHomeComponent, InputFileDemoComponent, InputButtonDemoComponent, LoadingSpinnerDemoComponent, RenderLinkPipe, ExtenableFormGridDemoComponent, TreeSelectDemoComponent
   ],
   imports: [
     CommonModule,

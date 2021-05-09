@@ -14,6 +14,7 @@ import {
   styleUrls: ['./input-button.component.scss'],
 })
 export class InputButtonComponent implements OnInit {
+  // not used
   @Input()
   textOnly = false;
 
@@ -71,9 +72,9 @@ export class InputButtonComponent implements OnInit {
   @Output()
   onSubmit: EventEmitter<string> = new EventEmitter();
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   openInput($event) {
     // fix location for popup
@@ -82,7 +83,10 @@ export class InputButtonComponent implements OnInit {
 
     const position: DialogPosition = {
       top: $event.clientY - $event.offsetY + 40 + 'px',
-      left: document.body.clientWidth - leftRaw > this.width ? leftRaw - 50 + 'px' : document.body.clientWidth - (this.width + 60) + 'px',
+      left:
+        document.body.clientWidth - leftRaw > this.width
+          ? leftRaw - 50 + 'px'
+          : document.body.clientWidth - (this.width + 60) + 'px',
     };
 
     const dialogConfig: MatDialogConfig = {
@@ -98,7 +102,7 @@ export class InputButtonComponent implements OnInit {
         textOnly: this.textOnly,
         isPassword: this.isPassword,
         buttonWidth: this.buttonwidth,
-        message: this.message
+        message: this.message,
       },
       // maxWidth: this.maxWidth
     };

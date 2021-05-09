@@ -1,0 +1,168 @@
+{
+  "title": "Spacenight21 - default",
+  "description": "A mediatrack example",
+  "htmlPageTitle": "Spacenight21",
+  "initAnimations": true,
+  "showBigLogo": false,
+  "showIntro": false,
+  "showLogo": true,
+  "showSky": true,
+  "showStars": false,
+  "showSatellites": false,
+  "showMsgArea": false,
+  "showBgMenu": true,
+  "renderTypes": ["audio", "video"],
+  "renderType": "audio",
+  "background": {
+    "imageProvider": "spacenight21",
+    "bgVideoLib": [
+      {
+        "track": "https://images-assets.nasa.gov/video/NASA%20Astronauts%20Launch%20from%20America%20in%20Historic%20Test%20Flight%20of%20SpaceX%20Crew%20Dragon/NASA%20Astronauts%20Launch%20from%20America%20in%20Historic%20Test%20Flight%20of%20SpaceX%20Crew%20Dragon~orig.mp4",
+        "length": 15,
+        "vendor": "mp4",
+        "title": "Falcon 9",
+        "featured": {
+          "startSeconds": 2,
+          "durationSeconds": 180
+        }
+      },
+      {
+        "track": "RnsRRdYdXN0",
+        "length": 20,
+        "vendor": "youtube",
+        "title": "Earth From Space I"
+      },
+      {
+        "track": "XBPjVzSoepo",
+        "length": 20,
+        "vendor": "youtube",
+        "title": "Earth From The ISS"
+      },
+      {
+        "track": "fJ_nXc6D1wE",
+        "length": 40,
+        "vendor": "youtube",
+        "title": "Serenity"
+      },
+      {
+        "track": "FG0fTKAqZ5g",
+        "length": 2,
+        "vendor": "youtube",
+        "title": "Time-lapse footage of the Earth"
+      },
+      {
+        "track": "wnhvanMdx4s",
+        "length": 570,
+        "vendor": "youtube",
+        "title": "Earth from Space II"
+      },
+      {
+        "track": "JDxw9r7GIHg",
+        "length": 70,
+        "vendor": "youtube",
+        "title": "Space Journey Around Earth"
+      }
+    ]
+  },
+  "imageLib": {
+    "localhost": {
+      "uri": "static/",
+      "images": ["default.jpg"]
+    },
+    "spacenight21": {
+      "uri": "static/",
+      "images": [
+        "001_1920.jpg",
+        "003_1920.jpg",
+        "004_1920.jpg",
+        "005_1920.jpg",
+        "006_1920.jpg",
+        "007_1920.jpg",
+        "010_1920.jpg"
+      ]
+    }
+  },
+  "audioVendors": ["soundCloud1", "soundCloud2"],
+  "audioLib": {
+    "soundCloud1": {
+      "compactMode": true,
+      "height": "20px",
+      "vendor": "soundcloud",
+      "tracks": ["852006865", "831085363", "835306936", "852006889", "852006877", "852006874", "852169648"]
+    },
+    "soundCloud2": {
+      "compactMode": false,
+      "height": "20px",
+      "vendor": "soundcloud",
+      "tracks": [
+        "912741673",
+        "758324356",
+        "758324347",
+        "755477227",
+        "852170263",
+        "852170533",
+        "857817184",
+        "829319062"
+      ]
+    }
+  },
+  "videoLib": {
+    "vimeo": {
+      "tracks": ["329097413"]
+    },
+    "youtube": {
+      "tracks": [
+        "9vm8mjh1Dj4",
+        "Nx-ZGUCknlI",
+        "HDZhY0Rm2_A",
+        "MbzPHZtzY9U",
+        "9HkGUTWljKA",
+        "JcR9ogZAyvo",
+        "6ZI-F55uYBg",
+        "FQHUEuwQj8o"
+      ]
+    }
+  },
+  "showSatellitesOptions": {
+    "selector": ".satellites-background",
+    "maxParticles": 100,
+    "sizeVariations": 6,
+    "speed": 3,
+    "color": "#aaaaaa",
+    "minDistance": 20,
+    "connectParticles": false
+  },
+  "showSkyOptions": {
+    "color": "255,255,255",
+    "pointColor": "255,255,255",
+    "opacity": 0.6,
+    "count": 50,
+    "zIndex": "1"
+  },
+  "showIntroOptions": {
+    "title": "3210   ",
+    "time": 1000,
+    "fadeOutTime": 4000,
+    "options": {
+      "onlyOnce": true
+    }
+  },
+  "showHeaderOptions": {
+    "timeout": 0,
+    "animateHeader": true
+  },
+  "playerOptions": {
+    "opacity": 1
+  },
+  "parameters": [
+    "showIntro",
+    "showStars",
+    "showSatellites",
+    "renderType",
+    "background",
+    "opacity",
+    "compact",
+    "startrender",
+    "showBgMenu"
+  ]
+}

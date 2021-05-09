@@ -3,16 +3,17 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-input-file-demo',
   templateUrl: './input-file-demo.component.html',
-  styleUrls: ['./input-file-demo.component.scss']
+  styleUrls: ['./input-file-demo.component.scss'],
 })
 export class InputFileDemoComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  resetAction(parameter: boolean) {
+    console.log(parameter);
   }
-
-  submitAction(userInput) {
-    console.log(userInput);
+  submitAction(files: File[]) {
+    console.log(files);
   }
 }

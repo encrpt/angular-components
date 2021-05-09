@@ -14,7 +14,13 @@
         <p [innerHTML]="route.description | renderLink"></p>
       </mat-card-content>
       <mat-card-actions>
-        <a mat-stroked-button color="accent" [routerLink]="route.uri">Launch</a>
+        <a
+          [style.width]="'100%'"
+          mat-raised-button
+          color="primary"
+          [routerLink]="route.uri"
+          >Launch</a
+        >
       </mat-card-actions>
     </mat-card>
   </li>

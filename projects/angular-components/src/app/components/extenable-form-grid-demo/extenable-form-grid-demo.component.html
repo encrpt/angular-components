@@ -1,5 +1,19 @@
+<h2>Properties as Header</h2>
 <lib-extenable-form-grid
   *ngIf="isVisible"
   [gridData]="data"
+  (submitted)="output($event)"
+></lib-extenable-form-grid>
+<h2>Header row - allows same properties-name</h2>
+<lib-extenable-form-grid
+  *ngIf="isVisible"
+  [gridData]="dataAndHeader"
+  (submitted)="output($event)"
+></lib-extenable-form-grid>
+<h2>Header row editable - allows same properties-name</h2>
+<lib-extenable-form-grid
+  *ngIf="isVisible"
+  [gridData]="dataAndHeader"
+  [allowEditHeaderRows]="true"
   (submitted)="output($event)"
 ></lib-extenable-form-grid>

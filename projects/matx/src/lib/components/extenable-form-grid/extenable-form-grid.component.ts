@@ -8,6 +8,7 @@ import {
   FormGroup,
 } from '@angular/forms';
 import * as uuid from 'uuid';
+import { GridTable, GridTableHeader, ColumnState } from './model';
 
 @Component({
   selector: 'lib-extenable-form-grid',
@@ -15,51 +16,83 @@ import * as uuid from 'uuid';
   styleUrls: ['./extenable-form-grid.component.scss'],
 })
 export class ExtenableFormGridComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) {
+    this.formGroup = this.formBuilder.group({});
+  }
 
   @Input()
-  gridData: any = [];
+  gridData: GridTable;
 
+  // properties can be edited and MUST in values of first row
   @Input()
-  usePropAsHeader: boolean = true;
+  allowEditHeaderRows: boolean = false;
 
   @Output()
-  submitted: EventEmitter<any> = new EventEmitter();
+  submitted: EventEmitter<GridTable> = new EventEmitter();
 
   public formGroup: FormGroup;
-  public rowProperties: KeyValue<string, string>[] = []; // map guid to field
-  public rowIds: KeyValue<number, string>[] = [];
+  public headerRow: GridTableHeader[] = [];
+
+  public usePropAsHeader = true;
 
   // private
   private rowFromgroups: FormGroup[] = [];
   ngOnInit(): void {
     // create existing fields
-
-    if (this.gridData.length) {
-      this.rowProperties = Object.keys(this.gridData[0]).map((key) => {
-        return { key: uuid.v4(), value: key };
-      });
-      this.rowIds = this.gridData.map((i, index) => index);
-
-      // init rows
-      this.rowFromgroups = this.gridData.map((values: any) =>
-        this.createRow(values)
-      );
+    console.log(this.gridData);
+    if (this.gridData) {
+      // this.gridData.headerRows = [];
+      if (this.gridData.headerRows && this.gridData.headerRows.length) {
+        this.usePropAsHeader = false;
+        // do not convert exising mappings on submit
+        this.headerRow = this.gridData.headerRows.map((i) => {
+          return { key: i.key, label: i.label, state: ColumnState.EXISTING };
+        });
+        // init form rows
+        if (this.allowEditHeaderRows) {
+          const headerValues = this.headerRow.reduce((acc: any, i) => {
+            acc[i.key] = i.label;
+            return acc;
+          }, {});
+          this.rowFromgroups = [
+            this.createRow(headerValues),
+            ...this.gridData.tableRows.map((values: any) =>
+              this.createRow(values)
+            ),
+          ];
+        } else {
+          this.rowFromgroups = this.gridData.tableRows.map((values: any) =>
+            this.createRow(values)
+          );
+        }
+      } else {
+        this.usePropAsHeader = true;
+        this.headerRow = Object.keys(this.gridData.tableRows[0]).map((key) => {
+          return { key: this.getUuid(), label: key };
+        });
+        this.rowFromgroups = this.gridData.tableRows.map((values: any) =>
+          this.createRow(values)
+        );
+      }
     }
 
     this.formGroup = this.formBuilder.group({
       rows: new FormArray(this.rowFromgroups),
     });
+  }
 
-    console.log(this.rowIds.length);
+  getUuid(): string {
+    return uuid.v4();
   }
 
   createRow(values: any): FormGroup {
     const controlOptions: AbstractControlOptions = {};
 
-    const controlsConfig = this.rowProperties.reduce((acc, rowProperty) => {
+    const controlsConfig = this.headerRow.reduce((acc: any, rowProperty) => {
+      const key = this.usePropAsHeader ? rowProperty.label : rowProperty.key;
+
       acc[rowProperty.key] = this.formBuilder.control({
-        value: values[rowProperty.value] ? values[rowProperty.value] : '',
+        value: values[key] ? values[key] : '',
         disabled: false,
       });
       return acc;
@@ -83,21 +116,22 @@ export class ExtenableFormGridComponent implements OnInit {
     fieldName = fieldName.trim();
 
     // check if prop exists
-    const found = this.rowProperties
-      .map((i) => i.value)
+    const found = this.headerRow
+      .map((i) => i.label)
       .find((i) => i === fieldName);
-    if (!found) {
-      const addedUuid = uuid.v4();
-      this.rowProperties = [
-        ...this.rowProperties.slice(0, colIndex),
-        { key: addedUuid, value: fieldName ? fieldName : addedUuid },
-        ...this.rowProperties.slice(colIndex),
+    if (!found || !this.usePropAsHeader) {
+      const addedUuid = this.getUuid();
+      fieldName = fieldName ? fieldName : addedUuid;
+      this.headerRow = [
+        ...this.headerRow.slice(0, colIndex),
+        { key: addedUuid, label: fieldName },
+        ...this.headerRow.slice(colIndex),
       ];
       const rows = this.formGroup.controls['rows'] as FormArray;
       const rowControls: FormGroup[] = rows.controls as FormGroup[];
-      rowControls.forEach((rowFormGroup) => {
+      rowControls.forEach((rowFormGroup, rowIndex) => {
         const addedControl = this.formBuilder.control({
-          value: ``,
+          value: this.allowEditHeaderRows && rowIndex === 0 ? fieldName : '',
           disabled: false,
         });
         rowFormGroup.addControl(addedUuid, addedControl);
@@ -109,10 +143,10 @@ export class ExtenableFormGridComponent implements OnInit {
   }
 
   deleteColumn(colIndex: number) {
-    const propToDelete = this.rowProperties[colIndex];
-    this.rowProperties = [
-      ...this.rowProperties.slice(0, colIndex),
-      ...this.rowProperties.slice(colIndex + 1),
+    const propToDelete = this.headerRow[colIndex];
+    this.headerRow = [
+      ...this.headerRow.slice(0, colIndex),
+      ...this.headerRow.slice(colIndex + 1),
     ];
 
     const rows = this.formGroup.controls['rows'] as FormArray;
@@ -123,17 +157,23 @@ export class ExtenableFormGridComponent implements OnInit {
   }
 
   submitAction() {
-    const data = this.formGroup.value['rows'].map((row) => {
-      const result = {};
-      Object.keys(row).map((key) => {
-        const found = this.rowProperties.find((i) => i.key === key);
-        result[found ? found.value : key] = row[key];
+    // this.log();
+    const tableRows = this.formGroup.value['rows'].map((row: any) => {
+      const result: any = {};
+      Object.keys(row).map((uuid) => {
+        const found = this.headerRow.find(
+          (i) => i.state !== ColumnState.EXISTING && i.key === uuid
+        );
+        const key = found ? found.label : uuid;
+        result[key] = row[uuid];
       });
       return result;
     });
-
-    this.log();
-    this.submitted.emit(data);
+    if (this.usePropAsHeader) {
+      this.submitted.emit({ tableRows });
+    } else {
+      this.submitted.emit({ tableRows, headerRows: this.headerRow });
+    }
   }
 
   drop(event: CdkDragDrop<any>) {
@@ -162,26 +202,25 @@ export class ExtenableFormGridComponent implements OnInit {
   }
 
   log() {
-    const data = this.formGroup.value['rows'].map((row) => {
-      const result = {};
-      Object.keys(row).map((key) => {
-        const found = this.rowProperties.find((i) => i.key === key);
-        result[found ? found.value : key] = row[key];
+    const data = this.formGroup.value['rows'].map((row: any) => {
+      const result: any = {};
+      Object.keys(row).map((uuid: string) => {
+        const found = this.headerRow.find(
+          (i) => i.state !== ColumnState.EXISTING && i.key === uuid
+        );
+        uuid = found ? found.label : uuid;
+        result[uuid] = row[uuid];
       });
       return result;
     });
 
-    data.forEach((row) => {
+    data.forEach((row: any) => {
       console.log(row);
     });
   }
 
   dropColumnSort(event: CdkDragDrop<any>) {
     console.log(event);
-    moveItemInArray(
-      this.rowProperties,
-      event.previousIndex,
-      event.currentIndex
-    );
+    moveItemInArray(this.headerRow, event.previousIndex, event.currentIndex);
   }
 }

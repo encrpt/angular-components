@@ -14,6 +14,7 @@ export class ExtenableFormGridDemoComponent implements OnInit {
   }
 
   data: GridTable = { tableRows: [] };
+  data_empty: GridTable = { tableRows: [] };
   dataAndHeader: GridTable = { tableRows: [] };
   isVisible = true;
   ngOnInit(): void {}

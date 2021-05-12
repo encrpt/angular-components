@@ -67,12 +67,18 @@ export class ExtenableFormGridComponent implements OnInit {
         }
       } else {
         this.usePropAsHeader = true;
-        this.headerRow = Object.keys(this.gridData.tableRows[0]).map((key) => {
-          return { key: this.getUuid(), label: key };
-        });
-        this.rowFromgroups = this.gridData.tableRows.map((values: any) =>
-          this.createRow(values)
-        );
+        // only supported if headerRows provided
+        this.allowEditHeaderRows = false;
+        if (this.gridData.tableRows.length) {
+          this.headerRow = Object.keys(this.gridData.tableRows[0]).map(
+            (key) => {
+              return { key: this.getUuid(), label: key };
+            }
+          );
+          this.rowFromgroups = this.gridData.tableRows.map((values: any) =>
+            this.createRow(values)
+          );
+        }
       }
     }
 
@@ -101,7 +107,7 @@ export class ExtenableFormGridComponent implements OnInit {
     return fg;
   }
 
-  insertRow(rowIndex: number) {
+  addRow(rowIndex: number) {
     const rows = this.formGroup.controls['rows'] as FormArray;
     const row = this.createRow(rowIndex + ' added');
     rows.insert(rowIndex, row);

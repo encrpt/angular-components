@@ -2,7 +2,7 @@
   <button mat-icon-button (click)="submitAction()">
     <mat-icon>done</mat-icon>
   </button>
-  <button type="button" mat-button (click)="sidenav.toggle()">
+  <button type="button" mat-stroked-button (click)="sidenav.toggle()">
     sort columns
   </button>
 </div>
@@ -56,6 +56,7 @@
                     <app-input-button
                       [width]="200"
                       type="icon"
+                      [required]="true"
                       buttonLabel="Add"
                       icon="chevron_right"
                       matTooltip="Set Property"
@@ -65,7 +66,10 @@
                     >
                     </app-input-button>
                     <mat-divider></mat-divider>
-                    <button mat-icon-button (click)="insertRow(0)">
+                    <button
+                      mat-icon-button
+                      (click)="addRow(allowEditHeaderRows ? 1 : 0)"
+                    >
                       <mat-icon>expand_more</mat-icon>
                     </button>
                   </div>
@@ -90,6 +94,7 @@
                       <app-input-button
                         [width]="200"
                         type="icon"
+                        [required]="true"
                         buttonLabel="Add"
                         icon="chevron_right"
                         matTooltip="Set Property"
@@ -110,7 +115,7 @@
                     </div>
                     <ng-template #usefistrowasheader>
                       <div class="form-grid-cell">
-                        <mat-form-field [style.width]="'100px'">
+                        <mat-form-field>
                           <input
                             autocomplete="off"
                             formControlName="{{ rowProperty.key }}"
@@ -139,21 +144,16 @@
                     <mat-icon color="warn">clear</mat-icon>
                   </button>
                   <div class="align-center">
-                    {{ rowIndex }}
+                    {{ allowEditHeaderRows ? rowIndex : rowIndex + 1 }}
                   </div>
-                  <button
-                    mat-icon-button
-                    (click)="
-                      insertRow(usePropAsHeader ? rowIndex + 1 : rowIndex)
-                    "
-                  >
+                  <button mat-icon-button (click)="addRow(rowIndex + 1)">
                     <mat-icon>expand_more</mat-icon>
                   </button>
                 </div>
               </td>
               <td class="form-grid-cell" *ngFor="let rowProperty of headerRow">
                 <div [formGroupName]="rowIndex">
-                  <mat-form-field [style.width]="'200px'">
+                  <mat-form-field>
                     <input
                       autocomplete="off"
                       formControlName="{{ rowProperty.key }}"
@@ -174,8 +174,9 @@
             <th>
               <div class="form-grid-cell-first-column">
                 <app-input-button
-                  [disabled]="headerRow.length === 0"
                   [width]="200"
+                  [required]="true"
+                  [disabled]="headerRow.length === 0"
                   type="icon"
                   buttonLabel="Add"
                   icon="chevron_right"
@@ -186,7 +187,7 @@
                 >
                 </app-input-button>
                 <mat-divider></mat-divider>
-                <button mat-icon-button (click)="insertRow(0)">
+                <button mat-icon-button (click)="addRow(0)">
                   <mat-icon>expand_more</mat-icon>
                 </button>
               </div>

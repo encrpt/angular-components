@@ -29,68 +29,26 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <table
-      cdkDropList
-      (cdkDropListDropped)="dropRowSort($event)"
-      class="grid-table"
-      *ngIf="dataRows.length; else emptytable"
-    >
-      <ng-container
-        class="form-grid-row"
-        *ngFor="let item of dataRows; let rowIndex = index"
+    <div class="grid-area">
+      <table
+        cdkDropList
+        (cdkDropListDropped)="dropRowSort($event)"
+        class="grid-table"
+        *ngIf="dataRows.length; else emptytable"
       >
-        <ng-container *ngIf="rowIndex === 0">
-          <thead>
-            <tr
-              cdkDropList
-              cdkDropListOrientation="horizontal"
-              (cdkDropListDropped)="dropColumnSort($event)"
-            >
-              <th>
-                <div class="form-grid-cell-first-column">
-                  <app-input-button
-                    [width]="200"
-                    type="icon"
-                    [required]="true"
-                    buttonLabel="Add"
-                    icon="chevron_right"
-                    matTooltip="Set Property"
-                    iconBefore="vertical_align_bottom"
-                    placeholder="fieldname"
-                    (onSubmit)="addColumn(0, $event)"
-                  >
-                  </app-input-button>
-                  <mat-divider></mat-divider>
-                  <button
-                    mat-icon-button
-                    (click)="addRow(allowEditHeaderRows ? 1 : 0)"
-                  >
-                    <mat-icon>expand_more</mat-icon>
-                  </button>
-                </div>
-              </th>
-              <th
-                *ngFor="let rowProperty of headerRow; let colIndex = index"
-                cdkDrag
+        <ng-container
+          class="form-grid-row"
+          *ngFor="let item of dataRows; let rowIndex = index"
+        >
+          <ng-container *ngIf="rowIndex === 0">
+            <thead>
+              <tr
+                cdkDropList
+                cdkDropListOrientation="horizontal"
+                (cdkDropListDropped)="dropColumnSort($event)"
               >
-                <div class="form-grid-cell-first-row">
-                  <div class="toolbar">
-                    <button cdkDragHandle class="drag-handle" mat-icon-button>
-                      <mat-icon>drag_handle</mat-icon>
-                    </button>
-                    <div class="spacer"></div>
-
-                    <button mat-icon-button (click)="deleteColumn(colIndex)">
-                      <mat-icon color="warn">clear</mat-icon>
-                    </button>
-                    <button
-                      *ngIf="allowEditHeaderRows"
-                      mat-icon-button
-                      (click)="editHeader(rowProperty.key)"
-                    >
-                      <mat-icon>edit</mat-icon>
-                    </button>
-
+                <th class="sticky">
+                  <div class="form-grid-cell-first-column">
                     <app-input-button
                       [width]="200"
                       type="icon"
@@ -100,23 +58,67 @@
                       matTooltip="Set Property"
                       iconBefore="vertical_align_bottom"
                       placeholder="fieldname"
-                      (onSubmit)="addColumn(colIndex + 1, $event)"
+                      (onSubmit)="addColumn(0, $event)"
                     >
                     </app-input-button>
+                    <mat-divider></mat-divider>
+                    <button
+                      mat-icon-button
+                      (click)="addRow(allowEditHeaderRows ? 1 : 0)"
+                    >
+                      <mat-icon>expand_more</mat-icon>
+                    </button>
                   </div>
-                  <div
-                    class="form-grid-cell"
-                    *ngIf="
-                      usePropAsHeader || !allowEditHeaderRows;
-                      else usefistrowasheader
-                    "
-                  >
-                    {{ rowProperty.label }}
-                  </div>
-                  <ng-template #usefistrowasheader>
-                    <div class="form-grid-cell">
-                      {{ item[rowProperty.key] }}
-                      <!-- <mat-form-field>
+                </th>
+                <th
+                  class="sticky"
+                  *ngFor="let rowProperty of headerRow; let colIndex = index"
+                  cdkDrag
+                >
+                  <div class="form-grid-cell-first-row">
+                    <div class="toolbar">
+                      <button cdkDragHandle class="drag-handle" mat-icon-button>
+                        <mat-icon>drag_handle</mat-icon>
+                      </button>
+                      <div class="spacer"></div>
+
+                      <button mat-icon-button (click)="deleteColumn(colIndex)">
+                        <mat-icon color="warn">clear</mat-icon>
+                      </button>
+                      <button
+                        *ngIf="allowEditHeaderRows"
+                        mat-icon-button
+                        (click)="editHeader(rowProperty.key)"
+                      >
+                        <mat-icon>edit</mat-icon>
+                      </button>
+
+                      <app-input-button
+                        [width]="200"
+                        type="icon"
+                        [required]="true"
+                        buttonLabel="Add"
+                        icon="chevron_right"
+                        matTooltip="Set Property"
+                        iconBefore="vertical_align_bottom"
+                        placeholder="fieldname"
+                        (onSubmit)="addColumn(colIndex + 1, $event)"
+                      >
+                      </app-input-button>
+                    </div>
+                    <div
+                      class="form-grid-cell"
+                      *ngIf="
+                        usePropAsHeader || !allowEditHeaderRows;
+                        else usefistrowasheader
+                      "
+                    >
+                      {{ rowProperty.label }}
+                    </div>
+                    <ng-template #usefistrowasheader>
+                      <div class="form-grid-cell">
+                        {{ item[rowProperty.key] }}
+                        <!-- <mat-form-field>
                         <input
                           autocomplete="off"
                           formControlName="{{ rowProperty.key }}"
@@ -124,42 +126,42 @@
                           placeholder="TODO"
                         />
                       </mat-form-field> -->
-                    </div>
-                  </ng-template>
-                </div>
-              </th>
-            </tr>
-          </thead>
-        </ng-container>
+                      </div>
+                    </ng-template>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+          </ng-container>
 
-        <ng-container
-          *ngIf="rowIndex > 0 || usePropAsHeader || !allowEditHeaderRows"
-        >
-          <tr cdkDrag>
-            <td>
-              <div class="form-grid-cell-first-column">
-                <button cdkDragHandle class="drag-handle" mat-icon-button>
-                  <mat-icon>drag_handle</mat-icon>
-                </button>
-                <button mat-icon-button (click)="deleteRow(rowIndex)">
-                  <mat-icon color="warn">clear</mat-icon>
-                </button>
-                <div class="align-center">
-                  {{ allowEditHeaderRows ? rowIndex : rowIndex + 1 }}
-                </div>
-                <button mat-icon-button (click)="editRow(rowIndex)">
-                  <mat-icon>edit</mat-icon>
-                </button>
+          <ng-container
+            *ngIf="rowIndex > 0 || usePropAsHeader || !allowEditHeaderRows"
+          >
+            <tr cdkDrag>
+              <td>
+                <div class="form-grid-cell-first-column">
+                  <!-- <button cdkDragHandle class="drag-handle" mat-icon-button>
+                    <mat-icon>drag_handle</mat-icon>
+                  </button> -->
+                  <button mat-icon-button (click)="deleteRow(rowIndex)">
+                    <mat-icon color="warn">clear</mat-icon>
+                  </button>
+                  <!-- <div class="align-center">
+                    {{ allowEditHeaderRows ? rowIndex : rowIndex + 1 }}
+                  </div> -->
+                  <button mat-icon-button (click)="editRow(rowIndex)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
 
-                <button mat-icon-button (click)="addRow(rowIndex + 1)">
-                  <mat-icon>expand_more</mat-icon>
-                </button>
-              </div>
-            </td>
-            <td class="form-grid-cell" *ngFor="let rowProperty of headerRow">
-              <div>
-                {{ item[rowProperty.key] }}
-                <!-- <mat-form-field>
+                  <button mat-icon-button (click)="addRow(rowIndex + 1)">
+                    <mat-icon>expand_more</mat-icon>
+                  </button>
+                </div>
+              </td>
+              <td class="form-grid-cell" *ngFor="let rowProperty of headerRow">
+                <div>
+                  {{ item[rowProperty.key] }}
+                  <!-- <mat-form-field>
                   <input
                     autocomplete="off"
                     formControlName="{{ rowProperty.key }}"
@@ -167,13 +169,13 @@
                     placeholder="TODO"
                   />
                 </mat-form-field> -->
-              </div>
-            </td>
-          </tr>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
         </ng-container>
-      </ng-container>
-    </table>
-
+      </table>
+    </div>
     <ng-template #emptytable>
       <table class="grid-table">
         <tr>

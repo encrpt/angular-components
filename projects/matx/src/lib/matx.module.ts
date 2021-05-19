@@ -23,6 +23,7 @@ import { TreeSelectComponent } from './components/tree-select/tree-select.compon
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTreeModule } from '@angular/material/tree';
 import { ExtenableTextGridComponent } from './components/extenable-text-grid/extenable-text-grid.component';
+import { GridFormComponent } from './components/grid-form/grid-form.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ExtenableTextGridComponent } from './components/extenable-text-grid/ext
     ExtenableFormGridComponent,
     TreeSelectComponent,
     ExtenableTextGridComponent,
+    GridFormComponent,
   ],
   imports: [
     FormsModule,

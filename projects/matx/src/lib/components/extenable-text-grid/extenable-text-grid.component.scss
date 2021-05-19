@@ -2,17 +2,28 @@
   text-align: center;
 }
 
+.grid-area {
+  max-height: 60vh;
+}
 .grid-table {
   border: 1px solid;
   border-collapse: collapse;
   th,
   td {
-    border: 1px solid;
-    max-width: 400px
+    border: 1px solid #444;
+    max-width: 500px;
   }
   td:first-child,
   th {
     background-color: #fff;
+    border-bottom: 1px solid #444;
+  }
+  .sticky {
+    position: sticky;
+    background-color: #fff;
+    // top: var(--sp-offset);
+    top: 0;
+    z-index: 100;
   }
 }
 

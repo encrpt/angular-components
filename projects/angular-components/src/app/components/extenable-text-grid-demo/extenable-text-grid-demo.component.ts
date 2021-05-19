@@ -8,6 +8,14 @@ const DEMO_DATA = [
   'Brieselang',
   'Falkensee',
   'Der ohnehin angeschlagene Bitcoin-Kurs fiel infolge der Ankündigung um weitere zehn Prozent auf einen Wert von unter 31.700 Euro - der tiefste Stand seit Februar 2021. Ob der weitere Kurssturz in direktem Zusammenhang mit Chinas Maßnahmen steht, lässt sich nicht eindeutig nachvollziehen, es liegt aber nahe. Ein Großteil des Bitcoin-Minings findet aufgrund der dort vergleichwseise niedrigen Strompreise in China statt, die Region ist also durchaus wichtig für das virtuelle Zahlungsmittel.',
+  'Energiebedarf',
+  'Bitcoins',
+  'wiederum ist einer der',
+  'Gründe',
+  'warum sich Elon Musk',
+  'jüngst von der',
+  'Kryptowährung',
+  'abgewandt hat.',
 ];
 @Component({
   selector: 'app-extenable-text-grid-demo',
@@ -56,7 +64,9 @@ export class ExtenableTextGridDemoComponent implements OnInit {
       { key: this.getUuid(), label: 'count' },
     ];
 
-    this.dataAndHeader.tableRows = Array.from(new Array(DEMO_DATA.length))
+    this.dataAndHeader.tableRows = Array.from(
+      new Array(DEMO_DATA.slice(0, 4).length)
+    )
       .map((_, i) => i)
       .map((i, index) => {
         const result = {};

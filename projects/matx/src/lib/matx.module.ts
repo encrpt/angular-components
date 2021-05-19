@@ -22,6 +22,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { TreeSelectComponent } from './components/tree-select/tree-select.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTreeModule } from '@angular/material/tree';
+import { ExtenableTextGridComponent } from './components/extenable-text-grid/extenable-text-grid.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatTreeModule } from '@angular/material/tree';
     ErrorMessageComponent,
     ExtenableFormGridComponent,
     TreeSelectComponent,
+    ExtenableTextGridComponent,
   ],
   imports: [
     FormsModule,
@@ -51,7 +53,6 @@ import { MatTreeModule } from '@angular/material/tree';
     MatSidenavModule,
     MatCheckboxModule,
     MatTreeModule,
-
   ],
   exports: [
     SliderCircleComponent,
@@ -61,6 +62,7 @@ import { MatTreeModule } from '@angular/material/tree';
     TitleFormComponent,
     ExtenableFormGridComponent,
     TreeSelectComponent,
+    ExtenableTextGridComponent,
   ],
 })
 export class MatxModule {}

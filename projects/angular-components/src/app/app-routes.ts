@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 import { DemoHomeComponent } from './components/demo-home/demo-home.component';
 import { DemoMenuComponent } from './components/demo-menu/demo-menu.component';
 import { ExtenableFormGridDemoComponent } from './components/extenable-form-grid-demo/extenable-form-grid-demo.component';
+import { ExtenableTextGridDemoComponent } from './components/extenable-text-grid-demo/extenable-text-grid-demo.component';
 import { InputButtonDemoComponent } from './components/input-button-demo/input-button-demo.component';
 import { InputFileDemoComponent } from './components/input-file-demo/input-file-demo.component';
 import { LoadingSpinnerDemoComponent } from './components/loading-spinner-demo/loading-spinner-demo.component';
@@ -26,6 +27,14 @@ export const appRoutes: Routes = [
     data: {
       title: 'Material',
       description: 'Tree menu based on MatTreeModule',
+    },
+  },
+  {
+    path: 'extenable-text-grid',
+    component: ExtenableTextGridDemoComponent,
+    data: {
+      title: 'Material',
+      description: 'An extendable text grid',
     },
   },
   {

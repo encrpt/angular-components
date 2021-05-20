@@ -96,14 +96,7 @@ export class ExtenableTextGridComponent implements OnInit {
   }
 
   addRow(rowIndex: number) {
-    // TODO open popup
-    const row = this.createRow({});
-    this.dataRows = [
-      ...this.dataRows.slice(0, rowIndex),
-      row,
-      ...this.dataRows.slice(rowIndex),
-    ];
-    this.editRow(rowIndex);
+    this.editRow(rowIndex, true);
   }
 
   deleteRow(rowIndex: number) {
@@ -235,8 +228,8 @@ export class ExtenableTextGridComponent implements OnInit {
       });
   }
 
-  editRow(index: number) {
-    const row = this.dataRows[index];
+  editRow(index: number, isCreate = false) {
+    const row = isCreate ? this.createRow({}) : this.dataRows[index];
     const dialogRef = this.dialog.open(GridFormComponent, {
       data: {
         headerRow: this.headerRow,
@@ -251,17 +244,28 @@ export class ExtenableTextGridComponent implements OnInit {
       )
 
       .subscribe((data) => {
-        console.log('Dialog output:', data);
-        this.dataRows[index] = Object.keys(this.dataRows[index]).reduce(
-          (a, key) => {
-            if (!data[key]) {
-              throw new Error('Missing key' + key);
-            }
-            a[key] = data[key];
-            return a;
-          },
-          {}
-        );
+        if (isCreate) {
+          // check property exists
+          const inputExists = Object.keys(data).find((key) => data[key]);
+          if (inputExists) {
+            this.dataRows = [
+              ...this.dataRows.slice(0, index),
+              data,
+              ...this.dataRows.slice(index),
+            ];
+          }
+        } else {
+          this.dataRows[index] = Object.keys(this.dataRows[index]).reduce(
+            (a: any, key) => {
+              if (!(key in data)) {
+                throw new Error('Missing key: ' + key);
+              }
+              a[key] = data[key];
+              return a;
+            },
+            {}
+          );
+        }
       });
   }
 }

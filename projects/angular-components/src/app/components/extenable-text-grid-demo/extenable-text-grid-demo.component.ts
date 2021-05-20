@@ -40,11 +40,6 @@ export class ExtenableTextGridDemoComponent implements OnInit {
   output(data) {
 
     console.log(data);
-    if(data.headerRow) {
-      console.log(data);
-    } else {
-      console.log(data);
-    }
     this.isVisible = false;
     setTimeout(() => {
       // reload for testing

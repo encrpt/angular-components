@@ -4,7 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { filter, finalize } from 'rxjs/operators';
 import * as uuid from 'uuid';
 import { GridFormComponent } from '../grid-form/grid-form.component';
-import { ColumnState, GridTable, GridTableHeader } from './model';
+import {
+  ColumnState,
+  GridTable,
+  GridTableHeader,
+} from '../extenable-form-grid/model';
 
 @Component({
   selector: 'lib-extenable-text-grid',
@@ -128,21 +132,32 @@ export class ExtenableTextGridComponent implements OnInit {
 
   submitAction() {
     // this.log();
-    const tableRows = this.dataRows.map((row: any) => {
-      const result: any = {};
-      Object.keys(row).map((uuid) => {
-        // const found = this.headerRow.find(
-        //   (i) => i.state !== ColumnState.EXISTING && i.key === uuid
-        // );
-        // const key = found ? found.label : uuid;
-        result[uuid] = row[uuid];
-      });
-      return result;
-    });
+
     if (this.usePropAsHeader) {
+      const tableRows = this.dataRows.map((row: any) => {
+        const result: any = {};
+        Object.keys(row).map((uuid) => {
+          const found = this.headerRow.find((i) => i.key === uuid);
+          // should always exists
+          const key = found ? found.label : uuid;
+          result[key] = row[uuid];
+        });
+        return result;
+      });
       this.submitted.emit({ tableRows, headerRow: [] });
     } else {
-      this.submitted.emit({ tableRows, headerRow: this.headerRow });
+      if (this.allowEditHeaderRows) {
+        this.submitted.emit({
+          tableRows: this.dataRows.slice(1),
+          headerRow: this.headerRow,
+        });
+      } else {
+        // no edit - same props allowed
+        this.submitted.emit({
+          tableRows: this.dataRows,
+          headerRow: this.headerRow,
+        });
+      }
     }
   }
 
@@ -220,7 +235,7 @@ export class ExtenableTextGridComponent implements OnInit {
       });
   }
 
-  editRow(index) {
+  editRow(index: number) {
     const row = this.dataRows[index];
     const dialogRef = this.dialog.open(GridFormComponent, {
       data: {
@@ -230,6 +245,23 @@ export class ExtenableTextGridComponent implements OnInit {
     });
     dialogRef
       .afterClosed()
-      .subscribe((data) => console.log('Dialog output:', data));
+      .pipe(
+        filter((data) => data),
+        finalize(() => console.log('completed'))
+      )
+
+      .subscribe((data) => {
+        console.log('Dialog output:', data);
+        this.dataRows[index] = Object.keys(this.dataRows[index]).reduce(
+          (a, key) => {
+            if (!data[key]) {
+              throw new Error('Missing key' + key);
+            }
+            a[key] = data[key];
+            return a;
+          },
+          {}
+        );
+      });
   }
 }

@@ -1,3 +1,9 @@
+<h2>Header row editable - allows same properties-name</h2>
+<lib-extenable-text-grid
+  [gridData]="dataAndHeader"
+  [allowEditHeaderRows]="true"
+  (submitted)="output($event)"
+></lib-extenable-text-grid>
 <h2>Empty</h2>
 <lib-extenable-text-grid
   [gridData]="data_empty"
@@ -12,11 +18,5 @@
 <h2>Header row - allows same properties-name</h2>
 <lib-extenable-text-grid
   [gridData]="dataAndHeader"
-  (submitted)="output($event)"
-></lib-extenable-text-grid>
-<h2>Header row editable - allows same properties-name</h2>
-<lib-extenable-text-grid
-  [gridData]="dataAndHeader"
-  [allowEditHeaderRows]="true"
   (submitted)="output($event)"
 ></lib-extenable-text-grid>

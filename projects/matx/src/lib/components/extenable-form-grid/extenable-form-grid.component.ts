@@ -42,10 +42,10 @@ export class ExtenableFormGridComponent implements OnInit {
     console.log(this.gridData);
     if (this.gridData) {
       // this.gridData.headerRows = [];
-      if (this.gridData.headerRows && this.gridData.headerRows.length) {
+      if (this.gridData.headerRow && this.gridData.headerRow.length) {
         this.usePropAsHeader = false;
         // do not convert exising mappings on submit
-        this.headerRow = this.gridData.headerRows.map((i) => {
+        this.headerRow = this.gridData.headerRow.map((i) => {
           return { key: i.key, label: i.label, state: ColumnState.EXISTING };
         });
         // init form rows
@@ -178,7 +178,7 @@ export class ExtenableFormGridComponent implements OnInit {
     if (this.usePropAsHeader) {
       this.submitted.emit({ tableRows });
     } else {
-      this.submitted.emit({ tableRows, headerRows: this.headerRow });
+      this.submitted.emit({ tableRows, headerRow: this.headerRow });
     }
   }
 

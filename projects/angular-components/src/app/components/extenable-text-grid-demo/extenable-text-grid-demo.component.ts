@@ -63,7 +63,7 @@ export class ExtenableTextGridDemoComponent implements OnInit {
           count: Math.round(Math.random() * 1000),
         };
       });
-    this.dataAndHeader.headerRows = [
+    this.dataAndHeader.headerRow = [
       { key: this.getUuid(), label: 'id' },
       { key: this.getUuid(), label: 'id' },
       { key: this.getUuid(), label: 'title' },
@@ -77,11 +77,11 @@ export class ExtenableTextGridDemoComponent implements OnInit {
       .map((_, i) => i)
       .map((i, index) => {
         const result = {};
-        result[this.dataAndHeader.headerRows[0].key] = `id_1_${i}`;
-        result[this.dataAndHeader.headerRows[1].key] = `id_2_${i}`;
-        result[this.dataAndHeader.headerRows[2].key] = DEMO_DATA[index];
-        result[this.dataAndHeader.headerRows[3].key] = Date.now();
-        result[this.dataAndHeader.headerRows[4].key] = Math.round(
+        result[this.dataAndHeader.headerRow[0].key] = `id_1_${i}`;
+        result[this.dataAndHeader.headerRow[1].key] = `id_2_${i}`;
+        result[this.dataAndHeader.headerRow[2].key] = DEMO_DATA[index];
+        result[this.dataAndHeader.headerRow[3].key] = Date.now();
+        result[this.dataAndHeader.headerRow[4].key] = Math.round(
           Math.random() * 1000
         );
         return result;

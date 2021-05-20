@@ -38,9 +38,16 @@ export class ExtenableTextGridDemoComponent implements OnInit {
   }
 
   output(data) {
+
     console.log(data);
+    if(data.headerRows) {
+      console.log(data);
+    } else {
+      console.log(data);
+    }
     this.isVisible = false;
     setTimeout(() => {
+      // reload for testing
       this.isVisible = true;
     }, 200);
   }

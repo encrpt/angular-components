@@ -1,14 +1,10 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { KeyValue } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {
-  AbstractControlOptions,
-  FormArray,
-  FormBuilder,
-  FormGroup,
-} from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { filter, finalize } from 'rxjs/operators';
 import * as uuid from 'uuid';
-import { GridTable, GridTableHeader, ColumnState } from './model';
+import { GridFormComponent } from '../grid-form/grid-form.component';
+import { ColumnState, GridTable, GridTableHeader } from './model';
 
 @Component({
   selector: 'lib-extenable-text-grid',
@@ -16,7 +12,7 @@ import { GridTable, GridTableHeader, ColumnState } from './model';
   styleUrls: ['./extenable-text-grid.component.scss'],
 })
 export class ExtenableTextGridComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(public dialog: MatDialog) {}
 
   @Input()
   gridData: GridTable;
@@ -97,12 +93,13 @@ export class ExtenableTextGridComponent implements OnInit {
 
   addRow(rowIndex: number) {
     // TODO open popup
-    const row = this.createRow(rowIndex + ' added');
+    const row = this.createRow({});
     this.dataRows = [
       ...this.dataRows.slice(0, rowIndex),
       row,
       ...this.dataRows.slice(rowIndex),
     ];
+    this.editRow(rowIndex);
   }
 
   deleteRow(rowIndex: number) {
@@ -112,29 +109,10 @@ export class ExtenableTextGridComponent implements OnInit {
     ];
   }
 
-  addColumn(colIndex: number, fieldName: string = '') {
-    fieldName = fieldName.trim();
+  addColumn(colIndex: number) {
     // check if prop exists
-    const found = this.headerRow
-      .map((i) => i.label)
-      .find((i) => i === fieldName);
-    if (!found || !this.usePropAsHeader) {
-      const addedUuid = this.getUuid();
-      fieldName = fieldName ? fieldName : addedUuid;
-      this.headerRow = [
-        ...this.headerRow.slice(0, colIndex),
-        { key: addedUuid, label: fieldName },
-        ...this.headerRow.slice(colIndex),
-      ];
-      this.dataRows.forEach((row, rowIndex) => {
-        row[addedUuid] === this.allowEditHeaderRows && rowIndex === 0
-          ? fieldName
-          : '';
-      });
-    } else {
-      alert(`property ${fieldName} already exists`);
-      console.log(`property ${fieldName} already exists`);
-    }
+    const addedUuid = this.getUuid();
+    this.editHeader(addedUuid, colIndex);
   }
 
   deleteColumn(colIndex: number) {
@@ -153,11 +131,11 @@ export class ExtenableTextGridComponent implements OnInit {
     const tableRows = this.dataRows.map((row: any) => {
       const result: any = {};
       Object.keys(row).map((uuid) => {
-        const found = this.headerRow.find(
-          (i) => i.state !== ColumnState.EXISTING && i.key === uuid
-        );
-        const key = found ? found.label : uuid;
-        result[key] = row[uuid];
+        // const found = this.headerRow.find(
+        //   (i) => i.state !== ColumnState.EXISTING && i.key === uuid
+        // );
+        // const key = found ? found.label : uuid;
+        result[uuid] = row[uuid];
       });
       return result;
     });
@@ -193,13 +171,65 @@ export class ExtenableTextGridComponent implements OnInit {
     });
   }
 
-  editHeader(key: string) {
-    const value = this.dataRows[0][key];
-    console.log(value);
+  editHeader(key: string, colIndex?: number) {
+    const dialogRef = this.dialog.open(GridFormComponent, {
+      data: {
+        headerRow: this.headerRow,
+        headerKey: key,
+      },
+    });
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((data) => data),
+        finalize(() => console.log('completed'))
+      )
+      .subscribe((data) => {
+        let fieldLabel = data[key].trim();
+        if (colIndex == null) {
+          // null and undefined
+          this.headerRow = this.headerRow.map((i) =>
+            i.key === key ? { key, label: fieldLabel } : i
+          );
+          this.dataRows[0] = Object.keys(this.dataRows[0]).reduce((a, k) => {
+            k === key ? (a[k] = fieldLabel) : (a[k] = this.dataRows[0][k]);
+            return a;
+          }, {});
+        } else {
+          console.log('Dialog output:', fieldLabel);
+          // check if prop exists
+          const found = this.headerRow
+            .map((i) => i.label)
+            .find((i) => i === fieldLabel);
+          if (!found || !this.usePropAsHeader) {
+            fieldLabel = fieldLabel ? fieldLabel : key;
+            this.headerRow = [
+              ...this.headerRow.slice(0, colIndex),
+              { key, label: fieldLabel },
+              ...this.headerRow.slice(colIndex),
+            ];
+            this.dataRows.forEach((row, rowIndex) => {
+              row[key] =
+                this.allowEditHeaderRows && rowIndex === 0 ? fieldLabel : '';
+            });
+          } else {
+            alert(`property ${fieldLabel} already exists`);
+            console.log(`property ${fieldLabel} already exists`);
+          }
+        }
+      });
   }
 
   editRow(index) {
     const row = this.dataRows[index];
-    console.log(row);
+    const dialogRef = this.dialog.open(GridFormComponent, {
+      data: {
+        headerRow: this.headerRow,
+        row: row,
+      },
+    });
+    dialogRef
+      .afterClosed()
+      .subscribe((data) => console.log('Dialog output:', data));
   }
 }

@@ -109,7 +109,7 @@ export class ExtenableFormGridComponent implements OnInit {
 
   addRow(rowIndex: number) {
     const rows = this.formGroup.controls['rows'] as FormArray;
-    const row = this.createRow(rowIndex + ' added');
+    const row = this.createRow({});
     rows.insert(rowIndex, row);
   }
 

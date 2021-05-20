@@ -24,6 +24,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTreeModule } from '@angular/material/tree';
 import { ExtenableTextGridComponent } from './components/extenable-text-grid/extenable-text-grid.component';
 import { GridFormComponent } from './components/grid-form/grid-form.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { GridFormComponent } from './components/grid-form/grid-form.component';
     MatSidenavModule,
     MatCheckboxModule,
     MatTreeModule,
+    MatToolbarModule,
+    MatDialogModule
   ],
   exports: [
     SliderCircleComponent,

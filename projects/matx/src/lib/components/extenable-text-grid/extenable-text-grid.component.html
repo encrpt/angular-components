@@ -2,7 +2,12 @@
   <button mat-icon-button (click)="submitAction()">
     <mat-icon>done</mat-icon>
   </button>
-  <button type="button" mat-stroked-button (click)="sidenav.toggle()">
+  <button
+    [disabled]="headerRow.length < 2"
+    type="button"
+    mat-stroked-button
+    (click)="sidenav.toggle()"
+  >
     sort columns
   </button>
 </div>
@@ -49,7 +54,10 @@
               >
                 <th class="sticky">
                   <div class="form-grid-cell-first-column">
-                    <app-input-button
+                    <button mat-icon-button (click)="addColumn(0)">
+                      <mat-icon>chevron_right</mat-icon>
+                    </button>
+                    <!-- <app-input-button
                       [width]="200"
                       type="icon"
                       [required]="true"
@@ -60,7 +68,7 @@
                       placeholder="fieldname"
                       (onSubmit)="addColumn(0, $event)"
                     >
-                    </app-input-button>
+                    </app-input-button> -->
                     <mat-divider></mat-divider>
                     <button
                       mat-icon-button
@@ -92,8 +100,11 @@
                       >
                         <mat-icon>edit</mat-icon>
                       </button>
+                      <button mat-icon-button (click)="addColumn(colIndex + 1)">
+                        <mat-icon>chevron_right</mat-icon>
+                      </button>
 
-                      <app-input-button
+                      <!-- <app-input-button
                         [width]="200"
                         type="icon"
                         [required]="true"
@@ -104,7 +115,7 @@
                         placeholder="fieldname"
                         (onSubmit)="addColumn(colIndex + 1, $event)"
                       >
-                      </app-input-button>
+                      </app-input-button> -->
                     </div>
                     <div
                       class="form-grid-cell"
@@ -181,7 +192,11 @@
         <tr>
           <th>
             <div class="form-grid-cell-first-column">
-              <app-input-button
+              <button mat-icon-button (click)="addColumn(0)">
+                <mat-icon>chevron_right</mat-icon>
+              </button>
+
+              <!-- <app-input-button
                 [width]="200"
                 [required]="true"
                 [disabled]="headerRow.length === 0"
@@ -193,7 +208,7 @@
                 placeholder="fieldname"
                 (onSubmit)="addColumn(0, $event)"
               >
-              </app-input-button>
+              </app-input-button> -->
               <mat-divider></mat-divider>
               <button mat-icon-button (click)="addRow(0)">
                 <mat-icon>expand_more</mat-icon>

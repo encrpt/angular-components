@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>{{ description }}</h2>
+<mat-dialog-content [formGroup]="formGroup" class="form-panel">
+  <ng-container *ngIf="headerKey; else rowedit">
+    <mat-form-field class="input-form-field">
+      <input
+        autocomplete="off"
+        formControlName="{{ headerKey }}"
+        matInput
+        placeholder="Property"
+        cdkFocusInitial
+      />
+    </mat-form-field>
+  </ng-container>
+
+  <ng-template #rowedit>
+    <ng-container class="form-grid-cell" *ngFor="let rowProperty of headerRow">
+      <mat-form-field class="input-form-field">
+        <input
+          autocomplete="off"
+          formControlName="{{ rowProperty.key }}"
+          matInput
+          placeholder="{{ rowProperty.label }}"
+        />
+      </mat-form-field>
+    </ng-container>
+  </ng-template>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-stroked-button (click)="cancel()" mat-dialog-close>Cancel</button>
+  <!-- <div class="spacer"></div> -->
+  <button
+    type="submit"
+    mat-stroked-button
+    (click)="submit()"
+    mat-button
+    [mat-dialog-close]="true"
+  >
+    Save
+  </button>
+</mat-dialog-actions>

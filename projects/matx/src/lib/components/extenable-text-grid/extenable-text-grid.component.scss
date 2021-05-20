@@ -15,16 +15,17 @@
   }
   td:first-child,
   th {
-    background-color: #fff;
+    background-color: #ecf0ff;
     border-bottom: 1px solid #444;
   }
   .sticky {
     position: sticky;
-    background-color: #fff;
+    background-color: #ecf0ff;
     // top: var(--sp-offset);
     top: 0;
     z-index: 100;
   }
+  margin-bottom: 80px;
 }
 
 .form-grid-row {

@@ -40,7 +40,7 @@ export class ExtenableTextGridDemoComponent implements OnInit {
   output(data) {
 
     console.log(data);
-    if(data.headerRows) {
+    if(data.headerRow) {
       console.log(data);
     } else {
       console.log(data);

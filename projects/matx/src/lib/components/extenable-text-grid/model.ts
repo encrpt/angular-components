@@ -1,6 +1,6 @@
 export interface GridTable {
   tableRows: any[];
-  headerRows?: GridTableHeader[];
+  headerRow?: GridTableHeader[];
 }
 
 export interface GridTableHeader {

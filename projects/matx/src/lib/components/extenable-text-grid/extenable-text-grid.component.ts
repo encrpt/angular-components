@@ -34,11 +34,11 @@ export class ExtenableTextGridComponent implements OnInit {
     // create existing fields
     console.log(this.gridData);
     if (this.gridData) {
-      // this.gridData.headerRows = [];
-      if (this.gridData.headerRows && this.gridData.headerRows.length) {
+      // this.gridData.headerRow = [];
+      if (this.gridData.headerRow && this.gridData.headerRow.length) {
         this.usePropAsHeader = false;
         // do not convert exising mappings on submit
-        this.headerRow = this.gridData.headerRows.map((i) => {
+        this.headerRow = this.gridData.headerRow.map((i) => {
           return { key: i.key, label: i.label, state: ColumnState.EXISTING };
         });
         // init form rows
@@ -60,7 +60,7 @@ export class ExtenableTextGridComponent implements OnInit {
         }
       } else {
         this.usePropAsHeader = true;
-        // only supported if headerRows provided
+        // only supported if headerRow provided
         this.allowEditHeaderRows = false;
         if (this.gridData.tableRows.length) {
           this.headerRow = Object.keys(this.gridData.tableRows[0]).map(
@@ -140,9 +140,9 @@ export class ExtenableTextGridComponent implements OnInit {
       return result;
     });
     if (this.usePropAsHeader) {
-      this.submitted.emit({ tableRows, headerRows: [] });
+      this.submitted.emit({ tableRows, headerRow: [] });
     } else {
-      this.submitted.emit({ tableRows, headerRows: this.headerRow });
+      this.submitted.emit({ tableRows, headerRow: this.headerRow });
     }
   }
 

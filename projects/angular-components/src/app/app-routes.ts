@@ -34,7 +34,7 @@ export const appRoutes: Routes = [
     component: ExtenableTextGridDemoComponent,
     data: {
       title: 'Material',
-      description: 'An extendable text grid',
+      description: 'An extendable text grid, dialog edit',
     },
   },
   {
@@ -42,7 +42,7 @@ export const appRoutes: Routes = [
     component: ExtenableFormGridDemoComponent,
     data: {
       title: 'Material',
-      description: 'An extendable form grid',
+      description: 'An extendable form grid, table edit',
     },
   },
   {

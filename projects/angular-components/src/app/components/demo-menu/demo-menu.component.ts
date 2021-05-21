@@ -17,11 +17,10 @@ export class DemoMenuComponent implements OnInit {
       .map((i) => {
         return {
           uri: i.path,
-          label: i.component.name,
+          label: i.component.name.replace('DemoComponent', ''),
           title: i.data ? i.data.title : '',
           description: i.data ? i.data.description : '',
         };
       });
   }
 }
-

@@ -2,7 +2,12 @@
   <button mat-icon-button (click)="submitAction()">
     <mat-icon>done</mat-icon>
   </button>
-  <button type="button" mat-stroked-button (click)="sidenav.toggle()">
+  <button
+    [disabled]="headerRow.length < 2"
+    type="button"
+    mat-stroked-button
+    (click)="sidenav.toggle()"
+  >
     sort columns
   </button>
 </div>
@@ -196,5 +201,6 @@
         </table>
       </ng-template>
     </form>
+    <div class="padding-footer"></div>
   </mat-sidenav-content>
 </mat-sidenav-container>

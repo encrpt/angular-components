@@ -55,6 +55,10 @@ li {
   padding: 12px;
 }
 
+.padding-footer {
+  padding-bottom: 64px;
+}
+
 .flex-row-bordered {
   display: flex;
   > div:not(:last-child) {
@@ -75,3 +79,4 @@ li {
   display: flex;
   padding: 12px;
 }
+

@@ -8,6 +8,11 @@
 }
 
 .example-card {
-  margin-top: 6px;
-  margin-right: 6px;
+  margin: 12px 12px 0 12px;
+}
+
+@media (max-width: 599px) {
+  .example-card {
+    margin: 6px 6px 0 6px;
+  }
 }

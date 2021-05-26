@@ -3,4 +3,5 @@
  */
 
 export * from './lib/matx.module';
-export { SliderCircleConfig } from './lib/components/slider-circle/slider-circle.models'
+// TODO check
+export { SliderCircleConfig } from './lib/components/slider-circle/slider-circle.models';

@@ -22,7 +22,7 @@ add modules as git subtree to **src/core-modules** in an angular project
 ## component-projects
 
 - /projects/matx - extends material.angular.io components
-- /projects/ngx-markjs - mark search text using mark.js
+- /projects/ng-encrpt - mark search text using mark.js
 
 ## How this repo was initialized
 

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatxModule } from '../../../matx/src/public-api';
-import { NgxMarkjsModule } from '../../../ngx-markjs/src/public-api';
+import { NgxMarkjsModule } from '../../../ng-encrpt/src/public-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemoHomeComponent } from './components/demo-home/demo-home.component';

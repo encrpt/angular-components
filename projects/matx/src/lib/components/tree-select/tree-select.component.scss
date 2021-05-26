@@ -1,0 +1,18 @@
+.tree-panel {
+  padding-right: 18px;
+}
+
+.leaf-label {
+  display: flex;
+  align-items: center;
+  .counter {
+    padding: 4px;
+    // border-radius: 50%;
+    min-width: 10px;
+    height: 10px;
+    margin-right: 6px;
+    line-height: 10px;
+    text-align: center;
+    font-size: 10px;
+  }
+}

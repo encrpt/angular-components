@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 4276",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -29,6 +29,7 @@
     "rxjs": "~6.5.5",
     "showdown": "^1.9.1",
     "tslib": "^2.0.0",
+    "uuid": "^8.3.2",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {

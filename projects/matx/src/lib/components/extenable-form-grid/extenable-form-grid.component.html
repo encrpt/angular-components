@@ -1,0 +1,206 @@
+<div>
+  <button mat-icon-button (click)="submitAction()">
+    <mat-icon>done</mat-icon>
+  </button>
+  <button
+    [disabled]="headerRow.length < 2"
+    type="button"
+    mat-stroked-button
+    (click)="sidenav.toggle()"
+  >
+    sort columns
+  </button>
+</div>
+
+<mat-sidenav-container autosize opened [style.backgroundColor]="'transparent'">
+  <mat-sidenav #sidenav mode="side" opened="false">
+    <div class="sort-panel">
+      <h2>Columns</h2>
+      <div
+        cdkDropList
+        class="header-list"
+        (cdkDropListDropped)="dropColumnSort($event)"
+      >
+        <div
+          class="header-box"
+          *ngFor="let prop of headerRow; let i = index"
+          cdkDrag
+        >
+          <div>{{ i + 1 }}</div>
+          <div>{{ prop.label ? prop.label : prop.key }}</div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <form [formGroup]="formGroup">
+      <table
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+        class="grid-table"
+        formArrayName="rows"
+        *ngIf="this.formGroup.get('rows')['controls'].length; else emptytable"
+      >
+        <ng-container
+          class="form-grid-row"
+          *ngFor="
+            let item of this.formGroup.get('rows')['controls'];
+            let rowIndex = index
+          "
+        >
+          <ng-container *ngIf="rowIndex === 0">
+            <thead>
+              <tr
+                cdkDropList
+                cdkDropListOrientation="horizontal"
+                (cdkDropListDropped)="dropColumnSort($event)"
+              >
+                <th>
+                  <div class="form-grid-cell-first-column">
+                    <app-input-button
+                      [width]="200"
+                      type="icon"
+                      [required]="true"
+                      buttonLabel="Add"
+                      icon="chevron_right"
+                      matTooltip="Set Property"
+                      iconBefore="vertical_align_bottom"
+                      placeholder="fieldname"
+                      (onSubmit)="addColumn(0, $event)"
+                    >
+                    </app-input-button>
+                    <mat-divider></mat-divider>
+                    <button
+                      mat-icon-button
+                      (click)="addRow(allowEditHeaderRows ? 1 : 0)"
+                    >
+                      <mat-icon>expand_more</mat-icon>
+                    </button>
+                  </div>
+                </th>
+                <th
+                  *ngFor="let rowProperty of headerRow; let colIndex = index"
+                  cdkDrag
+                >
+                  <div
+                    [formGroupName]="rowIndex"
+                    class="form-grid-cell-first-row"
+                  >
+                    <div class="toolbar">
+                      <button cdkDragHandle class="drag-handle" mat-icon-button>
+                        <mat-icon>drag_handle</mat-icon>
+                      </button>
+
+                      <button mat-icon-button (click)="deleteColumn(colIndex)">
+                        <mat-icon color="warn">clear</mat-icon>
+                      </button>
+
+                      <app-input-button
+                        [width]="200"
+                        type="icon"
+                        [required]="true"
+                        buttonLabel="Add"
+                        icon="chevron_right"
+                        matTooltip="Set Property"
+                        iconBefore="vertical_align_bottom"
+                        placeholder="fieldname"
+                        (onSubmit)="addColumn(colIndex + 1, $event)"
+                      >
+                      </app-input-button>
+                    </div>
+                    <div
+                      class="form-grid-cell"
+                      *ngIf="
+                        usePropAsHeader || !allowEditHeaderRows;
+                        else usefistrowasheader
+                      "
+                    >
+                      {{ rowProperty.label }}
+                    </div>
+                    <ng-template #usefistrowasheader>
+                      <div class="form-grid-cell">
+                        <mat-form-field>
+                          <input
+                            autocomplete="off"
+                            formControlName="{{ rowProperty.key }}"
+                            matInput
+                            placeholder="TODO"
+                          />
+                        </mat-form-field>
+                      </div>
+                    </ng-template>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+          </ng-container>
+
+          <ng-container
+            *ngIf="rowIndex > 0 || usePropAsHeader || !allowEditHeaderRows"
+          >
+            <tr cdkDrag>
+              <td>
+                <div class="form-grid-cell-first-column">
+                  <button cdkDragHandle class="drag-handle" mat-icon-button>
+                    <mat-icon>drag_handle</mat-icon>
+                  </button>
+                  <button mat-icon-button (click)="deleteRow(rowIndex)">
+                    <mat-icon color="warn">clear</mat-icon>
+                  </button>
+                  <div class="align-center">
+                    {{ allowEditHeaderRows ? rowIndex : rowIndex + 1 }}
+                  </div>
+                  <button mat-icon-button (click)="addRow(rowIndex + 1)">
+                    <mat-icon>expand_more</mat-icon>
+                  </button>
+                </div>
+              </td>
+              <td class="form-grid-cell" *ngFor="let rowProperty of headerRow">
+                <div [formGroupName]="rowIndex">
+                  <mat-form-field>
+                    <input
+                      autocomplete="off"
+                      formControlName="{{ rowProperty.key }}"
+                      matInput
+                      placeholder="TODO"
+                    />
+                  </mat-form-field>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+      </table>
+
+      <ng-template #emptytable>
+        <table class="grid-table">
+          <tr>
+            <th>
+              <div class="form-grid-cell-first-column">
+                <app-input-button
+                  [width]="200"
+                  [required]="true"
+                  [disabled]="headerRow.length === 0"
+                  type="icon"
+                  buttonLabel="Add"
+                  icon="chevron_right"
+                  matTooltip="Set Property"
+                  iconBefore="vertical_align_bottom"
+                  placeholder="fieldname"
+                  (onSubmit)="addColumn(0, $event)"
+                >
+                </app-input-button>
+                <mat-divider></mat-divider>
+                <button mat-icon-button (click)="addRow(0)">
+                  <mat-icon>expand_more</mat-icon>
+                </button>
+              </div>
+            </th>
+          </tr>
+        </table>
+      </ng-template>
+    </form>
+    <div class="padding-footer"></div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

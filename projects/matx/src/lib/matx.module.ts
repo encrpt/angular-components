@@ -15,6 +15,17 @@ import { ErrorMessageComponent } from './components/error-message/error-message.
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { ExtenableFormGridComponent } from './components/extenable-form-grid/extenable-form-grid.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { TreeSelectComponent } from './components/tree-select/tree-select.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTreeModule } from '@angular/material/tree';
+import { ExtenableTextGridComponent } from './components/extenable-text-grid/extenable-text-grid.component';
+import { GridFormComponent } from './components/grid-form/grid-form.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -23,7 +34,11 @@ import { MatMenuModule } from '@angular/material/menu';
     InputButtonComponent,
     InputFileComponent,
     TitleFormComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    ExtenableFormGridComponent,
+    TreeSelectComponent,
+    ExtenableTextGridComponent,
+    GridFormComponent,
   ],
   imports: [
     FormsModule,
@@ -36,14 +51,24 @@ import { MatMenuModule } from '@angular/material/menu';
     MatProgressSpinnerModule,
     MatIconModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDividerModule,
+    DragDropModule,
+    MatSidenavModule,
+    MatCheckboxModule,
+    MatTreeModule,
+    MatToolbarModule,
+    MatDialogModule
   ],
   exports: [
     SliderCircleComponent,
     LoadingSpinnerComponent,
     InputButtonComponent,
     InputFileComponent,
-    TitleFormComponent
-  ]
+    TitleFormComponent,
+    ExtenableFormGridComponent,
+    TreeSelectComponent,
+    ExtenableTextGridComponent,
+  ],
 })
-export class MatxModule { }
+export class MatxModule {}

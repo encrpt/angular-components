@@ -1,0 +1,15 @@
+<div class="flex-row">
+  <app-tree-select
+    [multiSelect]="false"
+    [treeData]="menuData_1"
+    (selectedItems)="selectedItems($event)"
+  ></app-tree-select>
+  <app-tree-select
+    [multiSelect]="true"
+    [treeData]="menuData_2"
+    (selectedItems)="selectedItems($event)"
+  ></app-tree-select>
+</div>
+<div>
+  based on https://material.angular.io/components/tree/examples
+</div>

@@ -1,0 +1,43 @@
+<div class="two-level-edit">
+  <mat-toolbar>
+    <app-input-file
+      accept=".json"
+      matIcon="vertical_align_top"
+      color="none"
+      (onFileSelect)="submitUploadAction($event)"
+      [showFileNames]="true"
+      label="load single file"
+      [style.marginRight]="'12px'"
+    >
+      <span class="nofiles">No file selected</span>
+    </app-input-file>
+    <app-input-button
+      type="raised"
+      color="primary"
+      [width]="300"
+      label="Download json"
+      matTooltip="Export to disk"
+      iconBefore="vertical_align_bottom"
+      placeholder="Filename .json will be added"
+      [required]="true"
+      (onSubmit)="submitDownloadAction($event)"
+    >
+    </app-input-button>
+  </mat-toolbar>
+  <div class="flex-row-bordered">
+    <div
+      *ngFor="
+        let exampleDataCollection of exampleDataCollections;
+        let i = index
+      "
+    >
+      <lib-level-edit
+        *ngIf="i <= viewIndex"
+        [collection]="exampleDataCollection"
+        [selectCollection]="exampleSelectCollections[i]"
+        (emitSelectedId)="nextLevel(i, $event)"
+        [sortable]="i === 0"
+      ></lib-level-edit>
+    </div>
+  </div>
+</div>

@@ -19,6 +19,7 @@ import { RenderLinkPipe } from './pipes/render-link.pipe';
 import { ExtenableFormGridDemoComponent } from './components/extenable-form-grid-demo/extenable-form-grid-demo.component';
 import { TreeSelectDemoComponent } from './components/tree-select-demo/tree-select-demo.component';
 import { ExtenableTextGridDemoComponent } from './components/extenable-text-grid-demo/extenable-text-grid-demo.component';
+import { TwoLevelEditDemoComponent } from './components/two-level-edit-demo/two-level-edit-demo.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ExtenableTextGridDemoComponent } from './components/extenable-text-grid
     ExtenableFormGridDemoComponent,
     ExtenableTextGridDemoComponent,
     TreeSelectDemoComponent,
+    TwoLevelEditDemoComponent,
   ],
   imports: [
     CommonModule,

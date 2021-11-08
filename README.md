@@ -21,8 +21,17 @@ add modules as git subtree to **src/core-modules** in an angular project
 
 ## component-projects
 
-- /projects/matx - extends material.angular.io components
-- /projects/ng-encrpt - mark search text using mark.js
+### /projects/matx - extends material.angular.io components
+
+e.g.:
+
+Extendable grid:
+![Extendable grid](https://www.encrpt.com/wp-content/uploads/sites/3/2021/08/github_002-1536x889.png)
+
+Slider Circle:
+![SliderCircle](https://www.encrpt.com/wp-content/uploads/sites/3/2021/08/github_003-1536x889.png)
+
+### /projects/ng-encrpt - mark search text using mark.js
 
 ## How this repo was initialized
 

@@ -2,3 +2,10 @@
   padding: 12px;
   display: block;
 }
+
+.list-entry {
+  display: flex;
+  > *:not(:last-child) {
+    margin-right: 12px;
+  }
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Converter } from 'showdown';
 
 @Component({
@@ -7,7 +8,7 @@ import { Converter } from 'showdown';
   styleUrls: ['./demo-home.component.scss'],
 })
 export class DemoHomeComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   msg = `
 ## git setup
@@ -45,7 +46,20 @@ add modules as git subtree to __src/core-modules__ in an angular project
           `;
   msgHtml: string;
 
+  routes: any[];
+
   ngOnInit(): void {
+    this.routes = this.router.config
+      .filter((i) => i.path && i.path !== 'home')
+      .map((i) => {
+        return {
+          uri: i.path,
+          label: i.component.name.replace('DemoComponent', ''),
+          title: i.data ? i.data.title : '',
+          description: i.data ? i.data.description : '',
+        };
+      });
+
     const converter = new Converter();
     this.msgHtml = converter.makeHtml(this.msg);
   }

@@ -59,7 +59,7 @@ export class LevelEditComponent implements OnInit {
         a[i] = this.formGroup.value[i].key;
         return a;
       },
-      {}
+      { children: [] }
     );
 
     value.id = this.collection.length

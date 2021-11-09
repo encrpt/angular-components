@@ -1,9 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { KeyValue } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatListOption } from '@angular/material/list';
-import { validateExtension } from 'showdown';
 import { SelectOptions, ValueItem } from './level.model';
 
 @Component({
@@ -15,10 +13,10 @@ export class LevelEditComponent implements OnInit {
   constructor() {}
 
   @Input()
-  collection: ValueItem[];
+  collection: ValueItem[] = [];
 
   @Input()
-  selectCollection: SelectOptions[];
+  selectCollection: SelectOptions[] = [];
 
   @Output()
   emitSelectedId: EventEmitter<number> = new EventEmitter<number>();
@@ -28,6 +26,12 @@ export class LevelEditComponent implements OnInit {
 
   @Input()
   sortable = true;
+
+  @Input()
+  showId = false;
+
+  @Input()
+  showSelectKey = true;
 
   selectKeys: string[];
   formGroup: FormGroup;
@@ -69,13 +73,14 @@ export class LevelEditComponent implements OnInit {
     const indexToUpdate = this.collection.findIndex(
       (i) => i.id === this.selectedItems[0].id
     );
-    console.log(indexToUpdate);
     const value: ValueItem = Object.keys(this.formGroup.value).reduce(
       (a, i) => {
-        a[i] = this.formGroup.value[i].key;
+        if (this.formGroup.value[i]) {
+          a[i] = this.formGroup.value[i].key;
+        }
         return a;
       },
-      { id: this.selectedItems[0].id }
+      this.selectedItems[0]
     );
 
     this.collection[indexToUpdate] = value;

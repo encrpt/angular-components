@@ -9,7 +9,7 @@
   </button>
   <button
     mat-raised-button
-    [disabled]="selectedItems?.length !== 1 || formGroup.invalid"
+    [disabled]="selectedItems?.length !== 1"
     (click)="updateSelected()"
     [style.marginRight]="'12px'"
   >
@@ -29,13 +29,14 @@
   <div *ngFor="let selectItem of selectCollection">
     <mat-form-field appearance="fill">
       <mat-label
-        >{{ selectItem.key }}/{{ selectItem.label }} ({{
+        >{{ selectItem.label || selectItem.key }} ({{
           selectItem.options.length
         }})
       </mat-label>
       <mat-select [formControlName]="selectItem.key">
         <mat-option *ngFor="let option of selectItem.options" [value]="option">
-          {{ option.value }}
+          {{ option.value
+          }}<ng-container *ngIf="showSelectKey"> ({{option.key}})</ng-container>
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -55,7 +56,7 @@
       [ngStyle]="{ cursor: sortable ? 'move' : 'inherit' }"
     >
       <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-      {{ item.id }}:
+      <ng-container *ngIf="showId"> {{ item.id }}: </ng-container>
       <ng-container *ngFor="let key of selectKeys">
         {{ item[key] | optionLabel: key:selectCollection }}
       </ng-container>

@@ -33,6 +33,9 @@ export class LevelEditComponent implements OnInit {
   @Input()
   showSelectKey = true;
 
+  @Input()
+  label = '';
+
   selectKeys: string[];
   formGroup: FormGroup;
 

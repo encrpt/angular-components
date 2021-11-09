@@ -1,4 +1,4 @@
-<mat-toolbar>
+<div class="flex-row margins-tb">
   <button
     mat-raised-button
     (click)="createSelected()"
@@ -23,8 +23,8 @@
   >
     Delete selected
   </button>
-</mat-toolbar>
-
+</div>
+<h3 *ngIf="label">{{label}}</h3>
 <form [formGroup]="formGroup">
   <div *ngFor="let selectItem of selectCollection">
     <mat-form-field appearance="fill">
@@ -36,7 +36,9 @@
       <mat-select [formControlName]="selectItem.key">
         <mat-option *ngFor="let option of selectItem.options" [value]="option">
           {{ option.value
-          }}<ng-container *ngIf="showSelectKey"> ({{option.key}})</ng-container>
+          }}<ng-container *ngIf="showSelectKey">
+            ({{ option.key }})</ng-container
+          >
         </mat-option>
       </mat-select>
     </mat-form-field>

@@ -29,6 +29,9 @@ export const appRoutes: Routes = [
     data: {
       title: 'Material',
       description: 'chainable component for DnD-Sortable-MatList and MatSelect',
+    },
+  },
+  {
     path: 'ace-editor',
     component: AceEditorDemoComponent,
     data: {

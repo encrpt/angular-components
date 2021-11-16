@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgxEditorModel, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 
 @Component({
   selector: 'lib-monaco-editor',

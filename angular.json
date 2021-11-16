@@ -63,7 +63,12 @@
             "aot": true,
             "assets": [
               "projects/angular-components/src/favicon.ico",
-              "projects/angular-components/src/assets"
+              "projects/angular-components/src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-monaco-editor/assets/monaco",
+                "output": "/assets/monaco/"
+              }
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",

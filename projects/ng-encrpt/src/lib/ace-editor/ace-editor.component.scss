@@ -1,0 +1,24 @@
+.ace-editor-panel {
+  width: 100%;
+  height: 16vh;
+}
+
+.ace-flex-row {
+  display: flex;
+  > * {
+    margin-right: 12px;
+  }
+}
+
+.ace_autocomplete {
+  width: 40vw !important;
+}
+
+.ace_tooltip {
+  background: #fff;
+
+  .ace-editor-tooltip {
+    padding: 8px;
+    background-color: #fff;
+  }
+}

@@ -1,0 +1,18 @@
+<mat-form-field appearance="fill" [ngStyle]="{ 'margin-right': '6px' }">
+  <mat-label>Data</mat-label>
+  <mat-select [(value)]="selectValue">
+    <mat-option *ngFor="let item of dsls" [value]="item">
+      {{ item }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill" [ngStyle]="{ 'margin-right': '6px' }">
+  <mat-label>returnType</mat-label>
+  <mat-select [(value)]="returnType">
+    <mat-option *ngFor="let item of returnTypeValues" [value]="item">
+      {{ item }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<lib-monaco-editor [returnType]="returnType"></lib-monaco-editor>

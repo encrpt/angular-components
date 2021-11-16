@@ -20,6 +20,9 @@ import { ExtenableFormGridDemoComponent } from './components/extenable-form-grid
 import { TreeSelectDemoComponent } from './components/tree-select-demo/tree-select-demo.component';
 import { ExtenableTextGridDemoComponent } from './components/extenable-text-grid-demo/extenable-text-grid-demo.component';
 import { TwoLevelEditDemoComponent } from './components/two-level-edit-demo/two-level-edit-demo.component';
+import { NgEncrptModule } from 'projects/ng-encrpt/src/ng-encrpt.module';
+import { AceEditorDemoComponent } from './components/ace-editor-demo/ace-editor-demo.component';
+import { MonacoEditorDemoComponent } from './components/monaco-editor-demo/monaco-editor-demo.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import { TwoLevelEditDemoComponent } from './components/two-level-edit-demo/two-
     ExtenableTextGridDemoComponent,
     TreeSelectDemoComponent,
     TwoLevelEditDemoComponent,
+    AceEditorDemoComponent,
+    MonacoEditorDemoComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +51,7 @@ import { TwoLevelEditDemoComponent } from './components/two-level-edit-demo/two-
     NgxMarkjsModule,
     FormsModule,
     MaterialModule,
+    NgEncrptModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

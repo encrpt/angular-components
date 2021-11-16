@@ -1,7 +1,7 @@
 import ace from 'brace';
 import { Injectable } from '@angular/core';
 import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
-let TokenIterator = ace.acequire('ace/token_iterator').TokenIterator;
+const TokenIterator = ace.acequire('ace/token_iterator').TokenIterator;
 
 @Injectable({
   providedIn: 'root',
@@ -10,12 +10,12 @@ export class AceEditorServiceService {
   constructor() {}
 
   beautify(session: ace.IEditSession) {
-    var iterator = new TokenIterator(session, 0, 0);
-    var token = iterator.getCurrentToken();
+    const iterator = new TokenIterator(session, 0, 0);
+    let token = iterator.getCurrentToken();
 
-    var code = '';
+    let code = '';
 
-    var newLines: any[] = [
+    const newLines: any[] = [
       {
         type: 'paren.lparen',
         value: '(',
@@ -28,7 +28,7 @@ export class AceEditorServiceService {
       },
     ];
 
-    var spaces: any[] = [
+    const spaces: any[] = [
       // {
       //   type: 'paren.lparen',
       //   value: '(',
@@ -62,21 +62,21 @@ export class AceEditorServiceService {
       // },
     ];
 
-    var blockTags = [];
+    const blockTags = [];
 
-    var indentation: number = 0;
-    var dontBreak = false;
-    var tag;
-    var lastTag;
-    var lastToken: any = {};
-    var nextTag;
+    let indentation = 0;
+    const dontBreak = false;
+    let tag;
+    let lastTag;
+    let lastToken: any = {};
+    let nextTag;
 
     while (token) {
       if (token.type === 'paren.rparen') {
         console.log(token);
       }
 
-      let nextToken: any = iterator.stepForward();
+      const nextToken: any = iterator.stepForward();
 
       //trim spaces
       if (token.type == 'text') {
@@ -190,7 +190,7 @@ export class AceEditorServiceService {
         prefix,
         callback
       ) => {
-        let positionAutocomplete = autocompleteData;
+        const positionAutocomplete = autocompleteData;
 
         // BACKWARD
         const tokenIteratorBackwards: ace.TokenIterator = new TokenIterator(

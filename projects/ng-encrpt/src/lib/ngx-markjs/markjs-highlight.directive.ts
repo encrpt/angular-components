@@ -1,7 +1,7 @@
 import { Directive, ElementRef, EventEmitter, Input, Output, Renderer2 } from '@angular/core';
 // import * as Mark from 'mark.js';
 
-declare var require: any;
+declare let require: any;
 const Mark = require('mark.js');
 
 let cancelAnimationId;
@@ -31,7 +31,7 @@ export class MarkjsHighlightDirective {
 
   @Input() markjsHighlight = '';  // our inputs
   @Input() markjsConfig: any = {};
-  @Input() scrollToFirstMarked: boolean = false;
+  @Input() scrollToFirstMarked = false;
 
   @Output() getInstance = new EventEmitter<any>();
 

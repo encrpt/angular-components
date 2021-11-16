@@ -57,7 +57,7 @@ export class InputFileComponent implements OnInit {
 
   private _files: File[];
 
-  ngOnInit() : void {
+  ngOnInit(): void {
   }
   selectStart() {
   }

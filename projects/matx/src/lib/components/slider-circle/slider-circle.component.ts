@@ -1,8 +1,8 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 interface AnimateOptions {
-  useAnimation: boolean,
-  changeStrokeClor: boolean
+  useAnimation: boolean;
+  changeStrokeClor: boolean;
 }
 
 @Component({
@@ -21,7 +21,7 @@ export class SliderCircleComponent implements OnInit {
   }
 
   get size(): number {
-    return this._size
+    return this._size;
   }
 
   _value = 0;
@@ -34,7 +34,7 @@ export class SliderCircleComponent implements OnInit {
     if (isNaN(this._value)) {
       return 0;
     } else {
-      return this._value
+      return this._value;
     }
   }
 
@@ -48,7 +48,7 @@ export class SliderCircleComponent implements OnInit {
     if (isNaN(this._value)) {
       return 0;
     } else {
-      return this._value
+      return this._value;
     }
   }
 
@@ -66,7 +66,7 @@ export class SliderCircleComponent implements OnInit {
   circleColor = '#aaa';
 
   @Input()
-  areaColor = '#eee'
+  areaColor = '#eee';
 
   @Input()
   areaStrokeOpacity = 1;
@@ -111,13 +111,13 @@ export class SliderCircleComponent implements OnInit {
 
   @HostListener('dblclick', ['$event'])
   onDblClick(event) {
-    if (this.editMode && event.srcElement.id === "view-edit-field") {
+    if (this.editMode && event.srcElement.id === 'view-edit-field') {
       this.valueInput = !this.valueInput;
     }
   }
   @HostListener('click', ['$event'])
   onClick(event) {
-    if (this.editMode && !event.srcElement.id.includes("mat-input")) {
+    if (this.editMode && !event.srcElement.id.includes('mat-input')) {
       this.valueInput = false;
     }
   }
@@ -137,7 +137,7 @@ export class SliderCircleComponent implements OnInit {
   ngOnInit(): void {
     if (!this.animationString) {
       // compute based on time
-      this.animationString = `${this.animationSec * this.value / this.max}s`
+      this.animationString = `${this.animationSec * this.value / this.max}s`;
     }
     if (this.value > this.min) {
       this.strokeOpacity = this.areaStrokeOpacity;
@@ -157,7 +157,7 @@ export class SliderCircleComponent implements OnInit {
     if (this.value > this.min) {
       this.animate(this.value, { useAnimation: true, changeStrokeClor: false });
     } else {
-      console.log({ value: this.value, min: this.min, max: this.max })
+      console.log({ value: this.value, min: this.min, max: this.max });
     }
   }
 

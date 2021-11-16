@@ -12,8 +12,8 @@ import { Editor } from 'brace';
 import 'brace/ext/language_tools';
 import 'brace/ext/beautify';
 import ace from 'brace';
-let langTools = ace.acequire('ace/ext/language_tools');
-let beautify = ace.acequire('ace/ext/beautify');
+const langTools = ace.acequire('ace/ext/language_tools');
+const beautify = ace.acequire('ace/ext/beautify');
 
 // import 'brace/mode/php';
 import 'brace/mode/javascript';

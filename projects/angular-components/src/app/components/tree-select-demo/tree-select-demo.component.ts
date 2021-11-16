@@ -33,7 +33,7 @@ export class TreeSelectDemoComponent implements OnInit {
 
   submitAction(files: File[]) {
     if (files.length) {
-      var reader = new FileReader();
+      const reader = new FileReader();
       reader.addEventListener(
         'load',
         () => {

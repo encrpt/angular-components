@@ -8,9 +8,8 @@ describe('InputFileDemoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InputFileDemoComponent ]
-    })
-    .compileComponents();
+      declarations: [InputFileDemoComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

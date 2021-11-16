@@ -8,9 +8,8 @@ describe('TwoLevelEditDemoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TwoLevelEditDemoComponent ]
-    })
-    .compileComponents();
+      declarations: [TwoLevelEditDemoComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

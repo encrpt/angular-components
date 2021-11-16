@@ -17,12 +17,12 @@ export class MonacoEditorComponent implements OnInit {
     fontSize: 20,
     minimap: { enabled: false },
   };
-  code: string = 'function x() {\nconsole.log("Hello world!");\n}';
+  code = 'function x() {\nconsole.log("Hello world!");\n}';
 
   ngOnInit(): void {}
 
   onInit(editor) {
-    let line = editor.getPosition();
+    const line = editor.getPosition();
     console.log(line);
   }
 }

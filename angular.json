@@ -30,13 +30,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/matx/tsconfig.lib.json",
-              "projects/matx/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/matx/**/*.ts",
+              "projects/matx/**/*.html"
+            ]
           }
         }
       }
@@ -140,19 +139,19 @@
               "projects/angular-components/src/favicon.ico",
               "projects/angular-components/src/assets"
             ],
-            "styles": ["projects/angular-components/src/styles.scss"],
+            "styles": [
+              "projects/angular-components/src/styles.scss"
+            ],
             "scripts": []
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/angular-components/tsconfig.app.json",
-              "projects/angular-components/tsconfig.spec.json",
-              "projects/angular-components/e2e/tsconfig.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/angular-components/**/*.ts",
+              "projects/angular-components/**/*.html"
+            ]
           }
         },
         "e2e": {
@@ -196,17 +195,19 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ng-encrpt/tsconfig.lib.json",
-              "projects/ng-encrpt/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/ng-encrpt/**/*.ts",
+              "projects/ng-encrpt/**/*.html"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "matx"
+  "defaultProject": "matx",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

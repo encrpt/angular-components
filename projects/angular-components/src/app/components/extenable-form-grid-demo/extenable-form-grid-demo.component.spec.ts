@@ -8,9 +8,8 @@ describe('ExtenableFormGridDemoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExtenableFormGridDemoComponent ]
-    })
-    .compileComponents();
+      declarations: [ExtenableFormGridDemoComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

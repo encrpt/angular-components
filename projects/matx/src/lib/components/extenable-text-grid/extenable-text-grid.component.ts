@@ -23,7 +23,7 @@ export class ExtenableTextGridComponent implements OnInit {
 
   // properties can be edited and MUST in values of first row
   @Input()
-  allowEditHeaderRows: boolean = false;
+  allowEditHeaderRows = false;
 
   @Output()
   submitted: EventEmitter<GridTable> = new EventEmitter();
@@ -42,9 +42,7 @@ export class ExtenableTextGridComponent implements OnInit {
       if (this.gridData.headerRow && this.gridData.headerRow.length) {
         this.usePropAsHeader = false;
         // do not convert exising mappings on submit
-        this.headerRow = this.gridData.headerRow.map((i) => {
-          return { key: i.key, label: i.label, state: ColumnState.EXISTING };
-        });
+        this.headerRow = this.gridData.headerRow.map((i) => ({ key: i.key, label: i.label, state: ColumnState.EXISTING }));
         // init form rows
         if (this.allowEditHeaderRows) {
           const headerValues = this.headerRow.reduce((acc: any, i) => {
@@ -68,9 +66,7 @@ export class ExtenableTextGridComponent implements OnInit {
         this.allowEditHeaderRows = false;
         if (this.gridData.tableRows.length) {
           this.headerRow = Object.keys(this.gridData.tableRows[0]).map(
-            (key) => {
-              return { key: this.getUuid(), label: key };
-            }
+            (key) => ({ key: this.getUuid(), label: key })
           );
           this.dataRows = this.gridData.tableRows.map((values: any) =>
             this.createRow(values)
@@ -233,7 +229,7 @@ export class ExtenableTextGridComponent implements OnInit {
     const dialogRef = this.dialog.open(GridFormComponent, {
       data: {
         headerRow: this.headerRow,
-        row: row,
+        row,
       },
     });
     dialogRef

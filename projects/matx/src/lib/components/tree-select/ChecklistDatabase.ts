@@ -16,7 +16,7 @@ export class ChecklistDatabase {
     return this.dataChange.value;
   }
 
-  constructor() { }
+  constructor() {}
 
   initialize(dataJson) {
     const data: ItemNode[] = this.buildFileTree(dataJson, 0);

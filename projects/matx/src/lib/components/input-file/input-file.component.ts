@@ -1,17 +1,25 @@
-import { Component, ViewEncapsulation, OnInit, Output, EventEmitter, ViewChild, ElementRef, Input } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  OnInit,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+  Input,
+} from '@angular/core';
 
 @Component({
   selector: 'app-input-file',
   templateUrl: './input-file.component.html',
   styleUrls: ['./input-file.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class InputFileComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   get fileCount(): number {
-    return this._files && this._files.length || 0;
+    return (this._files && this._files.length) || 0;
   }
 
   get fileName(): string {
@@ -57,10 +65,8 @@ export class InputFileComponent implements OnInit {
 
   private _files: File[];
 
-  ngOnInit(): void {
-  }
-  selectStart() {
-  }
+  ngOnInit(): void {}
+  selectStart() {}
 
   onNativeInputFileSelect($event) {
     this._files = $event.target.files;

@@ -1,4 +1,3 @@
-
 export interface SliderCircleConfig {
   // higher values takes longer
   animationSec?: number;

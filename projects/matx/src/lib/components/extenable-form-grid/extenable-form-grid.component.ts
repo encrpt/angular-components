@@ -44,7 +44,11 @@ export class ExtenableFormGridComponent implements OnInit {
       if (this.gridData.headerRow && this.gridData.headerRow.length) {
         this.usePropAsHeader = false;
         // do not convert exising mappings on submit
-        this.headerRow = this.gridData.headerRow.map((i) => ({ key: i.key, label: i.label, state: ColumnState.EXISTING }));
+        this.headerRow = this.gridData.headerRow.map((i) => ({
+          key: i.key,
+          label: i.label,
+          state: ColumnState.EXISTING,
+        }));
         // init form rows
         if (this.allowEditHeaderRows) {
           const headerValues = this.headerRow.reduce((acc: any, i) => {

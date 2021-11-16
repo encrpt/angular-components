@@ -8,9 +8,8 @@ describe('LevelEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LevelEditComponent ]
-    })
-    .compileComponents();
+      declarations: [LevelEditComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

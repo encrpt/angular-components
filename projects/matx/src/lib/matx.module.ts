@@ -66,7 +66,7 @@ import { OptionLabelPipe } from './components/level-edit/option-label.pipe';
     MatToolbarModule,
     MatDialogModule,
     MatListModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   exports: [
     SliderCircleComponent,
@@ -77,7 +77,7 @@ import { OptionLabelPipe } from './components/level-edit/option-label.pipe';
     ExtenableFormGridComponent,
     TreeSelectComponent,
     ExtenableTextGridComponent,
-    LevelEditComponent
+    LevelEditComponent,
   ],
 })
 export class MatxModule {}

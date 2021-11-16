@@ -1,4 +1,11 @@
-import { Directive, ElementRef, EventEmitter, Input, Output, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  Renderer2,
+} from '@angular/core';
 // import * as Mark from 'mark.js';
 
 declare let require: any;
@@ -23,13 +30,11 @@ function animate({ timing, draw, duration }) {
   });
 }
 
-
 @Directive({
-  selector: '[markjsHighlight]'
+  selector: '[markjsHighlight]',
 })
 export class MarkjsHighlightDirective {
-
-  @Input() markjsHighlight = '';  // our inputs
+  @Input() markjsHighlight = ''; // our inputs
   @Input() markjsConfig: any = {};
   @Input() scrollToFirstMarked = false;
 
@@ -40,18 +45,19 @@ export class MarkjsHighlightDirective {
   constructor(
     private contentElementRef: ElementRef, // host element ref
     private renderer: Renderer2 // we will use it to scroll
-  ) {
-  }
+  ) {}
 
-  ngOnChanges(changes) {  //if searchText is changed - redo marking
-    if (!this.markInstance) { // emit mark.js instance (if needeed)
+  ngOnChanges(changes) {
+    //if searchText is changed - redo marking
+    if (!this.markInstance) {
+      // emit mark.js instance (if needeed)
       this.markInstance = new Mark(this.contentElementRef.nativeElement);
       this.getInstance.emit(this.markInstance);
     }
 
     this.hightlightText(); // should be implemented
     if (this.scrollToFirstMarked) {
-      this.scrollToFirstMarkedText();// should be implemented
+      this.scrollToFirstMarkedText(); // should be implemented
     }
   }
 
@@ -63,8 +69,8 @@ export class MarkjsHighlightDirective {
     } else {
       this.markInstance.unmark({
         done: () => {
-          this.markInstance.mark((this.markjsHighlight || ''), this.markjsConfig);
-        }
+          this.markInstance.mark(this.markjsHighlight || '', this.markjsConfig);
+        },
       });
     }
   }
@@ -94,8 +100,7 @@ export class MarkjsHighlightDirective {
         const nextStep = currentScrollTop + progress * delta;
         // set scroll with Angular renderer
         renderer.setProperty(scrollElement, 'scrollTop', nextStep);
-      }
+      },
     });
   }
 }
-

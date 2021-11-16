@@ -8,7 +8,9 @@
     "test": "ng test",
     "format:fix": "pretty-quick",
     "lint": "eslint projects/**/src/**/*.ts --quiet",
-    "lint:fix": "eslint projects/ng-encrpt/src/**/*.ts --fix --quiet",
+    "lint:fix1": "eslint projects/angular-components/src/**/*.ts --fix --quiet",
+    "lint:fix2": "eslint projects/matx/src/**/*.ts --fix --quiet",
+    "lint:fix3": "eslint projects/ng-encrpt/src/**/*.ts --fix --quiet",
     "e2e": "ng e2e"
   },
   "private": true,

@@ -1,4 +1,12 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 
 interface AnimateOptions {
   useAnimation: boolean;
@@ -8,11 +16,10 @@ interface AnimateOptions {
 @Component({
   selector: 'app-slider-circle',
   templateUrl: './slider-circle.component.html',
-  styleUrls: ['./slider-circle.component.scss']
+  styleUrls: ['./slider-circle.component.scss'],
 })
 export class SliderCircleComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   _size: number;
   @Input()
@@ -99,7 +106,6 @@ export class SliderCircleComponent implements OnInit {
   @Input()
   stretchY = 0.8;
 
-
   @Output()
   change: EventEmitter<any> = new EventEmitter();
 
@@ -137,7 +143,7 @@ export class SliderCircleComponent implements OnInit {
   ngOnInit(): void {
     if (!this.animationString) {
       // compute based on time
-      this.animationString = `${this.animationSec * this.value / this.max}s`;
+      this.animationString = `${(this.animationSec * this.value) / this.max}s`;
     }
     if (this.value > this.min) {
       this.strokeOpacity = this.areaStrokeOpacity;
@@ -163,12 +169,14 @@ export class SliderCircleComponent implements OnInit {
 
   changeValue($event) {
     // for label
-    this.value = ($event.value);
+    this.value = $event.value;
     this.animate($event.value, { useAnimation: false, changeStrokeClor: true });
   }
 
   animate(eventValue: number, animateOptions: AnimateOptions) {
-    const circleValue = this.maxLength * Math.abs((eventValue - this.min) / (this.max - this.min));
+    const circleValue =
+      this.maxLength *
+      Math.abs((eventValue - this.min) / (this.max - this.min));
 
     this.change.emit({ value: eventValue, min: this.min, max: this.max });
 
@@ -181,10 +189,12 @@ export class SliderCircleComponent implements OnInit {
     }
 
     // Clear any previous transition
-    this.pathToFill.style.transition = this.pathToFill.style.Transition = 'none';
+    this.pathToFill.style.transition = this.pathToFill.style.Transition =
+      'none';
 
     // Set up the starting positions, move second dash far away
-    this.pathToFill.style.strokeDasharray = (circleValue) + ' ' + this.size * 2 + 1;
+    this.pathToFill.style.strokeDasharray =
+      circleValue + ' ' + this.size * 2 + 1;
 
     // optional define our transition
     if (this.animationString && animateOptions.useAnimation) {
@@ -192,7 +202,8 @@ export class SliderCircleComponent implements OnInit {
       // Trigger a layout so styles are calculated & the browser
       // picks up the starting position before animating
       this.pathToFill.getBoundingClientRect();
-      this.pathToFill.style.transition = this.pathToFill.style.Transition = `stroke-dashoffset ${this.animationString} ease-in-out`;
+      this.pathToFill.style.transition =
+        this.pathToFill.style.Transition = `stroke-dashoffset ${this.animationString} ease-in-out`;
       this.pathToFill.style.strokeDashoffset = '0';
     }
   }

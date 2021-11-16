@@ -104,7 +104,9 @@ export class TreeSelectComponent implements OnInit {
   hasNoContent = (_: number, _nodeData: ItemFlatNode) => _nodeData.item === '';
 
   resetListSelection() {
-    this.checklistSelection = new SelectionModel<ItemFlatNode>(this.multiSelect);
+    this.checklistSelection = new SelectionModel<ItemFlatNode>(
+      this.multiSelect
+    );
   }
 
   /**

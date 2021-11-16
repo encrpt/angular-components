@@ -139,9 +139,7 @@
               "projects/angular-components/src/favicon.ico",
               "projects/angular-components/src/assets"
             ],
-            "styles": [
-              "projects/angular-components/src/styles.scss"
-            ],
+            "styles": ["projects/angular-components/src/styles.scss"],
             "scripts": []
           }
         },

@@ -8,9 +8,8 @@ describe('SliderCircleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SliderCircleComponent ]
-    })
-    .compileComponents();
+      declarations: [SliderCircleComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

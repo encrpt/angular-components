@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
@@ -7,10 +7,11 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
   templateUrl: './ngx-markjs-demo.component.html',
   styleUrls: ['./ngx-markjs-demo.component.scss'],
 })
-export class NgxMarkjsDemoComponent {
-  title = 'ngx-markjs-demo';
+export class NgxMarkjsDemoComponent implements AfterViewInit {
+  @ViewChild('search', { static: false })
+  searchElemRef: ElementRef;
 
-  @ViewChild('search', { static: false }) searchElemRef: ElementRef;
+  title = 'ngx-markjs-demo';
 
   searchText$: Observable<string>;
   searchConfig = { separateWordSearch: false };

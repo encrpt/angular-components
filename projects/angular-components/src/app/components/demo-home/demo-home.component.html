@@ -1,3 +1,22 @@
 <h1>Angular components</h1>
 
+<ul>
+  <li *ngFor="let route of routes" class="home-card" color="primary">
+    <div class="list-entry">
+      <div>
+        <a
+          [style.width]="'150px'"
+          mat-raised-button
+          [routerLink]="'/' + route.uri"
+          >Launch</a
+        >
+      </div>
+      <div>
+        <b>{{ route.title }}</b> {{ route.label }}
+        <p [innerHTML]="route.description | renderLink"></p>
+      </div>
+    </div>
+  </li>
+</ul>
+
 <div [innerHTML]="msgHtml"></div>

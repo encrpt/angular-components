@@ -1,8 +1,8 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
-import { ItemFlatNode } from "projects/matx/src/lib/components/tree-select/ItemFlatNode";
+import { ItemFlatNode } from 'projects/matx/src/lib/components/tree-select/ItemFlatNode';
 import * as uuid from 'uuid';
-import example from '../../../assets/db/pulic-dev-examle.json';
+import example from '../../../assets/db/public-dev-examle.json';
 
 @Component({
   selector: 'app-tree-select-demo',
@@ -10,10 +10,10 @@ import example from '../../../assets/db/pulic-dev-examle.json';
   styleUrls: ['./tree-select-demo.component.scss'],
 })
 export class TreeSelectDemoComponent implements OnInit {
-  constructor() {}
+  menuDataFirst = {};
+  menuDataSecond = {};
 
-  menuData_1 = {};
-  menuData_2 = {};
+  constructor() {}
 
   ngOnInit(): void {
     this.createTreeDataFromJson(example);
@@ -21,7 +21,7 @@ export class TreeSelectDemoComponent implements OnInit {
 
   selectedItems(checklistSelection: SelectionModel<ItemFlatNode>) {
     const selected = checklistSelection.selected.filter(
-      (selected) => selected.expandable === false
+      (s) => s.expandable === false
     );
 
     console.log(selected.map((i) => i.item.label));
@@ -33,7 +33,7 @@ export class TreeSelectDemoComponent implements OnInit {
 
   submitAction(files: File[]) {
     if (files.length) {
-      var reader = new FileReader();
+      const reader = new FileReader();
       reader.addEventListener(
         'load',
         () => {
@@ -52,43 +52,75 @@ export class TreeSelectDemoComponent implements OnInit {
     }
   }
 
-  createTreeDataFromJson(data: any) {
+  createTreeDataFromJson(data: any): void {
     const menu = {};
-    this.menuData_1[
-      'background.bgVideoLib'
-    ] = data.background.bgVideoLib.reduce((acc, item, index) => {
-      const id = uuid.v4();
-      acc[id] = JSON.stringify({
-        index: index + 1,
-        label: item.title,
-        id: id,
-        title: item.track,
-      });
-      return acc;
-    }, {});
-    this.menuData_2[
-      'audioLib.soundCloud1.tracks'
-    ] = data.audioLib.soundCloud1.tracks.reduce((acc, item, index) => {
-      const id = uuid.v4();
-      acc[id] = JSON.stringify({
-        index: index + 1,
-        label: item,
-        id: id,
-        title: item,
-      });
-      return acc;
-    }, {});
-    this.menuData_2[
-      'audioLib.soundCloud2.tracks'
-    ] = data.audioLib.soundCloud2.tracks.reduce((acc, item, index) => {
-      const id = uuid.v4();
-      acc[id] = JSON.stringify({
-        index: index + 1,
-        label: item,
-        id: id,
-        title: item,
-      });
-      return acc;
-    }, {});
+    this.menuDataFirst['background.bgVideoLib'] =
+      data.background.bgVideoLib.reduce((acc, item, index) => {
+        const id = uuid.v4();
+        acc[id] = JSON.stringify({
+          index: index + 1,
+          label: item.title,
+          id,
+          title: item.track,
+        });
+        return acc;
+      }, {});
+    // this.menuDataSecond['activityHelper.getValidInstructorCount ('] = {
+    //   '1': JSON.stringify({
+    //     index: 1,
+    //     label: 'activity',
+    //     id: 1,
+    //     title: 'Description para 1',
+    //   }),
+    //   '2': JSON.stringify({
+    //     index: 2,
+    //     label: '"SINGLE_MEMBER_COMPANY"',
+    //     id: 1,
+    //     title: 'Description',
+    //   }),
+    //   'activityHelper.getValidParticipantCount (': {
+    //     '1': JSON.stringify({
+    //       index: 1,
+    //       label: 'activity',
+    //       id: 1,
+    //       title: 'Description para 1',
+    //     }),
+    //   },
+    //   ')': JSON.stringify({
+    //     index: 1,
+    //     label: ')',
+    //     id: 1,
+    //     title: 'End activityHelper.getValidParticipantCount',
+    //   }),
+    // };
+    // this.menuDataSecond[')'] = JSON.stringify({
+    //   index: 1,
+    //   label: ')',
+    //   id: 1,
+    //   title: 'End activityHelper.getValidInstructorCount',
+    // });
+
+    this.menuDataSecond['audioLib.soundCloud1.tracks'] =
+      data.audioLib.soundCloud1.tracks.reduce((acc, item, index) => {
+        const id = uuid.v4();
+        acc[id] = JSON.stringify({
+          index: index + 1,
+          label: item,
+          id,
+          title: item,
+        });
+        return acc;
+      }, {});
+    this.menuDataSecond['audioLib.soundCloud2.tracks'] =
+      data.audioLib.soundCloud2.tracks.reduce((acc, item, index) => {
+        const id = uuid.v4();
+        acc[id] = JSON.stringify({
+          index: index + 1,
+          label: item,
+          id,
+          title: item,
+        });
+        return acc;
+      }, {});
   }
 }

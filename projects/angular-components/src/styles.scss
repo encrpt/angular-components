@@ -46,9 +46,19 @@ li {
 
 .flex-row {
   display: flex;
-  > * {
+  > *:not(:last-child) {
     margin-right: 12px;
   }
+}
+
+.margins-tb {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.margins-lr {
+  margin-left: 12px;
+  margin-right: 12px;
 }
 
 .padded {
@@ -79,4 +89,3 @@ li {
   display: flex;
   padding: 12px;
 }
-

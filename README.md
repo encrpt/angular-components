@@ -40,3 +40,6 @@ Slider Circle:
     ng generate library matx
     ng generate application angular-components
     ng add @angular/material
+
+# eslint
+- https://blog.ninja-squad.com/2021/03/31/migrating-from-tslint-to-eslint

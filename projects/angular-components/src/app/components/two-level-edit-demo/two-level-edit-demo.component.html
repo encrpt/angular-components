@@ -1,0 +1,50 @@
+<div class="two-level-edit">
+  <a
+    class="external-link"
+    target="_blank"
+    href="https://github.com/encrpt/angular-components/tree/develop/projects/matx/src/lib/components/level-edit"
+    ><mat-icon> launch </mat-icon>Source</a
+  >
+  <div class="flex-row margins-tb">
+    <lib-input-file
+      accept=".json"
+      matIcon="vertical_align_top"
+      color="none"
+      (fileSelected)="submitUploadAction($event)"
+      [showFileNames]="true"
+      label="load single file"
+      [style.marginRight]="'12px'"
+    >
+      <span class="nofiles">No file selected</span>
+    </lib-input-file>
+    <lib-input-button
+      type="raised"
+      color="primary"
+      [width]="300"
+      label="Download json"
+      matTooltip="Export to disk"
+      iconBefore="vertical_align_bottom"
+      placeholder="Filename .json will be added"
+      [required]="true"
+      (inputSubmited)="submitDownloadAction($event)"
+    >
+    </lib-input-button>
+  </div>
+  <div class="flex-row">
+    <div
+      *ngFor="
+        let exampleDataCollection of exampleDataCollections;
+        let i = index
+      "
+    >
+      <lib-level-edit
+        *ngIf="i <= viewIndex"
+        [collection]="exampleDataCollection"
+        [selectCollection]="exampleSelectCollections[i]"
+        (emitSelectedId)="nextLevel(i, $event)"
+        [sortable]="i === 0"
+        [label]="'Level ' + (i + 1)"
+      ></lib-level-edit>
+    </div>
+  </div>
+</div>

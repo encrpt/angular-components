@@ -15,43 +15,43 @@
     File
   </button>
   <mat-menu #localmenu="matMenu">
-    <app-input-file
+    <lib-input-file
       selectType="webkitdirectory"
       class
       matIcon="vertical_align_top"
       color="none"
       buttonType="mat-menu-item"
-      (onFileSelect)="submitAction($event)"
+      (fileSelected)="submitAction($event)"
       [showFileNames]="false"
-      (onSelectStart)="resetAction($event)"
+      (selectStarted)="resetAction($event)"
       label="Load directory (Chrome)"
     >
       <span class="nofiles"></span>
-    </app-input-file>
-    <app-input-file
+    </lib-input-file>
+    <lib-input-file
       selectType="multiple"
       accept=".json"
       matIcon="vertical_align_top"
       color="none"
       buttonType="mat-menu-item"
-      (onFileSelect)="submitAction($event)"
+      (fileSelected)="submitAction($event)"
       [showFileNames]="false"
-      (onSelectStart)="resetAction($event)"
+      (selectStarted)="resetAction($event)"
       label="Load multiple files"
     >
       <span class="nofiles"></span>
-    </app-input-file>
-    <app-input-file
+    </lib-input-file>
+    <lib-input-file
       accept=".json"
       matIcon="vertical_align_top"
       color="none"
       buttonType="mat-menu-item"
-      (onFileSelect)="submitAction($event)"
+      (fileSelected)="submitAction($event)"
       [showFileNames]="true"
-      (onSelectStart)="resetAction($event)"
+      (selectStarted)="resetAction($event)"
       label="load single file"
     >
       <span class="nofiles">No file selected</span>
-    </app-input-file>
+    </lib-input-file>
   </mat-menu>
 </div>

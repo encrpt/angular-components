@@ -21,32 +21,13 @@ import { ItemNode } from './ItemNode';
  * If a node is a category, it has children items and new items can be added under the category.
  */
 @Component({
-  selector: 'app-tree-select',
+  selector: 'lib-tree-select',
   templateUrl: './tree-select.component.html',
   styleUrls: ['./tree-select.component.scss'],
   providers: [ChecklistDatabase],
 })
 export class TreeSelectComponent implements OnInit {
-  constructor(private database: ChecklistDatabase) {
-    this.treeFlattener = new MatTreeFlattener(
-      this.transformer,
-      this.getLevel,
-      this.isExpandable,
-      this.getChildren
-    );
-    this.treeControl = new FlatTreeControl<ItemFlatNode>(
-      this.getLevel,
-      this.isExpandable
-    );
-    this.dataSource = new MatTreeFlatDataSource(
-      this.treeControl,
-      this.treeFlattener
-    );
-  }
-
   //#region API component
-  _treeData: any = {};
-
   @Input()
   multiSelect = true;
 
@@ -57,16 +38,18 @@ export class TreeSelectComponent implements OnInit {
   }
 
   get treeData() {
-    return this._treeData;
+    return this.pTreeData;
   }
-
-  // TODO
-  allowAddItem = false;
 
   @Output()
   selectedItems: EventEmitter<SelectionModel<ItemFlatNode>> = new EventEmitter<
     SelectionModel<ItemFlatNode>
   >();
+
+  pTreeData: any = {};
+
+  // TODO
+  allowAddItem = false;
 
   //#endregion
 
@@ -88,6 +71,23 @@ export class TreeSelectComponent implements OnInit {
   /** The selection for checklist */
   checklistSelection = new SelectionModel<ItemFlatNode>(this.multiSelect);
 
+  constructor(private database: ChecklistDatabase) {
+    this.treeFlattener = new MatTreeFlattener(
+      this.transformer,
+      this.getLevel,
+      this.isExpandable,
+      this.getChildren
+    );
+    this.treeControl = new FlatTreeControl<ItemFlatNode>(
+      this.getLevel,
+      this.isExpandable
+    );
+    this.dataSource = new MatTreeFlatDataSource(
+      this.treeControl,
+      this.treeFlattener
+    );
+  }
+
   ngOnInit(): void {
     this.database.dataChange.subscribe((data) => {
       this.dataSource.data = data;
@@ -104,7 +104,9 @@ export class TreeSelectComponent implements OnInit {
   hasNoContent = (_: number, _nodeData: ItemFlatNode) => _nodeData.item === '';
 
   resetListSelection() {
-    this.checklistSelection = new SelectionModel<ItemFlatNode>(this.multiSelect);
+    this.checklistSelection = new SelectionModel<ItemFlatNode>(
+      this.multiSelect
+    );
   }
 
   /**
@@ -129,9 +131,7 @@ export class TreeSelectComponent implements OnInit {
     const descendants = this.treeControl.getDescendants(node);
     const descAllSelected =
       descendants.length > 0 &&
-      descendants.every((child) => {
-        return this.checklistSelection.isSelected(child);
-      });
+      descendants.every((child) => this.checklistSelection.isSelected(child));
     return descAllSelected;
   }
 
@@ -148,9 +148,11 @@ export class TreeSelectComponent implements OnInit {
     // console.log('itemSelectionToggle');
     this.checklistSelection.toggle(node);
     const descendants = this.treeControl.getDescendants(node);
-    this.checklistSelection.isSelected(node)
-      ? this.checklistSelection.select(...descendants)
-      : this.checklistSelection.deselect(...descendants);
+    if (this.checklistSelection.isSelected(node)) {
+      this.checklistSelection.select(...descendants);
+    } else {
+      this.checklistSelection.deselect(...descendants);
+    }
 
     // Force update for the parent
     descendants.forEach((child) => this.checklistSelection.isSelected(child));
@@ -173,14 +175,14 @@ export class TreeSelectComponent implements OnInit {
   /** Select the category so we can insert the new item. */
   addNewItem(node: ItemFlatNode) {
     const parentNode = this.flatNodeMap.get(node);
-    this.database.insertItem(parentNode!, '');
+    this.database.insertItem(parentNode, '');
     this.treeControl.expand(node);
   }
 
   /** Save the node to database */
   saveNode(node: ItemFlatNode, itemValue: string) {
     const nestedNode = this.flatNodeMap.get(node);
-    this.database.updateItem(nestedNode!, itemValue);
+    this.database.updateItem(nestedNode, itemValue);
   }
 
   /* Checks all the parents when a leaf node is selected/unselected */
@@ -202,9 +204,7 @@ export class TreeSelectComponent implements OnInit {
     const descendants = this.treeControl.getDescendants(node);
     const descAllSelected =
       descendants.length > 0 &&
-      descendants.every((child) => {
-        return this.checklistSelection.isSelected(child);
-      });
+      descendants.every((child) => this.checklistSelection.isSelected(child));
     if (nodeSelected && !descAllSelected) {
       this.checklistSelection.deselect(node);
     } else if (!nodeSelected && descAllSelected) {

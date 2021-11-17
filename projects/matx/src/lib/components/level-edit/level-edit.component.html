@@ -1,0 +1,67 @@
+<div class="flex-row margins-tb">
+  <button
+    mat-raised-button
+    (click)="createSelected()"
+    [disabled]="formGroup.invalid"
+    [style.marginRight]="'12px'"
+  >
+    Append
+  </button>
+  <button
+    mat-raised-button
+    [disabled]="selectedItems?.length !== 1"
+    (click)="updateSelected()"
+    [style.marginRight]="'12px'"
+  >
+    Update selected
+  </button>
+
+  <button
+    mat-raised-button
+    [disabled]="collectionList.selectedOptions.selected.length === 0"
+    (click)="deleteSelectedItem()"
+  >
+    Delete selected
+  </button>
+</div>
+<h3 *ngIf="label">{{ label }}</h3>
+<form [formGroup]="formGroup">
+  <div *ngFor="let selectItem of selectCollection">
+    <mat-form-field appearance="fill">
+      <mat-label
+        >{{ selectItem.label || selectItem.key }} ({{
+          selectItem.options.length
+        }})
+      </mat-label>
+      <mat-select [formControlName]="selectItem.key">
+        <mat-option *ngFor="let option of selectItem.options" [value]="option">
+          {{ option.value
+          }}<ng-container *ngIf="showSelectKey">
+            ({{ option.key }})</ng-container
+          >
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</form>
+<mat-selection-list
+  [cdkDropListDisabled]="!sortable"
+  [multiple]="multiple"
+  #collectionList
+  cdkDropList
+  (cdkDropListDropped)="onDrop($event)"
+  (selectionChange)="onGroupsChange(collectionList.selectedOptions.selected)"
+>
+  <mat-list-option cdkDrag *ngFor="let item of collection" [value]="item">
+    <div
+      class="example-box"
+      [ngStyle]="{ cursor: sortable ? 'move' : 'inherit' }"
+    >
+      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+      <ng-container *ngIf="showId"> {{ item.id }}: </ng-container>
+      <ng-container *ngFor="let key of selectKeys">
+        {{ item[key] | optionLabel: key:selectCollection }}
+      </ng-container>
+    </div>
+  </mat-list-option>
+</mat-selection-list>

@@ -1,25 +1,45 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './app.component';
+import { AceEditorDemoComponent } from './components/ace-editor-demo/ace-editor-demo.component';
 import { DemoHomeComponent } from './components/demo-home/demo-home.component';
-import { DemoMenuComponent } from './components/demo-menu/demo-menu.component';
 import { ExtenableFormGridDemoComponent } from './components/extenable-form-grid-demo/extenable-form-grid-demo.component';
 import { ExtenableTextGridDemoComponent } from './components/extenable-text-grid-demo/extenable-text-grid-demo.component';
 import { InputButtonDemoComponent } from './components/input-button-demo/input-button-demo.component';
 import { InputFileDemoComponent } from './components/input-file-demo/input-file-demo.component';
 import { LoadingSpinnerDemoComponent } from './components/loading-spinner-demo/loading-spinner-demo.component';
+import { MonacoEditorDemoComponent } from './components/monaco-editor-demo/monaco-editor-demo.component';
 import { NgxMarkjsDemoComponent } from './components/ngx-markjs-demo/ngx-markjs-demo.component';
 import { SliderCircleDemoComponent } from './components/slider-circle-demo/slider-circle-demo.component';
 import { TreeSelectDemoComponent } from './components/tree-select-demo/tree-select-demo.component';
+import { TwoLevelEditDemoComponent } from './components/two-level-edit-demo/two-level-edit-demo.component';
 
 export const appRoutes: Routes = [
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
-  {
     path: 'home',
     component: DemoHomeComponent,
+  },
+  {
+    path: 'two-level-edit',
+    component: TwoLevelEditDemoComponent,
+    data: {
+      title: 'Material',
+      description: 'chainable component for DnD-Sortable-MatList and MatSelect',
+    },
+  },
+  {
+    path: 'ace-editor',
+    component: AceEditorDemoComponent,
+    data: {
+      title: 'Angular',
+      description: 'ACE-Editor example',
+    },
+  },
+  {
+    path: 'monaco-editor',
+    component: MonacoEditorDemoComponent,
+    data: {
+      title: 'Angular',
+      description: 'Monaco-Editor example',
+    },
   },
   {
     path: 'tree-select',
@@ -84,9 +104,15 @@ export const appRoutes: Routes = [
     path: 'ngx-markjs',
     component: NgxMarkjsDemoComponent,
     data: {
-      title: 'Lib example',
-      description:
-        'Highlighted search unsing mark.js - search for DEMO in example text. SOURCE: https://medium.com/angular-in-depth/wrapping-commonjs-library-in-angular-8-directive-on-the-example-of-mark-js-976cbcd5d10a',
+      title: 'Angular',
+      description: `Highlighted search unsing mark.js - search for DEMO in example text. SOURCE:
+        https://medium.com/angular-in-depth/wrapping-commonjs-library-in-angular-8-directive-on-the-example-of-mark-js-976cbcd5d10a`,
     },
   },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  { path: '**', redirectTo: 'home' },
 ];

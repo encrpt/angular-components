@@ -1,0 +1,7 @@
+<h2>Ace Editor</h2>
+<div class="ace-flex-row">
+  <button (click)="beautify()">Format</button>
+  <button (click)="submit()">Save</button>
+  <div>{{ returnType }}</div>
+</div>
+<div [ace]="config" class="ace-editor-panel"></div>

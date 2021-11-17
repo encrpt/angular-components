@@ -37,7 +37,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTreeModule } from '@angular/material/tree';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 export const DE_DATE_FORMATS = {
   parse: {
@@ -88,7 +88,7 @@ const matModules = [
   MatFormFieldModule,
   MatTabsModule,
   MatTreeModule,
-  MatButtonToggleModule
+  MatButtonToggleModule,
 ];
 
 @NgModule({
@@ -104,4 +104,4 @@ const matModules = [
     { provide: MAT_DATE_FORMATS, useValue: DE_DATE_FORMATS },
   ],
 })
-export class MaterialModule { }
+export class MaterialModule {}

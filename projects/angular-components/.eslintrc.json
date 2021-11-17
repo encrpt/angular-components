@@ -1,0 +1,35 @@
+{
+  "extends": "../../.eslintrc.json",
+  "ignorePatterns": ["e2e/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": [
+          "projects/angular-components/tsconfig.app.json",
+          "projects/angular-components/tsconfig.spec.json",
+          "projects/angular-components/e2e/tsconfig.json"
+        ],
+        "createDefaultProgram": true
+      },
+      "rules": {
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ]
+      }
+    }
+  ]
+}

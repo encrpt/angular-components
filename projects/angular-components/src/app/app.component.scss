@@ -1,5 +1,5 @@
 .container {
-  max-height: calc(100vh - 64px);;
+  max-height: calc(100vh - 64px);
   max-width: 1920px;
   margin: auto;
 }
@@ -12,7 +12,12 @@
 
 .component-demo {
   overflow: auto;
+  width: 100%;
 }
+
+// .header {
+//   border-bottom: 1px solid #888;
+// }
 
 @media (max-width: 599px) {
   .demo-menu {

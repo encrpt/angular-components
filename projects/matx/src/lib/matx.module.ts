@@ -26,6 +26,11 @@ import { ExtenableTextGridComponent } from './components/extenable-text-grid/ext
 import { GridFormComponent } from './components/grid-form/grid-form.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { LevelEditComponent } from './components/level-edit/level-edit.component';
+import { MatSelect, MatSelectModule } from '@angular/material/select';
+import { MatListModule } from '@angular/material/list';
+import { OptionLabelPipe } from './components/level-edit/option-label.pipe';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -39,6 +44,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     TreeSelectComponent,
     ExtenableTextGridComponent,
     GridFormComponent,
+    LevelEditComponent,
+    OptionLabelPipe,
   ],
   imports: [
     FormsModule,
@@ -58,7 +65,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatCheckboxModule,
     MatTreeModule,
     MatToolbarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatListModule,
+    MatSelectModule,
+    MatTooltipModule,
   ],
   exports: [
     SliderCircleComponent,
@@ -69,6 +79,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ExtenableFormGridComponent,
     TreeSelectComponent,
     ExtenableTextGridComponent,
+    LevelEditComponent,
   ],
 })
 export class MatxModule {}

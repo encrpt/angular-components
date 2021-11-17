@@ -1,13 +1,23 @@
-import { Directive, ElementRef, EventEmitter, Input, Output, Renderer2 } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  Renderer2,
+} from '@angular/core';
 // import * as Mark from 'mark.js';
 
-declare var require: any;
-const Mark = require('mark.js');
+declare let require: any;
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const markLib = require('mark.js');
 
 let cancelAnimationId;
 
-function animate({ timing, draw, duration }) {
+const animate = ({ timing, draw, duration }) => {
   const start = performance.now();
+  // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
   cancelAnimationId = requestAnimationFrame(function animate2(time) {
     // timeFraction goes from 0 to 1
     let timeFraction = (time - start) / duration;
@@ -21,17 +31,15 @@ function animate({ timing, draw, duration }) {
       cancelAnimationId = requestAnimationFrame(animate2);
     }
   });
-}
-
+};
 
 @Directive({
-  selector: '[markjsHighlight]'
+  selector: '[libHighlight]',
 })
-export class MarkjsHighlightDirective {
-
-  @Input() markjsHighlight = '';  // our inputs
+export class MarkjsHighlightDirective implements OnChanges {
+  @Input() markjsHighlight = ''; // our inputs
   @Input() markjsConfig: any = {};
-  @Input() scrollToFirstMarked: boolean = false;
+  @Input() scrollToFirstMarked = false;
 
   @Output() getInstance = new EventEmitter<any>();
 
@@ -40,18 +48,19 @@ export class MarkjsHighlightDirective {
   constructor(
     private contentElementRef: ElementRef, // host element ref
     private renderer: Renderer2 // we will use it to scroll
-  ) {
-  }
+  ) {}
 
-  ngOnChanges(changes) {  //if searchText is changed - redo marking
-    if (!this.markInstance) { // emit mark.js instance (if needeed)
-      this.markInstance = new Mark(this.contentElementRef.nativeElement);
+  ngOnChanges(changes) {
+    //if searchText is changed - redo marking
+    if (!this.markInstance) {
+      // emit mark.js instance (if needeed)
+      this.markInstance = new markLib(this.contentElementRef.nativeElement);
       this.getInstance.emit(this.markInstance);
     }
 
     this.hightlightText(); // should be implemented
     if (this.scrollToFirstMarked) {
-      this.scrollToFirstMarkedText();// should be implemented
+      this.scrollToFirstMarkedText(); // should be implemented
     }
   }
 
@@ -63,8 +72,8 @@ export class MarkjsHighlightDirective {
     } else {
       this.markInstance.unmark({
         done: () => {
-          this.markInstance.mark((this.markjsHighlight || ''), this.markjsConfig);
-        }
+          this.markInstance.mark(this.markjsHighlight || '', this.markjsConfig);
+        },
       });
     }
   }
@@ -87,17 +96,16 @@ export class MarkjsHighlightDirective {
 
     animate({
       duration: 500,
+      // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
       timing(timeFraction) {
         return timeFraction;
       },
+      // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
       draw(progress) {
         const nextStep = currentScrollTop + progress * delta;
         // set scroll with Angular renderer
         renderer.setProperty(scrollElement, 'scrollTop', nextStep);
-      }
+      },
     });
   }
-
-
 }
-

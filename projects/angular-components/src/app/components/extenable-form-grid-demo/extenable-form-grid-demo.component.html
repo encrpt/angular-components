@@ -1,12 +1,18 @@
-<h2>Empty</h2>
-<lib-extenable-form-grid
-  [gridData]="data_empty"
-  [allowEditHeaderRows]="true"
-  (submitted)="output($event)"
-></lib-extenable-form-grid>
+<a
+  class="external-link"
+  target="_blank"
+  href="https://github.com/encrpt/angular-components/tree/develop/projects/matx/src/lib/components/extenable-form-grid"
+  ><mat-icon> launch </mat-icon>Source</a
+>
 <h2>Properties as Header</h2>
 <lib-extenable-form-grid
   [gridData]="data"
+  (submitted)="output($event)"
+></lib-extenable-form-grid>
+<h2>Empty</h2>
+<lib-extenable-form-grid
+  [gridData]="dataEmpty"
+  [allowEditHeaderRows]="true"
   (submitted)="output($event)"
 ></lib-extenable-form-grid>
 <h2>Header row - allows same properties-name</h2>

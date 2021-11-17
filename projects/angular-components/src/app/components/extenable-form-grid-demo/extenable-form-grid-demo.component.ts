@@ -9,14 +9,15 @@ const DEMO_DATA = ['Auf', 'Abfahrten', 'Brieselang', 'Falkensee'];
   styleUrls: ['./extenable-form-grid-demo.component.scss'],
 })
 export class ExtenableFormGridDemoComponent implements OnInit {
+  data: GridTable = { tableRows: [] };
+  dataEmpty: GridTable = { tableRows: [] };
+  dataAndHeader: GridTable = { tableRows: [] };
+  isVisible = true;
+
   constructor() {
     this.resetData();
   }
 
-  data: GridTable = { tableRows: [] };
-  data_empty: GridTable = { tableRows: [] };
-  dataAndHeader: GridTable = { tableRows: [] };
-  isVisible = true;
   ngOnInit(): void {}
 
   getUuid(): string {
@@ -34,14 +35,12 @@ export class ExtenableFormGridDemoComponent implements OnInit {
   resetData() {
     this.data.tableRows = Array.from(new Array(DEMO_DATA.length))
       .map((_, i) => i)
-      .map((i, index) => {
-        return {
-          id: `id_${i}`,
-          title: DEMO_DATA[index],
-          zeit: Date.now(),
-          count: Math.round(Math.random() * 1000),
-        };
-      });
+      .map((i, index) => ({
+        id: `id_${i}`,
+        title: DEMO_DATA[index],
+        zeit: Date.now(),
+        count: Math.round(Math.random() * 1000),
+      }));
     this.dataAndHeader.headerRow = [
       { key: this.getUuid(), label: 'id' },
       { key: this.getUuid(), label: 'id' },

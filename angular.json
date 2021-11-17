@@ -30,13 +30,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/matx/tsconfig.lib.json",
-              "projects/matx/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/matx/**/*.ts",
+              "projects/matx/**/*.html"
+            ]
           }
         }
       }
@@ -60,16 +59,26 @@
             "main": "projects/angular-components/src/main.ts",
             "polyfills": "projects/angular-components/src/polyfills.ts",
             "tsConfig": "projects/angular-components/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/angular-components/src/favicon.ico",
-              "projects/angular-components/src/assets"
+              "projects/angular-components/src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor",
+                "output": "assets/monaco-editor"
+              }
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "projects/angular-components/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -99,7 +108,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -134,14 +144,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/angular-components/tsconfig.app.json",
-              "projects/angular-components/tsconfig.spec.json",
-              "projects/angular-components/e2e/tsconfig.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/angular-components/**/*.ts",
+              "projects/angular-components/**/*.html"
+            ]
           }
         },
         "e2e": {
@@ -185,17 +193,19 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ng-encrpt/tsconfig.lib.json",
-              "projects/ng-encrpt/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/ng-encrpt/**/*.ts",
+              "projects/ng-encrpt/**/*.html"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "matx"
+  "defaultProject": "matx",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

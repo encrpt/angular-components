@@ -4,7 +4,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-title-form',
+  selector: 'lib-title-form',
   templateUrl: './title-form.component.html',
   styleUrls: ['./title-form.component.scss'],
 })
@@ -17,7 +17,7 @@ export class TitleFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<TitleFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     if (this.data.required) {

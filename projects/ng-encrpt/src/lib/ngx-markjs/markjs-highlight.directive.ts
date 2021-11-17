@@ -17,8 +17,7 @@ let cancelAnimationId;
 
 const animate = ({ timing, draw, duration }) => {
   const start = performance.now();
-  // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
-  cancelAnimationId = requestAnimationFrame(function animate2(time) {
+  const animate2 = (time: number) => {
     // timeFraction goes from 0 to 1
     let timeFraction = (time - start) / duration;
     if (timeFraction > 1) {
@@ -30,18 +29,25 @@ const animate = ({ timing, draw, duration }) => {
     if (timeFraction < 1) {
       cancelAnimationId = requestAnimationFrame(animate2);
     }
-  });
+  };
+  cancelAnimationId = requestAnimationFrame(animate2);
 };
 
 @Directive({
   selector: '[libHighlight]',
 })
 export class MarkjsHighlightDirective implements OnChanges {
-  @Input() markjsHighlight = ''; // our inputs
-  @Input() markjsConfig: any = {};
-  @Input() scrollToFirstMarked = false;
+  @Input()
+  markjsHighlight = ''; // our inputs
 
-  @Output() getInstance = new EventEmitter<any>();
+  @Input()
+  markjsConfig: any = {};
+
+  @Input()
+  scrollToFirstMarked = false;
+
+  @Output()
+  getInstance = new EventEmitter<any>();
 
   markInstance: any;
 
@@ -50,7 +56,7 @@ export class MarkjsHighlightDirective implements OnChanges {
     private renderer: Renderer2 // we will use it to scroll
   ) {}
 
-  ngOnChanges(changes) {
+  ngOnChanges(changes: any): void {
     //if searchText is changed - redo marking
     if (!this.markInstance) {
       // emit mark.js instance (if needeed)
@@ -64,8 +70,9 @@ export class MarkjsHighlightDirective implements OnChanges {
     }
   }
 
-  hightlightText() {
+  hightlightText(): void {
     this.markjsHighlight = this.markjsHighlight || '';
+
     if (this.markjsHighlight && this.markjsHighlight.length <= 2) {
       this.markInstance.unmark();
       return;
@@ -78,14 +85,14 @@ export class MarkjsHighlightDirective implements OnChanges {
     }
   }
 
-  scrollToFirstMarkedText() {
+  scrollToFirstMarkedText(): void {
     const content = this.contentElementRef.nativeElement;
     // calculating offset to the first marked element
     const firstOffsetTop = (content.querySelector('mark') || {}).offsetTop || 0;
     this.scrollSmooth(content, firstOffsetTop); // start scroll
   }
 
-  scrollSmooth(scrollElement, firstOffsetTop) {
+  scrollSmooth(scrollElement: Element, firstOffsetTop: number): void {
     const renderer = this.renderer;
 
     if (cancelAnimationId) {

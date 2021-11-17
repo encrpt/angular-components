@@ -4,13 +4,11 @@ header {
 .content {
   position: relative;
   font-size: 20px;
-  margin: 20px;
   width: 70%;
   height: 30vh;
   min-height: 30vh;
   max-height: 30vh;
   overflow: auto;
-  border: 1px solid silver;
   padding: 20px;
 
   &.inner {
@@ -34,8 +32,7 @@ header {
 
   input {
     font-size: 20px;
-    width: 70%;
+    width: 100%;
     padding-left: 10px;
-    border-radius: 10px;
   }
 }

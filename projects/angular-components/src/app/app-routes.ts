@@ -111,8 +111,8 @@ export const appRoutes: Routes = [
     component: NgxMarkjsDemoComponent,
     data: {
       title: 'Angular',
-      description:
-        'Highlighted search unsing mark.js - search for DEMO in example text. SOURCE: https://medium.com/angular-in-depth/wrapping-commonjs-library-in-angular-8-directive-on-the-example-of-mark-js-976cbcd5d10a',
+      description: `Highlighted search unsing mark.js - search for DEMO in example text. SOURCE:
+        https://medium.com/angular-in-depth/wrapping-commonjs-library-in-angular-8-directive-on-the-example-of-mark-js-976cbcd5d10a`,
     },
   },
 ];

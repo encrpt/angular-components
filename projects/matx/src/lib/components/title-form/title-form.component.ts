@@ -4,7 +4,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-title-form',
+  selector: 'lib-title-form',
   templateUrl: './title-form.component.html',
   styleUrls: ['./title-form.component.scss'],
 })

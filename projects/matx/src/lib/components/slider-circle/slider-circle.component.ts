@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   EventEmitter,
   HostListener,
@@ -14,48 +15,43 @@ interface AnimateOptions {
 }
 
 @Component({
-  selector: 'app-slider-circle',
+  selector: 'lib-slider-circle',
   templateUrl: './slider-circle.component.html',
   styleUrls: ['./slider-circle.component.scss'],
 })
-export class SliderCircleComponent implements OnInit {
-  constructor() {}
-
-  _size: number;
+export class SliderCircleComponent implements OnInit, AfterViewInit {
   @Input()
   set size(size: number) {
-    this._size = size;
+    this.pSize = size;
   }
 
   get size(): number {
-    return this._size;
+    return this.pSize;
   }
 
-  _value = 0;
   @Input()
   set value(value: number) {
-    this._value = Math.round(value * 10) / 10;
+    this.pValue = Math.round(value * 10) / 10;
   }
 
   get value(): number {
-    if (isNaN(this._value)) {
+    if (isNaN(this.pValue)) {
       return 0;
     } else {
-      return this._value;
+      return this.pValue;
     }
   }
-
   /* used for number input */
   set valueUserInput(value: number) {
-    this._value = Math.round(value * 10) / 10;
+    this.pValue = Math.round(value * 10) / 10;
     this.animate(this.value, { useAnimation: false, changeStrokeClor: true });
   }
 
   get valueUserInput(): number {
-    if (isNaN(this._value)) {
+    if (isNaN(this.pValue)) {
       return 0;
     } else {
-      return this._value;
+      return this.pValue;
     }
   }
 
@@ -107,13 +103,23 @@ export class SliderCircleComponent implements OnInit {
   stretchY = 0.8;
 
   @Output()
-  change: EventEmitter<any> = new EventEmitter();
+  changedValue: EventEmitter<any> = new EventEmitter();
+
+  @ViewChild('circlepath') circlepath: any;
+
+  pSize: number;
+  pValue = 0;
 
   startY = 80;
   startX = 10;
   minSize = 50;
 
-  @ViewChild('circlepath') circlepath: any;
+  strokeOpacity = 0.5;
+  pathToFill: any;
+  maxLength = 0;
+  valueInput = false;
+
+  constructor() {}
 
   @HostListener('dblclick', ['$event'])
   onDblClick(event) {
@@ -130,15 +136,10 @@ export class SliderCircleComponent implements OnInit {
 
   @HostListener('keydown', ['$event'])
   onKeyDown(e) {
-    if (e.keyCode == 13) {
+    if (e.keyCode === 13) {
       this.valueInput = false;
     }
   }
-
-  strokeOpacity = 0.5;
-  pathToFill: any;
-  maxLength = 0;
-  valueInput = false;
 
   ngOnInit(): void {
     if (!this.animationString) {
@@ -178,7 +179,7 @@ export class SliderCircleComponent implements OnInit {
       this.maxLength *
       Math.abs((eventValue - this.min) / (this.max - this.min));
 
-    this.change.emit({ value: eventValue, min: this.min, max: this.max });
+    this.changedValue.emit({ value: eventValue, min: this.min, max: this.max });
 
     if (animateOptions.changeStrokeClor) {
       if (eventValue > this.min) {

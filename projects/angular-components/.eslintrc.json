@@ -1,31 +1,43 @@
 {
-  "root": true,
-  "ignorePatterns": ["dist", "coverage"],
-  "parserOptions": {
-    "ecmaVersion": 2020
-  },
+  "extends": "../../.eslintrc.json",
+  "ignorePatterns": [
+    "!**/*"
+  ],
   "overrides": [
     {
-      "files": ["*.ts"],
+      "files": [
+        "*.ts"
+      ],
       "parserOptions": {
-        "project": ["tsconfig.json"],
+        "project": [
+          "projects/angular-components/tsconfig.app.json",
+          "projects/angular-components/tsconfig.spec.json",
+          "projects/angular-components/e2e/tsconfig.json"
+        ],
         "createDefaultProgram": true
       },
-      "extends": [
-        "plugin:@angular-eslint/recommended",
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended"
-      ],
       "rules": {
-        "@typescript-eslint/no-non-null-assertion": "off"
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ]
       }
     },
     {
-      "files": ["*.html"],
-      "extends": [
-        "plugin:@angular-eslint/template/recommended",
-        "plugin:prettier/recommended"
+      "files": [
+        "*.html"
       ],
       "rules": {}
     }

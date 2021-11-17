@@ -7,7 +7,11 @@ const DEMO_DATA = [
   'Abfahrten',
   'Brieselang',
   'Falkensee',
-  'Der ohnehin angeschlagene Bitcoin-Kurs fiel infolge der Ankündigung um weitere zehn Prozent auf einen Wert von unter 31.700 Euro - der tiefste Stand seit Februar 2021. Ob der weitere Kurssturz in direktem Zusammenhang mit Chinas Maßnahmen steht, lässt sich nicht eindeutig nachvollziehen, es liegt aber nahe. Ein Großteil des Bitcoin-Minings findet aufgrund der dort vergleichwseise niedrigen Strompreise in China statt, die Region ist also durchaus wichtig für das virtuelle Zahlungsmittel.',
+  `Der ohnehin angeschlagene Bitcoin-Kurs fiel infolge der Ankündigung um weitere zehn Prozent auf einen Wert
+  von unter 31.700 Euro - der tiefste Stand seit Februar 2021. Ob der weitere Kurssturz in direktem Zusammenhang
+  mit Chinas Maßnahmen steht, lässt sich nicht eindeutig nachvollziehen, es liegt aber nahe. Ein Großteil des
+  Bitcoin-Minings findet aufgrund der dort vergleichwseise niedrigen Strompreise in China statt, die Region
+  ist also durchaus wichtig für das virtuelle Zahlungsmittel.`,
   'Energiebedarf',
   'Bitcoins',
   'wiederum ist einer der',
@@ -23,14 +27,15 @@ const DEMO_DATA = [
   styleUrls: ['./extenable-text-grid-demo.component.scss'],
 })
 export class ExtenableTextGridDemoComponent implements OnInit {
+
+  data: GridTable = { tableRows: [] };
+  dataEmpty: GridTable = { tableRows: [] };
+  dataAndHeader: GridTable = { tableRows: [] };
+  isVisible = true;
+
   constructor() {
     this.resetData();
   }
-
-  data: GridTable = { tableRows: [] };
-  data_empty: GridTable = { tableRows: [] };
-  dataAndHeader: GridTable = { tableRows: [] };
-  isVisible = true;
   ngOnInit(): void {}
 
   getUuid(): string {
@@ -49,14 +54,12 @@ export class ExtenableTextGridDemoComponent implements OnInit {
   resetData() {
     this.data.tableRows = Array.from(new Array(DEMO_DATA.length))
       .map((_, i) => i)
-      .map((i, index) => {
-        return {
-          id: `id_${i}`,
-          title: DEMO_DATA[index],
-          zeit: Date.now(),
-          count: Math.round(Math.random() * 1000),
-        };
-      });
+      .map((i, index) => ({
+        id: `id_${i}`,
+        title: DEMO_DATA[index],
+        zeit: Date.now(),
+        count: Math.round(Math.random() * 1000),
+      }));
     this.dataAndHeader.headerRow = [
       { key: this.getUuid(), label: 'id' },
       { key: this.getUuid(), label: 'id' },

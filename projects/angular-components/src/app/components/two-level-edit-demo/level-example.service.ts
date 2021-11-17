@@ -21,14 +21,12 @@ export class LevelExampleService {
         options: [],
       };
       dataSelect.options = Array.from(Array(optionsCount).keys()).map(
-        (_, index) => {
-          return {
+        (_, index) => ({
             key: index + 1,
             value: `Option_${level}_${i}_${(index + 1)
               .toString()
               .padStart(2, '0')}`,
-          };
-        }
+          })
       );
       result.push(dataSelect);
     }

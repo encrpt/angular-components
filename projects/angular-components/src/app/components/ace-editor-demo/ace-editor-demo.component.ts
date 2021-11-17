@@ -14,42 +14,40 @@ export class AceEditorDemoComponent implements OnInit {
   returnType: ReturnType = 'void';
   returnTypeValues = RETURNTYPE_VALUES;
   examples = {
-    DSL1: [
+    dsl1: [
       { label: 'method101()', returnType: 'number' },
       { label: 'method102(string)', returnType: 'void' },
       { label: 'method103(string)', returnType: 'void' },
     ],
-    DSL2: [
+    dsl2: [
       { label: 'method201(date)', returnType: 'number' },
       { label: 'method202(number)', returnType: 'boolean' },
       { label: 'method203()', returnType: 'void' },
     ],
-    DSL3: [],
+    dsl3: [],
   };
 
   code = 'class01.method01(type01)';
 
-  _selectValue: string;
+  pSelectValue: string;
 
   get selectValue() {
-    return this._selectValue;
+    return this.pSelectValue;
   }
-  set selectValue(_selectValue: string) {
-    console.log(_selectValue);
-    this.code = _selectValue === 'DSL3' ? 'class01.method01(type01)' : '';
-    this._selectValue = _selectValue;
+  set selectValue(selectValue: string) {
+    console.log(selectValue);
+    this.code = selectValue === 'dsl3' ? 'class01.method01(type01)' : '';
+    this.pSelectValue = selectValue;
     this.autocompleteData = null;
     setTimeout(() => {
-      this.autocompleteData = this.examples[_selectValue].map((item) => {
-        return {
-          name: item.label,
-          value: item.label,
-          meta: item.returnType,
-          description: 'description',
-          parameters: 'parameters',
-          returnType: 'returnType',
-        };
-      });
+      this.autocompleteData = this.examples[selectValue].map((item) => ({
+        name: item.label,
+        value: item.label,
+        meta: item.returnType,
+        description: 'description',
+        parameters: 'parameters',
+        returnType: 'returnType',
+      }));
     }, 100);
   }
 
@@ -68,7 +66,7 @@ export class AceEditorDemoComponent implements OnInit {
 
     console.log(JSON.stringify(examples));
 
-    this.examples.DSL3 = [
+    this.examples.dsl3 = [
       { returnType: 'number', label: 'data.example' },
       { returnType: 'number', label: 'data.test' },
       { returnType: 'number', label: 'data.demo' },
@@ -104,8 +102,10 @@ export class AceEditorDemoComponent implements OnInit {
       { returnType: 'string', label: 'class05.method01' },
     ];
 
-    this.selectValue = 'DSL3';
+    this.selectValue = 'dsl3';
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // nothing
+  }
 }

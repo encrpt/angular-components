@@ -9,9 +9,9 @@
     "format:fix": "pretty-quick",
     "lint:debug": "eslint ./projects/**/*.ts --debug",
     "lint": "eslint ./projects/**/*.ts",
-    "lint:demo": "eslint  projects/angular-components/src/**/*.ts --fix",
-    "lint:lib1": "eslint projects/matx/src/**/*.ts --fix",
-    "lint:lib2": "eslint projects/ng-encrpt/src/**/*.ts --fix",
+    "lint:demo": "eslint  projects/angular-components/src/**/*.ts --fix --quiet",
+    "lint:lib1": "eslint projects/matx/src/**/*.ts --fix --quiet",
+    "lint:lib2": "eslint projects/ng-encrpt/src/**/*.ts --fix --quiet",
     "e2e": "ng e2e"
   },
   "private": true,

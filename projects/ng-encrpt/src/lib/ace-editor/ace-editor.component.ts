@@ -48,7 +48,7 @@ export const PARAMETER_VALUES = [
   'string',
   'object',
 ] as const; // 'undefined', 'symbol', 'null', 'bigint'
-export type parameterValues = typeof PARAMETER_VALUES[number];
+export type ParameterValues = typeof PARAMETER_VALUES[number];
 
 @Component({
   selector: 'lib-ace-editor',
@@ -58,8 +58,6 @@ export type parameterValues = typeof PARAMETER_VALUES[number];
   encapsulation: ViewEncapsulation.None,
 })
 export class AceEditorComponent implements OnInit, AfterViewInit {
-  constructor(private aceEditorServiceService: AceEditorServiceService) {}
-
   @ViewChild('editor')
   editor: AceComponent;
 
@@ -97,6 +95,7 @@ export class AceEditorComponent implements OnInit, AfterViewInit {
     showPrintMargin: false,
     highlightGutterLine: true,
   };
+  constructor(private aceEditorServiceService: AceEditorServiceService) {}
 
   ngOnInit(): void {
     const stageAutoCompleter = new StageAutoCompleter(

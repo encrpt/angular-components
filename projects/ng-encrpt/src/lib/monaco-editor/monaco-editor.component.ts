@@ -6,7 +6,6 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./monaco-editor.component.scss'],
 })
 export class MonacoEditorComponent implements OnInit {
-  constructor() {}
 
   @Input()
   returnType: any = undefined;
@@ -18,6 +17,8 @@ export class MonacoEditorComponent implements OnInit {
     minimap: { enabled: false },
   };
   code = 'function x() {\nconsole.log("Hello world!");\n}';
+
+  constructor() {}
 
   ngOnInit(): void {}
 

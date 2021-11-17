@@ -3,18 +3,20 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnChanges,
   Output,
   Renderer2,
 } from '@angular/core';
 // import * as Mark from 'mark.js';
 
 declare let require: any;
-const Mark = require('mark.js');
+const markLib = require('mark.js');
 
 let cancelAnimationId;
 
-function animate({ timing, draw, duration }) {
+const animate = ({ timing, draw, duration }) => {
   const start = performance.now();
+  // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
   cancelAnimationId = requestAnimationFrame(function animate2(time) {
     // timeFraction goes from 0 to 1
     let timeFraction = (time - start) / duration;
@@ -28,12 +30,12 @@ function animate({ timing, draw, duration }) {
       cancelAnimationId = requestAnimationFrame(animate2);
     }
   });
-}
+};
 
 @Directive({
-  selector: '[markjsHighlight]',
+  selector: '[libMarkjsHighlight]',
 })
-export class MarkjsHighlightDirective {
+export class MarkjsHighlightDirective implements OnChanges {
   @Input() markjsHighlight = ''; // our inputs
   @Input() markjsConfig: any = {};
   @Input() scrollToFirstMarked = false;
@@ -51,7 +53,7 @@ export class MarkjsHighlightDirective {
     //if searchText is changed - redo marking
     if (!this.markInstance) {
       // emit mark.js instance (if needeed)
-      this.markInstance = new Mark(this.contentElementRef.nativeElement);
+      this.markInstance = new markLib(this.contentElementRef.nativeElement);
       this.getInstance.emit(this.markInstance);
     }
 
@@ -93,9 +95,11 @@ export class MarkjsHighlightDirective {
 
     animate({
       duration: 500,
+      // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
       timing(timeFraction) {
         return timeFraction;
       },
+      // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
       draw(progress) {
         const nextStep = currentScrollTop + progress * delta;
         // set scroll with Angular renderer

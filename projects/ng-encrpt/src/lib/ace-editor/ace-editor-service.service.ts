@@ -1,7 +1,7 @@
 import ace from 'brace';
 import { Injectable } from '@angular/core';
 import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
-const TokenIterator = ace.acequire('ace/token_iterator').TokenIterator;
+const tokenIterator = ace.acequire('ace/token_iterator').TokenIterator;
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ export class AceEditorServiceService {
   constructor() {}
 
   beautify(session: ace.IEditSession) {
-    const iterator = new TokenIterator(session, 0, 0);
+    const iterator = new tokenIterator(session, 0, 0);
     let token = iterator.getCurrentToken();
 
     let code = '';
@@ -79,7 +79,7 @@ export class AceEditorServiceService {
       const nextToken: any = iterator.stepForward();
 
       //trim spaces
-      if (token.type == 'text') {
+      if (token.type === 'text') {
         token.value = token.value.trim();
       }
 
@@ -90,10 +90,10 @@ export class AceEditorServiceService {
       }
 
       //put spaces back in
-      for (var i in spaces) {
+      for (const i in spaces) {
         if (
-          token.type == spaces[i].type &&
-          (!spaces[i].value || token.value == spaces[i].value)
+          token.type === spaces[i].type &&
+          (!spaces[i].value || token.value === spaces[i].value)
         ) {
           if (spaces[i].prepend) {
             token.value = ' ' + token.value;
@@ -106,17 +106,17 @@ export class AceEditorServiceService {
       }
 
       //tag name
-      if (token.type.substr(0, 17) == 'meta.tag.tag-name') {
+      if (token.type.substr(0, 17) === 'meta.tag.tag-name') {
         tag = token.value;
       }
 
       //new line before
       if (!dontBreak) {
         //outdent
-        for (i in newLines) {
+        for (const i in newLines) {
           if (
-            token.type == newLines[i].type &&
-            lastToken.value == newLines[i].value
+            token.type === newLines[i].type &&
+            lastToken.value === newLines[i].value
           ) {
             if (newLines[i].indent === false) {
               indentation--;
@@ -128,10 +128,10 @@ export class AceEditorServiceService {
           }
         }
 
-        for (i in newLines) {
+        for (const i in newLines) {
           if (
-            lastToken.type == newLines[i].type &&
-            lastToken.value == newLines[i].value
+            lastToken.type === newLines[i].type &&
+            lastToken.value === newLines[i].value
           ) {
             if (newLines[i].indent === true) {
               indentation++;
@@ -145,7 +145,7 @@ export class AceEditorServiceService {
               code += '\n';
 
               //indent
-              for (let i = 0; i < indentation; i++) {
+              for (let c = 0; c < indentation; c++) {
                 code += '\t';
               }
             }
@@ -178,7 +178,7 @@ export class AceEditorServiceService {
   getAutocomplete(autocompleteData) {
     // add item as description
     autocompleteData = autocompleteData.map((i) => {
-      i._description = JSON.stringify(i, null, 2);
+      i.pDescription = JSON.stringify(i, null, 2);
       return i;
     });
 
@@ -193,7 +193,7 @@ export class AceEditorServiceService {
         const positionAutocomplete = autocompleteData;
 
         // BACKWARD
-        const tokenIteratorBackwards: ace.TokenIterator = new TokenIterator(
+        const tokenIteratorBackwards: ace.TokenIterator = new tokenIterator(
           session,
           position.row,
           position.column
@@ -210,7 +210,7 @@ export class AceEditorServiceService {
         }
 
         // FORWARD
-        const tokenIteratorForwards: ace.TokenIterator = new TokenIterator(
+        const tokenIteratorForwards: ace.TokenIterator = new tokenIterator(
           session,
           position.row,
           position.column
@@ -239,7 +239,12 @@ export class AceEditorServiceService {
         // if (item.description || item.parameters) {
         const paramsSignature = item.parameters;
         const javaStyleSignature = `${item.returnType} ${item.name}(${paramsSignature})`;
-        item.docHTML = `<div class="ace-editor-tooltip"><b>${javaStyleSignature}</b><hr/><ul><li>${item._description}</li><li>score: ${item.score}</li><li>exactMatch: ${item.exactMatch}</li><li>matchMask: ${item.matchMask}</li></ul></div>`;
+        item.docHTML = `<div class="ace-editor-tooltip"><b>${javaStyleSignature}</b><hr/>
+        <ul><li>${item.pDescription}</li>
+        <li>score: ${item.score}</li>
+        <li>exactMatch: ${item.exactMatch}</li>
+        <li>matchMask: ${item.matchMask}</li>
+        </ul></div>`;
         // }
       },
     };

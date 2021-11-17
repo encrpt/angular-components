@@ -5,7 +5,7 @@ import * as uuid from 'uuid';
 import example from '../../../assets/db/public-dev-examle.json';
 
 @Component({
-  selector: 'lib-tree-select-demo',
+  selector: 'app-tree-select-demo',
   templateUrl: './tree-select-demo.component.html',
   styleUrls: ['./tree-select-demo.component.scss'],
 })

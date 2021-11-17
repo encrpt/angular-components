@@ -15,7 +15,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
   baseUrl: '', // configure base path cotaining monaco-editor directory after build default: './assets'
   defaultOptions: { scrollBeyondLastLine: false }, // pass default options to be used
   onMonacoLoad: () => {
-    console.log((<any>window).monaco);
+    console.log((window as any).monaco);
   }, //  extend monaco editor functionalities, e.g. monaco.languages.json.jsonDefaults.setDiagnosticsOptions
 };
 

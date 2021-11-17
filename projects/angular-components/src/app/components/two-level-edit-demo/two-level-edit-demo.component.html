@@ -6,18 +6,18 @@
     ><mat-icon> launch </mat-icon>Source</a
   >
   <div class="flex-row margins-tb">
-    <app-input-file
+    <lib-input-file
       accept=".json"
       matIcon="vertical_align_top"
       color="none"
-      (onFileSelect)="submitUploadAction($event)"
+      (fileSelected)="submitUploadAction($event)"
       [showFileNames]="true"
       label="load single file"
       [style.marginRight]="'12px'"
     >
       <span class="nofiles">No file selected</span>
-    </app-input-file>
-    <app-input-button
+    </lib-input-file>
+    <lib-input-button
       type="raised"
       color="primary"
       [width]="300"
@@ -26,9 +26,9 @@
       iconBefore="vertical_align_bottom"
       placeholder="Filename .json will be added"
       [required]="true"
-      (onSubmit)="submitDownloadAction($event)"
+      (inputSubmited)="submitDownloadAction($event)"
     >
-    </app-input-button>
+    </lib-input-button>
   </div>
   <div class="flex-row">
     <div

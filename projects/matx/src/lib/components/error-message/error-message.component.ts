@@ -1,13 +1,15 @@
 import { Input, Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-error-message',
+  selector: 'lib-error-message',
   templateUrl: './error-message.component.html',
   styleUrls: ['./error-message.component.scss'],
 })
 // TODO check
 export class ErrorMessageComponent implements OnInit {
-  constructor() {}
+
+  @Input()
+  control;
 
   formErrors = [
     { error: 'E01_18_01', msg: 'An error occured. Please try again later' },
@@ -22,10 +24,9 @@ export class ErrorMessageComponent implements OnInit {
     },
   ];
 
-  @Input()
-  control;
 
   currentError;
+  constructor() {}
 
   ngOnInit(): void {}
 }

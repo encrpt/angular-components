@@ -7,7 +7,7 @@ export interface SelectOptions {
 }
 
 export interface ValueItem {
+  [key: string]: any;
   id?: number;
   children?: ValueItem[];
-  [key: string]: any;
 }

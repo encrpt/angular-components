@@ -10,20 +10,18 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'app-input-file',
+  selector: 'lib-input-file',
   templateUrl: './input-file.component.html',
   styleUrls: ['./input-file.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class InputFileComponent implements OnInit {
-  constructor() {}
-
   get fileCount(): number {
-    return (this._files && this._files.length) || 0;
+    return (this.pFiles && this.pFiles.length) || 0;
   }
 
   get fileName(): string {
-    return this._files && this._files.length ? this._files[0].name : '';
+    return this.pFiles && this.pFiles.length ? this.pFiles[0].name : '';
   }
 
   @Input()
@@ -55,26 +53,28 @@ export class InputFileComponent implements OnInit {
   label = 'Load from disk';
 
   @Output()
-  onFileSelect: EventEmitter<File[]> = new EventEmitter();
+  fileSelected: EventEmitter<File[]> = new EventEmitter();
 
   @Output()
-  onSelectStart: EventEmitter<boolean> = new EventEmitter();
+  selectStarted: EventEmitter<boolean> = new EventEmitter();
 
   @ViewChild('inputFile')
   nativeInputFile: ElementRef;
 
-  private _files: File[];
+  private pFiles: File[];
+
+  constructor() {}
 
   ngOnInit(): void {}
   selectStart() {}
 
   onNativeInputFileSelect($event) {
-    this._files = $event.target.files;
-    this.onFileSelect.emit(this._files);
+    this.pFiles = $event.target.files;
+    this.fileSelected.emit(this.pFiles);
   }
 
   selectFile() {
-    this.onSelectStart.emit(true);
+    this.selectStarted.emit(true);
     this.nativeInputFile.nativeElement.value = '';
     this.nativeInputFile.nativeElement.click();
   }

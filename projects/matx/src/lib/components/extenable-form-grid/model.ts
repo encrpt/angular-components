@@ -10,6 +10,6 @@ export interface GridTableHeader {
 }
 
 export enum ColumnState {
-  EXISTING,
-  NEW,
+  existing,
+  new,
 }

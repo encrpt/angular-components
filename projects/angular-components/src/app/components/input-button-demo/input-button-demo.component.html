@@ -15,7 +15,7 @@
       Menu
     </button>
     <mat-menu #localmenu="matMenu">
-      <app-input-button
+      <lib-input-button
         [width]="300"
         label="Upload"
         [disabled]="true"
@@ -25,10 +25,10 @@
         placeholder="Filename - '.json' will be added"
         [required]="true"
         value="filename"
-        (onSubmit)="submitAction($event)"
+        (inputSubmited)="submitAction($event)"
       >
-      </app-input-button>
-      <app-input-button
+      </lib-input-button>
+      <lib-input-button
         [width]="200"
         label="Download"
         [disabled]="false"
@@ -38,12 +38,12 @@
         placeholder="Filename - '.json' will be added"
         [required]="true"
         value="Example"
-        (onSubmit)="submitAction($event)"
+        (inputSubmited)="submitAction($event)"
       >
-      </app-input-button>
+      </lib-input-button>
     </mat-menu>
   </div>
-  <app-input-button
+  <lib-input-button
     type="raised"
     color="primary"
     [width]="300"
@@ -52,11 +52,11 @@
     iconBefore="vertical_align_bottom"
     placeholder="Filename for export"
     [required]="true"
-    (onSubmit)="submitAction($event)"
+    (inputSubmited)="submitAction($event)"
   >
-  </app-input-button>
+  </lib-input-button>
 
-  <app-input-button
+  <lib-input-button
     label="Delete"
     matTooltip="Delete"
     type="raised"
@@ -67,11 +67,11 @@
     iconBefore="delete_forever"
     placeholder="Delete data permanently?"
     buttonLabel="Yes"
-    (onSubmit)="submitAction($event)"
+    (inputSubmited)="submitAction($event)"
     buttonwidth="100%"
   >
-  </app-input-button>
-  <app-input-button
+  </lib-input-button>
+  <lib-input-button
     matTooltip="Delete"
     type="icon"
     [width]="200"
@@ -80,11 +80,11 @@
     message="Warning: This action will permanently delete dbxyz. To confirm the deletion of the database and all of the database's documents, you must enter the database's name."
     placeholder="Type name of the database:"
     buttonLabel="Yes"
-    (onSubmit)="submitAction($event)"
+    (inputSubmited)="submitAction($event)"
     buttonwidth="100%"
   >
-  </app-input-button>
-  <app-input-button
+  </lib-input-button>
+  <lib-input-button
     label="Delete"
     matTooltip="Delete file permanently"
     type="mini-fab"
@@ -94,11 +94,11 @@
     icon="plus_one"
     placeholder="Delete data permanently?"
     buttonLabel="Yes"
-    (onSubmit)="submitAction($event)"
+    (inputSubmited)="submitAction($event)"
     buttonwidth="100%"
   >
-  </app-input-button>
-  <app-input-button
+  </lib-input-button>
+  <lib-input-button
     label="Delete"
     matTooltip="Leave"
     type="fab"
@@ -108,11 +108,11 @@
     icon="home"
     placeholder="Leave page?"
     buttonLabel="Yes"
-    (onSubmit)="submitAction($event)"
+    (inputSubmited)="submitAction($event)"
     buttonwidth="100%"
   >
-  </app-input-button>
-  <app-input-button
+  </lib-input-button>
+  <lib-input-button
     label="Encrpt"
     matTooltip="Save as encrypted file"
     type="raised"
@@ -121,8 +121,8 @@
     placeholder="Type your password:"
     [isPassword]="true"
     buttonLabel="encrpt now"
-    (onSubmit)="submitAction($event)"
+    (inputSubmited)="submitAction($event)"
     buttonwidth="100%"
   >
-  </app-input-button>
+  </lib-input-button>
 </div>

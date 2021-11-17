@@ -10,8 +10,6 @@ import { SelectOptions, ValueItem } from './level.model';
   styleUrls: ['./level-edit.component.scss'],
 })
 export class LevelEditComponent implements OnInit {
-  constructor() {}
-
   @Input()
   collection: ValueItem[] = [];
 
@@ -40,6 +38,8 @@ export class LevelEditComponent implements OnInit {
   formGroup: FormGroup;
 
   selectedItems: ValueItem[];
+
+  constructor() {}
 
   ngOnInit(): void {
     this.selectKeys = this.selectCollection.map((i) => i.key);

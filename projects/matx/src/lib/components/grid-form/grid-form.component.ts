@@ -9,6 +9,12 @@ import { GridTableHeader } from '../extenable-form-grid/model';
   styleUrls: ['./grid-form.component.scss'],
 })
 export class GridFormComponent implements OnInit {
+  headerKey: string;
+  headerRow: GridTableHeader[];
+  row: any[];
+  formGroup: FormGroup;
+  description: string;
+
   constructor(
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<GridFormComponent>,
@@ -20,11 +26,6 @@ export class GridFormComponent implements OnInit {
     this.description = data.description || 'Form';
   }
 
-  headerKey: string;
-  headerRow: GridTableHeader[];
-  row: any[];
-  formGroup: FormGroup;
-  description: string;
   ngOnInit(): void {
     if (this.headerKey) {
       this.formGroup = this.createHeaderControl(this.headerKey);
@@ -57,8 +58,6 @@ export class GridFormComponent implements OnInit {
       filtered.push({ key, label: '' });
     }
     const controlsConfig = filtered.reduce((acc: any, rowProperty) => {
-      const key = rowProperty.key;
-
       acc[rowProperty.key] = this.formBuilder.control({
         value: rowProperty.label,
         disabled: false,

@@ -9,7 +9,7 @@ import {
 // see title form component width
 
 @Component({
-  selector: 'app-input-button',
+  selector: 'lib-input-button',
   templateUrl: './input-button.component.html',
   styleUrls: ['./input-button.component.scss'],
 })
@@ -70,7 +70,7 @@ export class InputButtonComponent implements OnInit {
   //////////////////////////////////////
 
   @Output()
-  onSubmit: EventEmitter<string> = new EventEmitter();
+  inputSubmited: EventEmitter<string> = new EventEmitter();
 
   constructor(private dialog: MatDialog) {}
 
@@ -112,9 +112,9 @@ export class InputButtonComponent implements OnInit {
       if (data === undefined) {
         // nothing
       } else if (data) {
-        this.onSubmit.emit(data);
+        this.inputSubmited.emit(data);
       } else if (!this.required) {
-        this.onSubmit.emit('');
+        this.inputSubmited.emit('');
       }
     });
   }

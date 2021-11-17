@@ -16,8 +16,6 @@ import {
   styleUrls: ['./extenable-text-grid.component.scss'],
 })
 export class ExtenableTextGridComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
-
   @Input()
   gridData: GridTable;
 
@@ -33,7 +31,8 @@ export class ExtenableTextGridComponent implements OnInit {
 
   public usePropAsHeader = true;
 
-  // private
+  constructor(public dialog: MatDialog) {}
+
   ngOnInit(): void {
     // create existing fields
     console.log(this.gridData);
@@ -45,7 +44,7 @@ export class ExtenableTextGridComponent implements OnInit {
         this.headerRow = this.gridData.headerRow.map((i) => ({
           key: i.key,
           label: i.label,
-          state: ColumnState.EXISTING,
+          state: ColumnState.existing,
         }));
         // init form rows
         if (this.allowEditHeaderRows) {
@@ -129,11 +128,11 @@ export class ExtenableTextGridComponent implements OnInit {
     if (this.usePropAsHeader) {
       const tableRows = this.dataRows.map((row: any) => {
         const result: any = {};
-        Object.keys(row).map((uuid) => {
-          const found = this.headerRow.find((i) => i.key === uuid);
+        Object.keys(row).map((uuidKey) => {
+          const found = this.headerRow.find((i) => i.key === uuidKey);
           // should always exists
-          const key = found ? found.label : uuid;
-          result[key] = row[uuid];
+          const key = found ? found.label : uuidKey;
+          result[key] = row[uuidKey];
         });
         return result;
       });
@@ -164,12 +163,12 @@ export class ExtenableTextGridComponent implements OnInit {
   log() {
     const data = this.dataRows.map((row: any) => {
       const result: any = {};
-      Object.keys(row).map((uuid: string) => {
+      Object.keys(row).map((uuidKey) => {
         const found = this.headerRow.find(
-          (i) => i.state !== ColumnState.EXISTING && i.key === uuid
+          (i) => i.state !== ColumnState.existing && i.key === uuidKey
         );
-        uuid = found ? found.label : uuid;
-        result[uuid] = row[uuid];
+        uuidKey = found ? found.label : uuidKey;
+        result[uuidKey] = row[uuidKey];
       });
       return result;
     });
@@ -200,7 +199,12 @@ export class ExtenableTextGridComponent implements OnInit {
             i.key === key ? { key, label: fieldLabel } : i
           );
           this.dataRows[0] = Object.keys(this.dataRows[0]).reduce((a, k) => {
-            k === key ? (a[k] = fieldLabel) : (a[k] = this.dataRows[0][k]);
+            if (k === key) {
+              a[k] = fieldLabel;
+            } else {
+              a[k] = this.dataRows[0][k];
+            }
+
             return a;
           }, {});
         } else {

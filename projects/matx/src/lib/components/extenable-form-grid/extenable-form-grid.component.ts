@@ -15,10 +15,6 @@ import { GridTable, GridTableHeader, ColumnState } from './model';
   styleUrls: ['./extenable-form-grid.component.scss'],
 })
 export class ExtenableFormGridComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) {
-    this.formGroup = this.formBuilder.group({});
-  }
-
   @Input()
   gridData: GridTable;
 
@@ -34,8 +30,12 @@ export class ExtenableFormGridComponent implements OnInit {
 
   public usePropAsHeader = true;
 
-  // private
   private rowFromgroups: FormGroup[] = [];
+
+  constructor(private formBuilder: FormBuilder) {
+    this.formGroup = this.formBuilder.group({});
+  }
+
   ngOnInit(): void {
     // create existing fields
     console.log(this.gridData);
@@ -47,7 +47,7 @@ export class ExtenableFormGridComponent implements OnInit {
         this.headerRow = this.gridData.headerRow.map((i) => ({
           key: i.key,
           label: i.label,
-          state: ColumnState.EXISTING,
+          state: ColumnState.existing,
         }));
         // init form rows
         if (this.allowEditHeaderRows) {
@@ -165,12 +165,12 @@ export class ExtenableFormGridComponent implements OnInit {
     // this.log();
     const tableRows = this.formGroup.value.rows.map((row: any) => {
       const result: any = {};
-      Object.keys(row).map((uuid) => {
+      Object.keys(row).map((uuidKey) => {
         const found = this.headerRow.find(
-          (i) => i.state !== ColumnState.EXISTING && i.key === uuid
+          (i) => i.state !== ColumnState.existing && i.key === uuidKey
         );
-        const key = found ? found.label : uuid;
-        result[key] = row[uuid];
+        const key = found ? found.label : uuidKey;
+        result[key] = row[uuidKey];
       });
       return result;
     });
@@ -197,7 +197,7 @@ export class ExtenableFormGridComponent implements OnInit {
   ) {
     if (currentIndex === -1) {
       currentIndex = formArray.length - 1;
-    } else if (currentIndex == formArray.length) {
+    } else if (currentIndex === formArray.length) {
       currentIndex = 0;
     }
 
@@ -209,12 +209,12 @@ export class ExtenableFormGridComponent implements OnInit {
   log() {
     const data = this.formGroup.value.rows.map((row: any) => {
       const result: any = {};
-      Object.keys(row).map((uuid: string) => {
+      Object.keys(row).map((uuidKey) => {
         const found = this.headerRow.find(
-          (i) => i.state !== ColumnState.EXISTING && i.key === uuid
+          (i) => i.state !== ColumnState.existing && i.key === uuidKey
         );
-        uuid = found ? found.label : uuid;
-        result[uuid] = row[uuid];
+        uuidKey = found ? found.label : uuidKey;
+        result[uuidKey] = row[uuidKey];
       });
       return result;
     });

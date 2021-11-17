@@ -57,7 +57,7 @@
                     <button mat-icon-button (click)="addColumn(0)">
                       <mat-icon>chevron_right</mat-icon>
                     </button>
-                    <!-- <app-input-button
+                    <!-- <lib-input-button
                       [width]="200"
                       type="icon"
                       [required]="true"
@@ -66,9 +66,9 @@
                       matTooltip="Set Property"
                       iconBefore="vertical_align_bottom"
                       placeholder="fieldname"
-                      (onSubmit)="addColumn(0, $event)"
+                      (inputSubmited)="addColumn(0, $event)"
                     >
-                    </app-input-button> -->
+                    </lib-input-button> -->
                     <mat-divider></mat-divider>
                     <button
                       mat-icon-button
@@ -104,7 +104,7 @@
                         <mat-icon>chevron_right</mat-icon>
                       </button>
 
-                      <!-- <app-input-button
+                      <!-- <lib-input-button
                         [width]="200"
                         type="icon"
                         [required]="true"
@@ -113,9 +113,9 @@
                         matTooltip="Set Property"
                         iconBefore="vertical_align_bottom"
                         placeholder="fieldname"
-                        (onSubmit)="addColumn(colIndex + 1, $event)"
+                        (inputSubmited)="addColumn(colIndex + 1, $event)"
                       >
-                      </app-input-button> -->
+                      </lib-input-button> -->
                     </div>
                     <div
                       class="form-grid-cell"
@@ -196,7 +196,7 @@
                 <mat-icon>chevron_right</mat-icon>
               </button>
 
-              <!-- <app-input-button
+              <!-- <lib-input-button
                 [width]="200"
                 [required]="true"
                 [disabled]="headerRow.length === 0"
@@ -206,9 +206,9 @@
                 matTooltip="Set Property"
                 iconBefore="vertical_align_bottom"
                 placeholder="fieldname"
-                (onSubmit)="addColumn(0, $event)"
+                (inputSubmited)="addColumn(0, $event)"
               >
-              </app-input-button> -->
+              </lib-input-button> -->
               <mat-divider></mat-divider>
               <button mat-icon-button (click)="addRow(0)">
                 <mat-icon>expand_more</mat-icon>

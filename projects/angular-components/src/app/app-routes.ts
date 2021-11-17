@@ -14,11 +14,6 @@ import { TwoLevelEditDemoComponent } from './components/two-level-edit-demo/two-
 
 export const appRoutes: Routes = [
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
-  {
     path: 'home',
     component: DemoHomeComponent,
   },
@@ -114,4 +109,10 @@ export const appRoutes: Routes = [
         https://medium.com/angular-in-depth/wrapping-commonjs-library-in-angular-8-directive-on-the-example-of-mark-js-976cbcd5d10a`,
     },
   },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  { path: '**', redirectTo: 'home' },
 ];

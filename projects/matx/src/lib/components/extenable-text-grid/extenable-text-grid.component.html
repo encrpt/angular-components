@@ -54,8 +54,12 @@
               >
                 <th class="sticky">
                   <div class="form-grid-cell-first-column">
-                    <button mat-icon-button (click)="addColumn(0)">
-                      <mat-icon>chevron_right</mat-icon>
+                    <button
+                      matTooltip="add column"
+                      mat-icon-button
+                      (click)="addColumn(0)"
+                    >
+                      <mat-icon matTooltip="add column">chevron_right</mat-icon>
                     </button>
                     <!-- <lib-input-button
                       [width]="200"
@@ -71,6 +75,7 @@
                     </lib-input-button> -->
                     <mat-divider></mat-divider>
                     <button
+                      matTooltip="add row"
                       mat-icon-button
                       (click)="addRow(allowEditHeaderRows ? 1 : 0)"
                     >
@@ -100,7 +105,11 @@
                       >
                         <mat-icon>edit</mat-icon>
                       </button>
-                      <button mat-icon-button (click)="addColumn(colIndex + 1)">
+                      <button
+                        matTooltip="add column"
+                        mat-icon-button
+                        (click)="addColumn(colIndex + 1)"
+                      >
                         <mat-icon>chevron_right</mat-icon>
                       </button>
 
@@ -134,7 +143,7 @@
                           autocomplete="off"
                           formControlName="{{ rowProperty.key }}"
                           matInput
-                          placeholder="TODO"
+                          placeholder="placeholder"
                         />
                       </mat-form-field> -->
                       </div>
@@ -164,7 +173,11 @@
                     <mat-icon>edit</mat-icon>
                   </button>
 
-                  <button mat-icon-button (click)="addRow(rowIndex + 1)">
+                  <button
+                    matTooltip="add row"
+                    mat-icon-button
+                    (click)="addRow(rowIndex + 1)"
+                  >
                     <mat-icon>expand_more</mat-icon>
                   </button>
                 </div>
@@ -177,7 +190,7 @@
                     autocomplete="off"
                     formControlName="{{ rowProperty.key }}"
                     matInput
-                    placeholder="TODO"
+                    placeholder="placeholder"
                   />
                 </mat-form-field> -->
                 </div>
@@ -192,7 +205,11 @@
         <tr>
           <th>
             <div class="form-grid-cell-first-column">
-              <button mat-icon-button (click)="addColumn(0)">
+              <button
+                matTooltip="add column"
+                mat-icon-button
+                (click)="addColumn(0)"
+              >
                 <mat-icon>chevron_right</mat-icon>
               </button>
 
@@ -210,7 +227,7 @@
               >
               </lib-input-button> -->
               <mat-divider></mat-divider>
-              <button mat-icon-button (click)="addRow(0)">
+              <button matTooltip="add row" mat-icon-button (click)="addRow(0)">
                 <mat-icon>expand_more</mat-icon>
               </button>
             </div>

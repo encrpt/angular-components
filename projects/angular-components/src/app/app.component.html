@@ -1,4 +1,4 @@
-<mat-sidenav-container>
+<mat-sidenav-container [style.height]="'100vh'">
   <mat-toolbar class="header">
     <div class="container">
       <a mat-button routerLink="home">
@@ -12,6 +12,9 @@
       <app-demo-menu></app-demo-menu>
     </div>
     <div class="component-demo">
+      <h2>
+        {{ routeName }}
+      </h2>
       <router-outlet></router-outlet>
     </div>
   </div>

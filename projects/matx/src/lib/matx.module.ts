@@ -30,6 +30,7 @@ import { LevelEditComponent } from './components/level-edit/level-edit.component
 import { MatSelect, MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { OptionLabelPipe } from './components/level-edit/option-label.pipe';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { OptionLabelPipe } from './components/level-edit/option-label.pipe';
     MatDialogModule,
     MatListModule,
     MatSelectModule,
+    MatTooltipModule,
   ],
   exports: [
     SliderCircleComponent,

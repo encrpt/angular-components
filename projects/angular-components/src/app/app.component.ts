@@ -22,7 +22,6 @@ export class AppComponent {
 
       if (event instanceof NavigationEnd) {
         // Hide loading indicator
-        console.log(event);
         if (event.urlAfterRedirects) {
           this.routeName = event.urlAfterRedirects.slice(1);
         }

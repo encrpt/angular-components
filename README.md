@@ -26,6 +26,9 @@ add modules as git subtree to **src/core-modules** in an angular project
 e.g.:
 
 Extendable grid:
+![Ace Editor](https://raw.githubusercontent.com/encrpt/angular-components/master/projects/angular-components/src/assets/img/ace-editor.png)
+
+Extendable grid:
 ![Extendable grid](https://www.encrpt.com/wp-content/uploads/sites/3/2021/08/github_002-1536x889.png)
 
 Slider Circle:

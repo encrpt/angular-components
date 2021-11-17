@@ -1,17 +1,18 @@
 <a
   class="external-link"
   target="_blank"
-  href="https://github.com/encrpt/angular-components/tree/master/projects/ng-encrpt/src/lib"
+  href="https://github.com/encrpt/angular-components/tree/master/projects/ng-encrpt/src/lib/ngx-markjs"
   ><mat-icon> launch </mat-icon>Source</a
 >
 
 <div class="search_input">
   <input placeholder="Search... f.e. demo" #search type="text" />
 </div>
-<div class="content wrapper">
+<div class="">
   <div
     class="content inner"
-    libHighlight="searchText$ | async"
+    libHighlight
+    [markjsHighlight]="searchText$ | async"
     [markjsConfig]="searchConfig"
     [scrollToFirstMarked]="true"
   >
@@ -152,5 +153,5 @@
       Integer malesuada nunc vel risus. Non blandit massa enim nec dui.
     </p>
   </div>
-  <div [innerHTML]="url | renderLink"></div>
 </div>
+<div class="content" [innerHTML]="url | renderLink"></div>

@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ng-encrpt-demo',
@@ -18,7 +18,7 @@ export class NgxMarkjsDemoComponent implements AfterViewInit {
   url =
     'source: https://medium.com/angular-in-depth/wrapping-commonjs-library-in-angular-8-directive-on-the-example-of-mark-js-976cbcd5d10a';
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     // create stream from inpout change event with rxjs 'from' function
     this.searchText$ = fromEvent(
       this.searchElemRef.nativeElement,

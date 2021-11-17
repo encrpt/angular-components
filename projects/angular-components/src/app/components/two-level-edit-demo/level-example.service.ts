@@ -22,11 +22,11 @@ export class LevelExampleService {
       };
       dataSelect.options = Array.from(Array(optionsCount).keys()).map(
         (_, index) => ({
-            key: index + 1,
-            value: `Option_${level}_${i}_${(index + 1)
-              .toString()
-              .padStart(2, '0')}`,
-          })
+          key: index + 1,
+          value: `Option_${level}_${i}_${(index + 1)
+            .toString()
+            .padStart(2, '0')}`,
+        })
       );
       result.push(dataSelect);
     }

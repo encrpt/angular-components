@@ -10,13 +10,13 @@ import {
 // import * as Mark from 'mark.js';
 
 declare let require: any;
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const markLib = require('mark.js');
 
 let cancelAnimationId;
 
 const animate = ({ timing, draw, duration }) => {
   const start = performance.now();
-  // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
   cancelAnimationId = requestAnimationFrame(function animate2(time) {
     // timeFraction goes from 0 to 1
     let timeFraction = (time - start) / duration;
@@ -95,11 +95,9 @@ export class MarkjsHighlightDirective implements OnChanges {
 
     animate({
       duration: 500,
-      // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
       timing(timeFraction) {
         return timeFraction;
       },
-      // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
       draw(progress) {
         const nextStep = currentScrollTop + progress * delta;
         // set scroll with Angular renderer

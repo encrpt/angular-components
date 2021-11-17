@@ -31,7 +31,7 @@ export class AceEditorDemoComponent implements OnInit {
 
   pSelectValue: string;
 
-  get selectValue() {
+  get selectValue(): string {
     return this.pSelectValue;
   }
   set selectValue(selectValue: string) {

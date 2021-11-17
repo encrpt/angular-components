@@ -17,7 +17,7 @@ export class TitleFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<TitleFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     if (this.data.required) {

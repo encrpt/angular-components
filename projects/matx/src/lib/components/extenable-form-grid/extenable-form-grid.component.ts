@@ -117,7 +117,7 @@ export class ExtenableFormGridComponent implements OnInit {
     rows.removeAt(rowIndex);
   }
 
-  addColumn(colIndex: number, fieldName: string = '') {
+  addColumn(colIndex: number, fieldName = '') {
     fieldName = fieldName.trim();
 
     // check if prop exists

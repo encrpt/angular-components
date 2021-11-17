@@ -3,8 +3,7 @@ import { MarkjsHighlightDirective } from './markjs-highlight.directive';
 
 @NgModule({
   declarations: [MarkjsHighlightDirective],
-  imports: [
-  ],
-  exports: [MarkjsHighlightDirective]
+  imports: [],
+  exports: [MarkjsHighlightDirective],
 })
-export class NgxMarkjsModule { }
+export class NgxMarkjsModule {}

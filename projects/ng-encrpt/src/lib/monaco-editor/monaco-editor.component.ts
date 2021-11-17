@@ -6,7 +6,6 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./monaco-editor.component.scss'],
 })
 export class MonacoEditorComponent implements OnInit {
-
   @Input()
   returnType: any = undefined;
 

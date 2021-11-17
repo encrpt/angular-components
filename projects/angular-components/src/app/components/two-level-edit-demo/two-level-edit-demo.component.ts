@@ -1,4 +1,3 @@
-import { KeyValue } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   SelectOptions,
@@ -46,7 +45,7 @@ export class TwoLevelEditDemoComponent implements OnInit {
     //
   }
 
-  setPrevIdForRoot() {
+  setPrevIdForRoot(): void {
     // set prev id
     let prevId;
     this.exampleDataRootCollection.forEach((item) => {
@@ -59,7 +58,7 @@ export class TwoLevelEditDemoComponent implements OnInit {
     });
   }
 
-  nextLevel(parentIndex: number, id: number) {
+  nextLevel(parentIndex: number, id: number): void {
     if (id === null) {
       // set selected parent
       this.viewIndex = parentIndex;
@@ -82,7 +81,7 @@ export class TwoLevelEditDemoComponent implements OnInit {
     }
   }
 
-  submitUploadAction(fileList: File[] | FileList) {
+  submitUploadAction(fileList: File[] | FileList): void {
     if (fileList instanceof FileList) {
       fileList = Array.from(fileList);
     }
@@ -108,7 +107,7 @@ export class TwoLevelEditDemoComponent implements OnInit {
     reader.readAsText(fileList[0]);
   }
 
-  submitDownloadAction(fileName) {
+  submitDownloadAction(fileName): void {
     this.setPrevIdForRoot();
 
     // TODO store select values too

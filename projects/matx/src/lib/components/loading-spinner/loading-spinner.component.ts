@@ -6,7 +6,6 @@ import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
   styleUrls: ['./loading-spinner.component.scss'],
 })
 export class LoadingSpinnerComponent implements OnInit, AfterViewInit {
-
   @Input()
   size = 100;
 
@@ -19,9 +18,9 @@ export class LoadingSpinnerComponent implements OnInit, AfterViewInit {
   @Input()
   pageHeight: string;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
-  ngAfterViewInit() { }
+  ngAfterViewInit() {}
 }

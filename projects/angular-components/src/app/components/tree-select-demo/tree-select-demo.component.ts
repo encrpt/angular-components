@@ -52,7 +52,7 @@ export class TreeSelectDemoComponent implements OnInit {
     }
   }
 
-  createTreeDataFromJson(data: any) {
+  createTreeDataFromJson(data: any): void {
     const menu = {};
     this.menuDataFirst['background.bgVideoLib'] =
       data.background.bgVideoLib.reduce((acc, item, index) => {

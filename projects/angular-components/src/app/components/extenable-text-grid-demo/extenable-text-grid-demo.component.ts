@@ -27,7 +27,6 @@ const DEMO_DATA = [
   styleUrls: ['./extenable-text-grid-demo.component.scss'],
 })
 export class ExtenableTextGridDemoComponent implements OnInit {
-
   data: GridTable = { tableRows: [] };
   dataEmpty: GridTable = { tableRows: [] };
   dataAndHeader: GridTable = { tableRows: [] };

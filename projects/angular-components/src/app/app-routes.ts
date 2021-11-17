@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { AceEditorDemoComponent } from './components/ace-editor-demo/ace-editor-demo.component';
 import { DemoHomeComponent } from './components/demo-home/demo-home.component';
 import { ExtenableFormGridDemoComponent } from './components/extenable-form-grid-demo/extenable-form-grid-demo.component';

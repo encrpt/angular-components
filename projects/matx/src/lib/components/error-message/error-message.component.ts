@@ -7,7 +7,6 @@ import { Input, Component, OnInit } from '@angular/core';
 })
 // TODO check
 export class ErrorMessageComponent implements OnInit {
-
   @Input()
   control;
 
@@ -23,7 +22,6 @@ export class ErrorMessageComponent implements OnInit {
       msg: 'Max. lenght: 20, Allowed characters: A-Z,a-z,0-9.',
     },
   ];
-
 
   currentError;
   constructor() {}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lib-input-file-demo',
+  selector: 'app-input-file-demo',
   templateUrl: './input-file-demo.component.html',
   styleUrls: ['./input-file-demo.component.scss'],
 })

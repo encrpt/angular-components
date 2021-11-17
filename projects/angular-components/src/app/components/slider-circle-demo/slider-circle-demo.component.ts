@@ -7,7 +7,7 @@ interface SliderCircleConfigExample extends SliderCircleConfig {
 }
 
 @Component({
-  selector: 'lib-slider-circle-demo',
+  selector: 'app-slider-circle-demo',
   templateUrl: './slider-circle-demo.component.html',
   styleUrls: ['./slider-circle-demo.component.scss'],
 })

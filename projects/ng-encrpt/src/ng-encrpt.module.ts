@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AceEditorComponent } from './lib/ace-editor/ace-editor.component';
 import { MonacoEditorComponent } from './lib/monaco-editor/monaco-editor.component';
+import { MarkjsHighlightDirective } from './lib/ngx-markjs/markjs-highlight.directive';
 
 const DEFAULT_ACE_CONFIG: AceConfigInterface = {};
 
@@ -20,8 +21,16 @@ const monacoConfig: NgxMonacoEditorConfig = {
 };
 
 @NgModule({
-  declarations: [AceEditorComponent, MonacoEditorComponent],
-  exports: [AceEditorComponent, MonacoEditorComponent],
+  declarations: [
+    AceEditorComponent,
+    MonacoEditorComponent,
+    MarkjsHighlightDirective,
+  ],
+  exports: [
+    AceEditorComponent,
+    MonacoEditorComponent,
+    MarkjsHighlightDirective,
+  ],
   imports: [
     CommonModule,
     BrowserModule,

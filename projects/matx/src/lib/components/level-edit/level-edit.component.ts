@@ -53,7 +53,7 @@ export class LevelEditComponent implements OnInit {
     });
   }
 
-  createSelected() {
+  createSelected(): void {
     const value: ValueItem = Object.keys(this.formGroup.value).reduce(
       (a, i) => {
         a[i] = this.formGroup.value[i].key;
@@ -72,7 +72,7 @@ export class LevelEditComponent implements OnInit {
       this.formGroup.patchValue({ [selectKey]: null });
     });
   }
-  updateSelected() {
+  updateSelected(): void {
     const indexToUpdate = this.collection.findIndex(
       (i) => i.id === this.selectedItems[0].id
     );
@@ -93,7 +93,7 @@ export class LevelEditComponent implements OnInit {
     });
   }
 
-  deleteSelectedItem() {
+  deleteSelectedItem(): void {
     this.selectedItems.forEach((selectedItem) => {
       const indexToDelete = this.collection.findIndex(
         (i) => i.id === selectedItem.id
@@ -105,11 +105,11 @@ export class LevelEditComponent implements OnInit {
     this.emitSelectedId.emit(null);
   }
 
-  onDrop(event: CdkDragDrop<string[]>) {
+  onDrop(event: CdkDragDrop<string[]>): void {
     moveItemInArray(this.collection, event.previousIndex, event.currentIndex);
   }
 
-  onGroupsChange(options: MatListOption[]) {
+  onGroupsChange(options: MatListOption[]): void {
     if (options.length === 1) {
       const selectedId: number = options[0].value.id;
       this.emitSelectedId.emit(selectedId);

@@ -1,6 +1,5 @@
 {
   "extends": "../../.eslintrc.json",
-  "ignorePatterns": ["!**/*"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -11,13 +10,6 @@
         ],
         "createDefaultProgram": true
       },
-      "extends": [
-        "plugin:@angular-eslint/recommended",
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended"
-      ],
-
       "rules": {
         "@angular-eslint/component-selector": [
           "error",
@@ -34,18 +26,8 @@
             "prefix": "lib",
             "style": "camelCase"
           }
-        ],
-        "@angular-eslint/no-empty-lifecycle-method": "warn",
-        "@typescript-eslint/no-empty-function": "warn"
+        ]
       }
-    },
-    {
-      "files": ["*.html"],
-      "extends": [
-        "plugin:@angular-eslint/template/recommended",
-        "plugin:prettier/recommended"
-      ],
-      "rules": {}
     }
   ]
 }

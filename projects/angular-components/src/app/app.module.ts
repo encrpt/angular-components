@@ -7,6 +7,7 @@ import { MatxModule } from '../../../matx/src/public-api';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AceEditorDemoComponent } from './components/ace-editor-demo/ace-editor-demo.component';
+import { AutocompleteSearchDemoComponent } from './components/autocomplete-search-demo/autocomplete-search-demo.component';
 import { DemoHomeComponent } from './components/demo-home/demo-home.component';
 import { DemoMenuComponent } from './components/demo-menu/demo-menu.component';
 import { ExtenableFormGridDemoComponent } from './components/extenable-form-grid-demo/extenable-form-grid-demo.component';
@@ -41,6 +42,7 @@ import { MaterialModule } from './shared/material.module';
     TwoLevelEditDemoComponent,
     AceEditorDemoComponent,
     MonacoEditorDemoComponent,
+    AutocompleteSearchDemoComponent,
   ],
   imports: [
     CommonModule,

@@ -11,7 +11,6 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { InputButtonComponent } from './components/input-button/input-button.component';
 import { InputFileComponent } from './components/input-file/input-file.component';
 import { TitleFormComponent } from './components/title-form/title-form.component';
-import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -27,10 +26,12 @@ import { GridFormComponent } from './components/grid-form/grid-form.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LevelEditComponent } from './components/level-edit/level-edit.component';
-import { MatSelect, MatSelectModule } from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { OptionLabelPipe } from './components/level-edit/option-label.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AutocompleteSearchComponent } from './components/autocomplete-search/autocomplete-search.component';
 
 @NgModule({
   declarations: [
@@ -39,12 +40,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     InputButtonComponent,
     InputFileComponent,
     TitleFormComponent,
-    ErrorMessageComponent,
     ExtenableFormGridComponent,
     TreeSelectComponent,
     ExtenableTextGridComponent,
     GridFormComponent,
     LevelEditComponent,
+    AutocompleteSearchComponent,
     OptionLabelPipe,
   ],
   imports: [
@@ -69,6 +70,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatListModule,
     MatSelectModule,
     MatTooltipModule,
+    MatAutocompleteModule,
+    MatAutocompleteModule,
+    MatIconModule,
   ],
   exports: [
     SliderCircleComponent,
@@ -80,6 +84,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     TreeSelectComponent,
     ExtenableTextGridComponent,
     LevelEditComponent,
+    AutocompleteSearchComponent,
   ],
 })
 export class MatxModule {}

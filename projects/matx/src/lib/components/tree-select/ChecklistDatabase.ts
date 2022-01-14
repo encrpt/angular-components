@@ -18,7 +18,7 @@ export class ChecklistDatabase {
 
   constructor() {}
 
-  initialize(dataJson) {
+  initialize(dataJson: any): void {
     const data: ItemNode[] = this.buildFileTree(dataJson, 0);
     this.dataChange.next(data);
   }
@@ -51,14 +51,14 @@ export class ChecklistDatabase {
   }
 
   /** Add an item to list */
-  insertItem(parent: ItemNode, name: string) {
+  insertItem(parent: ItemNode, name: string): void {
     if (parent.children) {
       parent.children.push({ item: name } as ItemNode);
       this.dataChange.next(this.data);
     }
   }
 
-  updateItem(node: ItemNode, name: string) {
+  updateItem(node: ItemNode, name: string): void {
     node.item = name;
     this.dataChange.next(this.data);
   }

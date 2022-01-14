@@ -1,29 +1,31 @@
-<a
-  class="external-link"
-  target="_blank"
-  href="https://github.com/encrpt/angular-components/tree/master/projects/ng-encrpt/src/lib/ace-editor"
-  ><mat-icon> launch </mat-icon>Source</a
->
-<mat-form-field appearance="fill" [ngStyle]="{ 'margin-right': '6px' }">
-  <mat-label>Data</mat-label>
-  <mat-select [(value)]="selectValue">
-    <mat-option *ngFor="let item of dsls" [value]="item">
-      {{ item }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-<mat-form-field appearance="fill" [ngStyle]="{ 'margin-right': '6px' }">
-  <mat-label>returnType</mat-label>
-  <mat-select [(value)]="returnType">
-    <mat-option *ngFor="let item of returnTypeValues" [value]="item">
-      {{ item }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+<div class="ace-area">
+  <a
+    class="external-link"
+    target="_blank"
+    href="https://github.com/encrpt/angular-components/tree/master/projects/ng-encrpt/src/lib/ace-editor"
+    ><mat-icon> launch </mat-icon>Source</a
+  >
+  <mat-form-field appearance="fill" [ngStyle]="{ 'margin-right': '6px' }">
+    <mat-label>Data</mat-label>
+    <mat-select [(value)]="selectValue">
+      <mat-option *ngFor="let item of dsls" [value]="item">
+        {{ item }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" [ngStyle]="{ 'margin-right': '6px' }">
+    <mat-label>returnType</mat-label>
+    <mat-select [(value)]="returnType">
+      <mat-option *ngFor="let item of returnTypeValues" [value]="item">
+        {{ item }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<lib-ace-editor
-  *ngIf="autocompleteData"
-  [code]="code"
-  [autocompleteData]="autocompleteData"
-  [returnType]="returnType"
-></lib-ace-editor>
+  <lib-ace-editor
+    *ngIf="autocompleteData"
+    [code]="code"
+    [autocompleteData]="autocompleteData"
+    [returnType]="returnType"
+  ></lib-ace-editor>
+</div>

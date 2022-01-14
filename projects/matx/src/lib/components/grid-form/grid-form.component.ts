@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { GridTableHeader } from '../extenable-form-grid/model';
+import { GridFormData, GridTableHeader } from '../extenable-form-grid/model';
 
 @Component({
   selector: 'lib-grid-form',
@@ -18,7 +18,7 @@ export class GridFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<GridFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: GridFormData
   ) {
     this.headerRow = data.headerRow;
     this.row = data.row;
@@ -67,9 +67,9 @@ export class GridFormComponent implements OnInit {
     return this.formBuilder.group(controlsConfig, controlOptions);
   }
 
-  cancel() {}
+  cancel(): void {}
 
-  submit() {
+  submit(): void {
     this.dialogRef.close(this.formGroup.value);
   }
 }

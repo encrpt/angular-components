@@ -1,7 +1,24 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
-import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+export interface TitleFormData {
+  required: boolean;
+  textOnly: boolean;
+  isPassword: boolean;
+  value: string;
+  title: string;
+  message: string;
+  width: number;
+  placeholder: string;
+  buttonLabel: string;
+  buttonWidth: number;
+}
 
 @Component({
   selector: 'lib-title-form',
@@ -16,7 +33,8 @@ export class TitleFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<TitleFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA)
+    public data: TitleFormData
   ) {}
 
   ngOnInit(): void {

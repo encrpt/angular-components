@@ -68,12 +68,12 @@ export class InputFileComponent implements OnInit {
   ngOnInit(): void {}
   selectStart() {}
 
-  onNativeInputFileSelect($event) {
-    this.pFiles = $event.target.files;
+  onNativeInputFileSelect(event: any): void {
+    this.pFiles = event.target.files;
     this.fileSelected.emit(this.pFiles);
   }
 
-  selectFile() {
+  selectFile(): void {
     this.selectStarted.emit(true);
     this.nativeInputFile.nativeElement.value = '';
     this.nativeInputFile.nativeElement.click();

@@ -106,18 +106,18 @@ export class ExtenableFormGridComponent implements OnInit {
     return fg;
   }
 
-  addRow(rowIndex: number) {
+  addRow(rowIndex: number): void {
     const rows = this.formGroup.controls.rows as FormArray;
     const row = this.createRow({});
     rows.insert(rowIndex, row);
   }
 
-  deleteRow(rowIndex: number) {
+  deleteRow(rowIndex: number): void {
     const rows = this.formGroup.controls.rows as FormArray;
     rows.removeAt(rowIndex);
   }
 
-  addColumn(colIndex: number, fieldName = '') {
+  addColumn(colIndex: number, fieldName = ''): void {
     fieldName = fieldName.trim();
 
     // check if prop exists
@@ -147,7 +147,7 @@ export class ExtenableFormGridComponent implements OnInit {
     }
   }
 
-  deleteColumn(colIndex: number) {
+  deleteColumn(colIndex: number): void {
     const propToDelete = this.headerRow[colIndex];
     this.headerRow = [
       ...this.headerRow.slice(0, colIndex),
@@ -161,7 +161,7 @@ export class ExtenableFormGridComponent implements OnInit {
     });
   }
 
-  submitAction() {
+  submitAction(): void {
     // this.log();
     const tableRows = this.formGroup.value.rows.map((row: any) => {
       const result: any = {};
@@ -181,7 +181,7 @@ export class ExtenableFormGridComponent implements OnInit {
     }
   }
 
-  drop(event: CdkDragDrop<any>) {
+  drop(event: CdkDragDrop<any>): void {
     const rows = this.formGroup.controls.rows as FormArray;
     this.moveFormGroupInFormarray(
       rows,
@@ -194,7 +194,7 @@ export class ExtenableFormGridComponent implements OnInit {
     formArray: FormArray,
     previousIndex: number,
     currentIndex: number
-  ) {
+  ): void {
     if (currentIndex === -1) {
       currentIndex = formArray.length - 1;
     } else if (currentIndex === formArray.length) {
@@ -206,7 +206,7 @@ export class ExtenableFormGridComponent implements OnInit {
     formArray.insert(currentIndex, currentGroup);
   }
 
-  log() {
+  log(): void {
     const data = this.formGroup.value.rows.map((row: any) => {
       const result: any = {};
       Object.keys(row).map((uuidKey) => {
@@ -224,7 +224,7 @@ export class ExtenableFormGridComponent implements OnInit {
     });
   }
 
-  dropColumnSort(event: CdkDragDrop<any>) {
+  dropColumnSort(event: CdkDragDrop<any>): void {
     console.log(event);
     moveItemInArray(this.headerRow, event.previousIndex, event.currentIndex);
   }

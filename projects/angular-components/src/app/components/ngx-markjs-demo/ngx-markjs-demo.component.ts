@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ng-encrpt-demo',

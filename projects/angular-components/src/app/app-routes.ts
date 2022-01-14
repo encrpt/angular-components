@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AceEditorDemoComponent } from './components/ace-editor-demo/ace-editor-demo.component';
+import { AutocompleteSearchDemoComponent } from './components/autocomplete-search-demo/autocomplete-search-demo.component';
 import { DemoHomeComponent } from './components/demo-home/demo-home.component';
 import { ExtenableFormGridDemoComponent } from './components/extenable-form-grid-demo/extenable-form-grid-demo.component';
 import { ExtenableTextGridDemoComponent } from './components/extenable-text-grid-demo/extenable-text-grid-demo.component';
@@ -16,6 +17,14 @@ export const appRoutes: Routes = [
   {
     path: 'home',
     component: DemoHomeComponent,
+  },
+  {
+    path: 'autocomplete-search',
+    component: AutocompleteSearchDemoComponent,
+    data: {
+      title: 'Material',
+      description: 'Autocomplete for enums based formcontrol',
+    },
   },
   {
     path: 'two-level-edit',

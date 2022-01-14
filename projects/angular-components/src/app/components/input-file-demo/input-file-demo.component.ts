@@ -10,10 +10,10 @@ export class InputFileDemoComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  resetAction(parameter: boolean) {
+  resetAction(parameter: boolean): void {
     console.log(parameter);
   }
-  submitAction(files: File[]) {
+  submitAction(files: File[]): void {
     console.log(files);
   }
 }

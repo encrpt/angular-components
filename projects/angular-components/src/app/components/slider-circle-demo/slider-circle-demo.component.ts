@@ -74,7 +74,7 @@ export class SliderCircleDemoComponent implements OnInit {
     console.log(this.sliderExamples);
   }
 
-  changeValue(label, $event) {
-    console.log(label, $event);
+  changeValue(label: string, event: MouseEvent): void {
+    console.log(label, event);
   }
 }

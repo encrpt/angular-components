@@ -10,7 +10,7 @@ export class InputButtonDemoComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  submitAction(userInput) {
+  submitAction(userInput: MouseEvent): void {
     console.log(userInput);
   }
 }

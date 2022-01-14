@@ -86,7 +86,7 @@ export class TwoLevelEditDemoComponent implements OnInit {
       fileList = Array.from(fileList);
     }
     const reader = new FileReader();
-    reader.onload = (progressEvent) => {
+    reader.onload = () => {
       if (reader.result) {
         const valueFromFile = JSON.parse(reader.result as string);
         // simple validation
@@ -101,13 +101,13 @@ export class TwoLevelEditDemoComponent implements OnInit {
       }
     };
 
-    reader.onerror = (error) => {
+    reader.onerror = () => {
       //
     };
     reader.readAsText(fileList[0]);
   }
 
-  submitDownloadAction(fileName): void {
+  submitDownloadAction(fileName: string): void {
     this.setPrevIdForRoot();
 
     // TODO store select values too

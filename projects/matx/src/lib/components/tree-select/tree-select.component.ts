@@ -32,12 +32,12 @@ export class TreeSelectComponent implements OnInit {
   multiSelect = true;
 
   @Input()
-  set treeData(treeData) {
+  set treeData(treeData: any) {
     this.resetListSelection();
     this.database.initialize(treeData);
   }
 
-  get treeData() {
+  get treeData(): void {
     return this.pTreeData;
   }
 
@@ -97,13 +97,15 @@ export class TreeSelectComponent implements OnInit {
     });
   }
 
-  getLevel = (node: ItemFlatNode) => node.level;
-  isExpandable = (node: ItemFlatNode) => node.expandable;
+  getLevel = (node: ItemFlatNode): number => node.level;
+  isExpandable = (node: ItemFlatNode): boolean => node.expandable;
   getChildren = (node: ItemNode): ItemNode[] => node.children;
-  hasChild = (_: number, _nodeData: ItemFlatNode) => _nodeData.expandable;
-  hasNoContent = (_: number, _nodeData: ItemFlatNode) => _nodeData.item === '';
+  hasChild = (_: number, _nodeData: ItemFlatNode): boolean =>
+    _nodeData.expandable;
+  hasNoContent = (_: number, _nodeData: ItemFlatNode): boolean =>
+    _nodeData.item === '';
 
-  resetListSelection() {
+  resetListSelection(): void {
     this.checklistSelection = new SelectionModel<ItemFlatNode>(
       this.multiSelect
     );
@@ -112,7 +114,7 @@ export class TreeSelectComponent implements OnInit {
   /**
    * Transformer to convert nested node to flat node. Record the nodes in maps for later use.
    */
-  transformer = (node: ItemNode, level: number) => {
+  transformer = (node: ItemNode, level: number): ItemFlatNode => {
     const existingNode = this.nestedNodeMap.get(node);
     const flatNode =
       existingNode && existingNode.item === node.item
@@ -173,14 +175,14 @@ export class TreeSelectComponent implements OnInit {
   }
 
   /** Select the category so we can insert the new item. */
-  addNewItem(node: ItemFlatNode) {
+  addNewItem(node: ItemFlatNode): void {
     const parentNode = this.flatNodeMap.get(node);
     this.database.insertItem(parentNode, '');
     this.treeControl.expand(node);
   }
 
   /** Save the node to database */
-  saveNode(node: ItemFlatNode, itemValue: string) {
+  saveNode(node: ItemFlatNode, itemValue: string): void {
     const nestedNode = this.flatNodeMap.get(node);
     this.database.updateItem(nestedNode, itemValue);
   }

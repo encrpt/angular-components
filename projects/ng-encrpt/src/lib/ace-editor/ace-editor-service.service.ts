@@ -1,6 +1,5 @@
-import ace from 'brace';
 import { Injectable } from '@angular/core';
-import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
+import ace from 'brace';
 const tokenIterator = ace.acequire('ace/token_iterator').TokenIterator;
 
 @Injectable({
@@ -9,7 +8,7 @@ const tokenIterator = ace.acequire('ace/token_iterator').TokenIterator;
 export class AceEditorServiceService {
   constructor() {}
 
-  beautify(session: ace.IEditSession) {
+  beautify(session: ace.IEditSession): void {
     const iterator = new tokenIterator(session, 0, 0);
     let token = iterator.getCurrentToken();
 
@@ -62,14 +61,14 @@ export class AceEditorServiceService {
       // },
     ];
 
-    const blockTags = [];
+    // const blockTags = [];
 
     let indentation = 0;
     const dontBreak = false;
-    let tag;
-    let lastTag;
+    // let tag: any;
+    // let lastTag: any;
     let lastToken: any = {};
-    let nextTag;
+    // let nextTag;
 
     while (token) {
       if (token.type === 'paren.rparen') {
@@ -107,7 +106,7 @@ export class AceEditorServiceService {
 
       //tag name
       if (token.type.substr(0, 17) === 'meta.tag.tag-name') {
-        tag = token.value;
+        // tag = token.value;
       }
 
       //new line before
@@ -159,7 +158,7 @@ export class AceEditorServiceService {
       // console.log(code);
 
       //next token
-      lastTag = tag;
+      // lastTag = tag;
 
       lastToken = token;
 
@@ -175,7 +174,7 @@ export class AceEditorServiceService {
     session.setValue(code);
   }
 
-  getAutocomplete(autocompleteData) {
+  getAutocomplete(autocompleteData): any {
     // add item as description
     autocompleteData = autocompleteData.map((i) => {
       i.pDescription = JSON.stringify(i, null, 2);

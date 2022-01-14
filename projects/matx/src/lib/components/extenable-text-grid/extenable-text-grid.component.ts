@@ -94,24 +94,24 @@ export class ExtenableTextGridComponent implements OnInit {
     return row;
   }
 
-  addRow(rowIndex: number) {
+  addRow(rowIndex: number): void {
     this.editRow(rowIndex, true);
   }
 
-  deleteRow(rowIndex: number) {
+  deleteRow(rowIndex: number): void {
     this.dataRows = [
       ...this.dataRows.slice(0, rowIndex),
       ...this.dataRows.slice(rowIndex + 1),
     ];
   }
 
-  addColumn(colIndex: number) {
+  addColumn(colIndex: number): void {
     // check if prop exists
     const addedUuid = this.getUuid();
     this.editHeader(addedUuid, colIndex);
   }
 
-  deleteColumn(colIndex: number) {
+  deleteColumn(colIndex: number): void {
     const propToDelete = this.headerRow[colIndex];
     this.headerRow = [
       ...this.headerRow.slice(0, colIndex),
@@ -122,7 +122,7 @@ export class ExtenableTextGridComponent implements OnInit {
     });
   }
 
-  submitAction() {
+  submitAction(): void {
     // this.log();
 
     if (this.usePropAsHeader) {
@@ -153,14 +153,14 @@ export class ExtenableTextGridComponent implements OnInit {
     }
   }
 
-  dropRowSort(event: CdkDragDrop<any>) {
+  dropRowSort(event: CdkDragDrop<any>): void {
     moveItemInArray(this.dataRows, event.previousIndex, event.currentIndex);
   }
-  dropColumnSort(event: CdkDragDrop<any>) {
+  dropColumnSort(event: CdkDragDrop<any>): void {
     moveItemInArray(this.headerRow, event.previousIndex, event.currentIndex);
   }
 
-  log() {
+  log(): void {
     const data = this.dataRows.map((row: any) => {
       const result: any = {};
       Object.keys(row).map((uuidKey) => {
@@ -178,7 +178,7 @@ export class ExtenableTextGridComponent implements OnInit {
     });
   }
 
-  editHeader(key: string, colIndex?: number) {
+  editHeader(key: string, colIndex?: number): void {
     const dialogRef = this.dialog.open(GridFormComponent, {
       data: {
         headerRow: this.headerRow,
@@ -232,7 +232,7 @@ export class ExtenableTextGridComponent implements OnInit {
       });
   }
 
-  editRow(index: number, isCreate = false) {
+  editRow(index: number, isCreate = false): void {
     const row = isCreate ? this.createRow({}) : this.dataRows[index];
     const dialogRef = this.dialog.open(GridFormComponent, {
       data: {

@@ -1,0 +1,38 @@
+<div class="autocomplete-search">
+  <lib-autocomplete-search
+    [required]="true"
+    [control]="formGroup.get('direction_1')"
+    [config]="config1"
+    [placeholder]="'Direction - Test 1'"
+  ></lib-autocomplete-search>
+  <mat-error
+    *ngFor="let validatorMsg of formGroup.get('direction_1').errors | keyvalue"
+  >
+    <ng-container *ngIf="validatorMsg.key">
+      <mat-error
+        *ngIf="formGroup.get('direction_1').hasError(validatorMsg.key)"
+        >{{ validatorMsg.key }}</mat-error
+      >
+    </ng-container>
+  </mat-error>
+</div>
+<div>
+  <lib-autocomplete-search
+    [required]="false"
+    [control]="formGroup.get('direction_2')"
+    [config]="config2"
+    [placeholder]="'Direction Test 2'"
+    [hasInitialValue]="true"
+    [readonly]="false"
+  ></lib-autocomplete-search>
+  <mat-error
+    *ngFor="let validatorMsg of formGroup.get('direction_2').errors | keyvalue"
+  >
+    <ng-container *ngIf="validatorMsg.key">
+      <mat-error
+        *ngIf="formGroup.get('direction_2').hasError(validatorMsg.key)"
+        >{{ validatorMsg.key }}</mat-error
+      >
+    </ng-container>
+  </mat-error>
+</div>

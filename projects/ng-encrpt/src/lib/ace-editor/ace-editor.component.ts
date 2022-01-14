@@ -1,7 +1,6 @@
 import {
   AfterViewInit,
   Component,
-  ElementRef,
   Input,
   OnInit,
   ViewChild,
@@ -22,15 +21,10 @@ import 'brace/theme/twilight';
 import 'brace/theme/github';
 import {
   AceComponent,
-  AceConfig,
   AceConfigInterface,
   AceDirective,
 } from 'ngx-ace-wrapper';
 import { AceEditorServiceService } from './ace-editor-service.service';
-import {
-  StageAutoCompleter,
-  QueryAutoCompleter,
-} from 'mongodb-ace-autocompleter';
 
 // dev example
 export const RETURNTYPE_VALUES = [
@@ -73,6 +67,9 @@ export class AceEditorComponent implements OnInit, AfterViewInit {
   @Input()
   code = ``;
 
+  @Input()
+  cssClass = '';
+
   aceBase: Editor;
 
   /*
@@ -98,46 +95,8 @@ export class AceEditorComponent implements OnInit, AfterViewInit {
   constructor(private aceEditorServiceService: AceEditorServiceService) {}
 
   ngOnInit(): void {
-    const stageAutoCompleter = new StageAutoCompleter(
-      '3.6.0',
-      langTools.textCompleter,
-      [
-        {
-          name: 'name',
-          value: 'name',
-          score: 1,
-          meta: 'field',
-          version: '0.0.0',
-        },
-      ],
-      '$match'
-    );
-
-    const queryAutoCompleter = new QueryAutoCompleter(
-      '3.6.0',
-      langTools.textCompleter,
-      [
-        {
-          name: 'status',
-          value: 'status',
-          score: 1,
-          meta: 'field',
-          version: '1.0.0',
-        },
-        {
-          name: 'count',
-          value: 'count',
-          score: 1,
-          meta: 'field',
-          version: '1.0.0',
-        },
-      ]
-    );
-    //
     langTools.setCompleters([
       this.aceEditorServiceService.getAutocomplete(this.autocompleteData),
-      // stageAutoCompleter,
-      // queryAutoCompleter,
     ]);
   }
 
@@ -151,16 +110,16 @@ export class AceEditorComponent implements OnInit, AfterViewInit {
     // add listener
   }
 
-  beautify() {
+  beautify(): void {
     // this.aceEditorServiceService.beautify(this.aceBase.session);
     beautify.beautify(this.aceBase.session);
   }
 
-  logValue() {
+  logValue(): void {
     console.log(this.aceBase.session.getValue());
   }
 
-  submit() {
+  submit(): void {
     // this.aceBase.session.doc.revertDeltas([]);
   }
 }

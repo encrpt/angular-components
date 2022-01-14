@@ -22,5 +22,5 @@ export class LoadingSpinnerComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {}
 
-  ngAfterViewInit() {}
+  ngAfterViewInit(): void {}
 }

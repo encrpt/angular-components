@@ -122,20 +122,20 @@ export class SliderCircleComponent implements OnInit, AfterViewInit {
   constructor() {}
 
   @HostListener('dblclick', ['$event'])
-  onDblClick(event) {
+  onDblClick(event: any): void {
     if (this.editMode && event.srcElement.id === 'view-edit-field') {
       this.valueInput = !this.valueInput;
     }
   }
   @HostListener('click', ['$event'])
-  onClick(event) {
+  onClick(event: any): void {
     if (this.editMode && !event.srcElement.id.includes('mat-input')) {
       this.valueInput = false;
     }
   }
 
   @HostListener('keydown', ['$event'])
-  onKeyDown(e) {
+  onKeyDown(e: KeyboardEvent): void {
     if (e.keyCode === 13) {
       this.valueInput = false;
     }
@@ -158,7 +158,7 @@ export class SliderCircleComponent implements OnInit, AfterViewInit {
     this.startY = this.size * this.stretchY;
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.pathToFill = this.circlepath.nativeElement;
     this.maxLength = this.pathToFill.getTotalLength();
     if (this.value > this.min) {
@@ -168,13 +168,13 @@ export class SliderCircleComponent implements OnInit, AfterViewInit {
     }
   }
 
-  changeValue($event) {
+  changeValue(event: any): void {
     // for label
-    this.value = $event.value;
-    this.animate($event.value, { useAnimation: false, changeStrokeClor: true });
+    this.value = event.value;
+    this.animate(event.value, { useAnimation: false, changeStrokeClor: true });
   }
 
-  animate(eventValue: number, animateOptions: AnimateOptions) {
+  animate(eventValue: number, animateOptions: AnimateOptions): void {
     const circleValue =
       this.maxLength *
       Math.abs((eventValue - this.min) / (this.max - this.min));

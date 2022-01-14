@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { TitleFormComponent } from '../title-form/title-form.component';
+import {
+  TitleFormComponent,
+  TitleFormData,
+} from '../title-form/title-form.component';
 import {
   MatDialog,
   DialogPosition,
@@ -76,20 +79,20 @@ export class InputButtonComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  openInput($event) {
+  openInput(event: any): void {
     // fix location for popup
-    const addXPx = $event.target.tagName.toUpperCase() === 'BUTTON' ? 0 : -16;
-    const leftRaw = $event.clientX - $event.offsetX + addXPx;
+    const addXPx = event.target.tagName.toUpperCase() === 'BUTTON' ? 0 : -16;
+    const leftRaw = event.clientX - event.offsetX + addXPx;
 
     const position: DialogPosition = {
-      top: $event.clientY - $event.offsetY + 40 + 'px',
+      top: event.clientY - event.offsetY + 40 + 'px',
       left:
         document.body.clientWidth - leftRaw > this.width
           ? leftRaw - 50 + 'px'
           : document.body.clientWidth - (this.width + 60) + 'px',
     };
 
-    const dialogConfig: MatDialogConfig = {
+    const dialogConfig: MatDialogConfig<TitleFormData> = {
       position,
       panelClass: this.cssClass,
       data: {

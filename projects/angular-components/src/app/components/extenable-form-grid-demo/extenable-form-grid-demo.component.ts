@@ -24,7 +24,7 @@ export class ExtenableFormGridDemoComponent implements OnInit {
     return uuid.v4();
   }
 
-  output(data) {
+  output(data: any): void {
     console.log(data);
     this.isVisible = false;
     setTimeout(() => {
@@ -32,7 +32,7 @@ export class ExtenableFormGridDemoComponent implements OnInit {
     }, 200);
   }
 
-  resetData() {
+  resetData(): void {
     this.data.tableRows = Array.from(new Array(DEMO_DATA.length))
       .map((_, i) => i)
       .map((i, index) => ({

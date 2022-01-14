@@ -19,7 +19,7 @@ export class TreeSelectDemoComponent implements OnInit {
     this.createTreeDataFromJson(example);
   }
 
-  selectedItems(checklistSelection: SelectionModel<ItemFlatNode>) {
+  selectedItems(checklistSelection: SelectionModel<ItemFlatNode>): void {
     const selected = checklistSelection.selected.filter(
       (s) => s.expandable === false
     );
@@ -27,11 +27,11 @@ export class TreeSelectDemoComponent implements OnInit {
     console.log(selected.map((i) => i.item.label));
   }
 
-  resetAction(userInput) {
+  resetAction(userInput: MouseEvent): void {
     console.log(userInput);
   }
 
-  submitAction(files: File[]) {
+  submitAction(files: File[]): void {
     if (files.length) {
       const reader = new FileReader();
       reader.addEventListener(
@@ -53,7 +53,6 @@ export class TreeSelectDemoComponent implements OnInit {
   }
 
   createTreeDataFromJson(data: any): void {
-    const menu = {};
     this.menuDataFirst['background.bgVideoLib'] =
       data.background.bgVideoLib.reduce((acc, item, index) => {
         const id = uuid.v4();

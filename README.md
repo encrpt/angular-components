@@ -45,4 +45,5 @@ Slider Circle:
     ng add @angular/material
 
 # eslint
+
 - https://blog.ninja-squad.com/2021/03/31/migrating-from-tslint-to-eslint

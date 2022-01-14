@@ -1,0 +1,16 @@
+:host {
+  width: 100%;
+  .mat-form-field {
+    width: 100%;
+  }
+}
+::ng-deep {
+  .mat-autocomplete-panel mat-option.mat-option {
+    height: unset;
+    padding: 16px 16px;
+  }
+  .mat-option-text.mat-option-text {
+    white-space: normal;
+    line-height: 25px;
+  }
+}

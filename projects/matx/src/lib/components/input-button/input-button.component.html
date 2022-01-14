@@ -11,39 +11,23 @@
     </button>
   </ng-container>
   <ng-container *ngSwitchCase="'menu'">
-    <button
-      [disabled]="disabled"
-      mat-menu-item
-      (click)="openInput($event)"
-    >
+    <button [disabled]="disabled" mat-menu-item (click)="openInput($event)">
       <mat-icon *ngIf="iconBefore">{{ iconBefore }}</mat-icon>
       {{ label }}
     </button>
   </ng-container>
   <ng-container *ngSwitchCase="'icon'">
-    <button
-      [disabled]="disabled"
-      mat-icon-button
-      (click)="openInput($event)"
-    >
+    <button [disabled]="disabled" mat-icon-button (click)="openInput($event)">
       <mat-icon>{{ icon }}</mat-icon>
     </button>
   </ng-container>
   <ng-container *ngSwitchCase="'fab'">
-    <button
-      [disabled]="disabled"
-      mat-fab
-      (click)="openInput($event)"
-    >
+    <button [disabled]="disabled" mat-fab (click)="openInput($event)">
       <mat-icon>{{ icon }}</mat-icon>
     </button>
   </ng-container>
   <ng-container *ngSwitchCase="'mini-fab'">
-    <button
-      [disabled]="disabled"
-      mat-mini-fab
-      (click)="openInput($event)"
-    >
+    <button [disabled]="disabled" mat-mini-fab (click)="openInput($event)">
       <mat-icon>{{ icon }}</mat-icon>
     </button>
   </ng-container>

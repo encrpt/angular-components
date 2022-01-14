@@ -21,7 +21,7 @@ export class MonacoEditorComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onInit(editor) {
+  onInit(editor: any): void {
     const line = editor.getPosition();
     console.log(line);
   }

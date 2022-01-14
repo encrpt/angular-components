@@ -1,0 +1,33 @@
+<mat-form-field [ngClass]="{ readonly: readonly }" appearance="fill">
+  <input
+    [required]="required"
+    type="text"
+    matInput
+    [formControl]="control"
+    [matAutocomplete]="auto"
+  />
+  <button
+    *ngIf="!readonly"
+    [disabled]="!control.value"
+    mat-button
+    matSuffix
+    type="button"
+    mat-icon-button
+    aria-label="Clear"
+    (click)="clearInput()"
+    color="primary"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+  <mat-label>{{ placeholder }}</mat-label>
+  <mat-autocomplete
+    autoActiveFirstOption
+    #auto="matAutocomplete"
+    [displayWith]="displayValue"
+    (optionSelected)="onOptionSelected($event)"
+  >
+    <mat-option *ngFor="let item of filteredOptions$ | async" [value]="item">
+      {{ item.value }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

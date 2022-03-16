@@ -16,14 +16,6 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class InputFileComponent implements OnInit {
-  get fileCount(): number {
-    return (this.pFiles && this.pFiles.length) || 0;
-  }
-
-  get fileName(): string {
-    return this.pFiles && this.pFiles.length ? this.pFiles[0].name : '';
-  }
-
   @Input()
   accept: string;
 
@@ -64,6 +56,14 @@ export class InputFileComponent implements OnInit {
   private pFiles: File[];
 
   constructor() {}
+
+  get fileCount(): number {
+    return (this.pFiles && this.pFiles.length) || 0;
+  }
+
+  get fileName(): string {
+    return this.pFiles && this.pFiles.length ? this.pFiles[0].name : '';
+  }
 
   ngOnInit(): void {}
   selectStart() {}

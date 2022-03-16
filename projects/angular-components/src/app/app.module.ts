@@ -23,6 +23,7 @@ import { TwoLevelEditDemoComponent } from './components/two-level-edit-demo/two-
 import { RandomPipe } from './pipes/random.pipe';
 import { RenderLinkPipe } from './pipes/render-link.pipe';
 import { MaterialModule } from './shared/material.module';
+import { TwoMonthsDatepickerDemoComponent } from './components/two-months-datepicker-demo/two-months-datepicker-demo.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { MaterialModule } from './shared/material.module';
     AceEditorDemoComponent,
     MonacoEditorDemoComponent,
     AutocompleteSearchDemoComponent,
+    TwoMonthsDatepickerDemoComponent,
   ],
   imports: [
     CommonModule,

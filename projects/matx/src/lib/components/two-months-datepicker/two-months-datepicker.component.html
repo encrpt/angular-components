@@ -1,0 +1,39 @@
+<div class="flex-row">
+  <ng-container *ngFor="let item of calendarBeforeArray">
+    <mat-card class="demo-inline-calendar-card">
+      <mat-calendar
+        #beforeCalendar
+        [headerComponent]="emptyHeader"
+        (selectedChange)="selectChange($event)"
+        (viewChanged)="log2('viewChanged', $event)"
+        (yearSelected)="log2('yearSelected', $event)"
+        (monthSelected)="log2('monthSelected', $event)"
+      ></mat-calendar>
+    </mat-card>
+  </ng-container>
+  <mat-card class="demo-inline-calendar-card">
+    <mat-calendar
+      #calendarMain
+      [headerComponent]="calendarHeader"
+      [selected]="selected"
+      (selectedChange)="selectChange($event)"
+      (viewChanged)="log1('viewChanged', $event)"
+      (yearSelected)="log1('yearSelected', $event)"
+      (monthSelected)="log1('monthSelected', $event)"
+      (stateChanges)="log1('stateChanges', $event)"
+    ></mat-calendar>
+  </mat-card>
+  <ng-container *ngFor="let item of calendarAfterArray">
+    <mat-card class="demo-inline-calendar-card">
+      <mat-calendar
+        #afterCalendar
+        [headerComponent]="emptyHeader"
+        (selectedChange)="selectChange($event)"
+        (viewChanged)="log2('viewChanged', $event)"
+        (yearSelected)="log2('yearSelected', $event)"
+        (monthSelected)="log2('monthSelected', $event)"
+      ></mat-calendar>
+    </mat-card>
+  </ng-container>
+</div>
+<p>Selected date: {{ selected }}</p>

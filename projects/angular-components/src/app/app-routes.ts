@@ -12,11 +12,20 @@ import { NgxMarkjsDemoComponent } from './components/ngx-markjs-demo/ngx-markjs-
 import { SliderCircleDemoComponent } from './components/slider-circle-demo/slider-circle-demo.component';
 import { TreeSelectDemoComponent } from './components/tree-select-demo/tree-select-demo.component';
 import { TwoLevelEditDemoComponent } from './components/two-level-edit-demo/two-level-edit-demo.component';
+import { TwoMonthsDatepickerDemoComponent } from './components/two-months-datepicker-demo/two-months-datepicker-demo.component';
 
 export const appRoutes: Routes = [
   {
     path: 'home',
     component: DemoHomeComponent,
+  },
+  {
+    path: 'two-months-datepicker',
+    component: TwoMonthsDatepickerDemoComponent,
+    data: {
+      title: 'Material',
+      description: 'Two months datepicker',
+    },
   },
   {
     path: 'autocomplete-search',

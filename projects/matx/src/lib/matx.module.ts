@@ -32,6 +32,11 @@ import { OptionLabelPipe } from './components/level-edit/option-label.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AutocompleteSearchComponent } from './components/autocomplete-search/autocomplete-search.component';
+import { TwoMonthsDatepickerComponent } from './components/two-months-datepicker/two-months-datepicker.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { TwoMonthsDatepickerHeaderComponent } from './components/two-months-datepicker-header/two-months-datepicker-header.component';
+import { EmpytyDatepickerHeaderComponent } from './components/empyty-datepicker-header/empyty-datepicker-header.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +52,9 @@ import { AutocompleteSearchComponent } from './components/autocomplete-search/au
     LevelEditComponent,
     AutocompleteSearchComponent,
     OptionLabelPipe,
+    TwoMonthsDatepickerComponent,
+    TwoMonthsDatepickerHeaderComponent,
+    EmpytyDatepickerHeaderComponent,
   ],
   imports: [
     FormsModule,
@@ -71,7 +79,8 @@ import { AutocompleteSearchComponent } from './components/autocomplete-search/au
     MatSelectModule,
     MatTooltipModule,
     MatAutocompleteModule,
-    MatAutocompleteModule,
+    MatCardModule,
+    MatDatepickerModule,
     MatIconModule,
   ],
   exports: [
@@ -85,6 +94,7 @@ import { AutocompleteSearchComponent } from './components/autocomplete-search/au
     ExtenableTextGridComponent,
     LevelEditComponent,
     AutocompleteSearchComponent,
+    TwoMonthsDatepickerComponent,
   ],
 })
 export class MatxModule {}

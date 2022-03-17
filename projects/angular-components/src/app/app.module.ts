@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +25,7 @@ import { RandomPipe } from './pipes/random.pipe';
 import { RenderLinkPipe } from './pipes/render-link.pipe';
 import { MaterialModule } from './shared/material.module';
 import { TwoMonthsDatepickerDemoComponent } from './components/two-months-datepicker-demo/two-months-datepicker-demo.component';
+import { MultipleMonthsDatepickerDemoComponent } from './components/multiple-months-datepicker-demo/multiple-months-datepicker-demo.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { TwoMonthsDatepickerDemoComponent } from './components/two-months-datepi
     MonacoEditorDemoComponent,
     AutocompleteSearchDemoComponent,
     TwoMonthsDatepickerDemoComponent,
+    MultipleMonthsDatepickerDemoComponent,
   ],
   imports: [
     CommonModule,

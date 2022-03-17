@@ -8,6 +8,8 @@ import { InputButtonDemoComponent } from './components/input-button-demo/input-b
 import { InputFileDemoComponent } from './components/input-file-demo/input-file-demo.component';
 import { LoadingSpinnerDemoComponent } from './components/loading-spinner-demo/loading-spinner-demo.component';
 import { MonacoEditorDemoComponent } from './components/monaco-editor-demo/monaco-editor-demo.component';
+// eslint-disable-next-line max-len
+import { MultipleMonthsDatepickerDemoComponent } from './components/multiple-months-datepicker-demo/multiple-months-datepicker-demo.component';
 import { NgxMarkjsDemoComponent } from './components/ngx-markjs-demo/ngx-markjs-demo.component';
 import { SliderCircleDemoComponent } from './components/slider-circle-demo/slider-circle-demo.component';
 import { TreeSelectDemoComponent } from './components/tree-select-demo/tree-select-demo.component';
@@ -18,6 +20,14 @@ export const appRoutes: Routes = [
   {
     path: 'home',
     component: DemoHomeComponent,
+  },
+  {
+    path: 'multiple-months-datepicker',
+    component: MultipleMonthsDatepickerDemoComponent,
+    data: {
+      title: 'Material',
+      description: 'Multiple months datepicker',
+    },
   },
   {
     path: 'two-months-datepicker',

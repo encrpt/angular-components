@@ -8,9 +8,6 @@
         {{ route.label }}
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <a class="icon-link" [routerLink]="route.uri"
-      ><mat-icon color="primary">launch</mat-icon></a
-    >
     <mat-card class="example-card" color="primary">
       <mat-card-header>
         <mat-card-title>{{ route.title }}</mat-card-title>
@@ -24,6 +21,11 @@
       <mat-card-content>
         <p [innerHTML]="route.description | renderLink"></p>
       </mat-card-content>
+      <mat-card-footer>
+        <a class="icon-link" [routerLink]="route.uri"
+          ><mat-icon color="primary">launch</mat-icon></a
+        >
+      </mat-card-footer>
     </mat-card>
   </mat-expansion-panel>
 </mat-accordion>

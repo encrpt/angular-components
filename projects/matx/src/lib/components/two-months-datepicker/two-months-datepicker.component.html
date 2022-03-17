@@ -15,6 +15,7 @@
     <mat-calendar
       #calendarMain
       [headerComponent]="calendarHeader"
+      [startAt]="selected"
       [selected]="selected"
       (selectedChange)="selectChange($event)"
       (viewChanged)="log1('viewChanged', $event)"
@@ -36,4 +37,7 @@
     </mat-card>
   </ng-container>
 </div>
-<p>Selected date: {{ selected }}</p>
+<div mat-dialog-actions *ngIf="showCloseButton">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onYesClick()" cdkFocusInitial>Ok</button>
+</div>

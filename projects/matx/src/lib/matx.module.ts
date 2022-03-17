@@ -24,7 +24,10 @@ import { MatTreeModule } from '@angular/material/tree';
 import { ExtenableTextGridComponent } from './components/extenable-text-grid/extenable-text-grid.component';
 import { GridFormComponent } from './components/grid-form/grid-form.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatDialogModule } from '@angular/material/dialog';
+import {
+  MatDialogModule,
+  MAT_DIALOG_DEFAULT_OPTIONS,
+} from '@angular/material/dialog';
 import { LevelEditComponent } from './components/level-edit/level-edit.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';

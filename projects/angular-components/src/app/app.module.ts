@@ -26,6 +26,7 @@ import { RenderLinkPipe } from './pipes/render-link.pipe';
 import { MaterialModule } from './shared/material.module';
 import { TwoMonthsDatepickerDemoComponent } from './components/two-months-datepicker-demo/two-months-datepicker-demo.component';
 import { MultipleMonthsDatepickerDemoComponent } from './components/multiple-months-datepicker-demo/multiple-months-datepicker-demo.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,9 @@ import { MultipleMonthsDatepickerDemoComponent } from './components/multiple-mon
     MaterialModule,
     NgEncrptModule,
   ],
-  providers: [],
+  // providers: [
+  //   { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+  // ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

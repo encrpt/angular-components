@@ -4,6 +4,7 @@ import {
   Inject,
   Input,
   OnInit,
+  Optional,
   QueryList,
   ViewChild,
   ViewChildren,
@@ -14,8 +15,15 @@ import {
   MAT_DATE_FORMATS,
 } from '@angular/material/core';
 import { MatCalendar } from '@angular/material/datepicker';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EmpytyDatepickerHeaderComponent } from '../empyty-datepicker-header/empyty-datepicker-header.component';
 import { TwoMonthsDatepickerHeaderComponent } from '../two-months-datepicker-header/two-months-datepicker-header.component';
+
+export interface DialogData {
+  value: any;
+  calendarBefore: number;
+  calendarAfter: number;
+}
 
 @Component({
   selector: 'lib-two-months-datepicker',
@@ -41,17 +49,31 @@ export class TwoMonthsDatepickerComponent<D> implements OnInit, AfterViewInit {
   subCalendarsBefore: MatCalendar<D>[] = [];
   subCalendarsAfter: MatCalendar<D>[] = [];
 
-  selected: any = new Date();
+  // TODO check type data or moment
+  selected: any;
   calendarBeforeArray: any[] = [];
   calendarAfterArray: any[] = [];
-
+  showCloseButton = false;
   calendarHeader = TwoMonthsDatepickerHeaderComponent;
   emptyHeader = EmpytyDatepickerHeaderComponent;
 
   constructor(
     private dateAdapter: DateAdapter<D>,
-    @Inject(MAT_DATE_FORMATS) private dateFormats: MatDateFormats
-  ) {}
+    @Inject(MAT_DATE_FORMATS) private dateFormats: MatDateFormats,
+    @Optional() public dialogRef: MatDialogRef<TwoMonthsDatepickerComponent<D>>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+  ) {
+    if (data && data.value) {
+      this.selected = new Date(data.value);
+      if (data.calendarAfter) {
+        this.calendarAfter = data.calendarAfter;
+        this.calendarBefore = data.calendarBefore;
+      }
+      this.showCloseButton = true;
+    } else {
+      this.selected = new Date();
+    }
+  }
   ngOnInit(): void {
     this.calendarBeforeArray = Array(this.calendarBefore).fill(true);
     this.calendarAfterArray = Array(this.calendarAfter).fill(true);
@@ -133,5 +155,15 @@ export class TwoMonthsDatepickerComponent<D> implements OnInit, AfterViewInit {
   log2(type: string, event: any) {
     //
     console.log('2', type, event);
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  onYesClick(): void {
+    // TODO type
+    if (!this.selected.getUTCFullYear) {
+      this.selected = this.selected.toDate();
+    }
+    this.dialogRef.close(this.selected);
   }
 }

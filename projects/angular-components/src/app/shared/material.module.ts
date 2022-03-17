@@ -13,7 +13,7 @@ import {
   MAT_DATE_LOCALE,
 } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -102,6 +102,7 @@ const matModules = [
       deps: [MAT_DATE_LOCALE],
     },
     { provide: MAT_DATE_FORMATS, useValue: DE_DATE_FORMATS },
+    { provide: MAT_DIALOG_DATA, useValue: {} },
   ],
 })
 export class MaterialModule {}

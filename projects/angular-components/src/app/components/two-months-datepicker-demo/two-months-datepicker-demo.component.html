@@ -1,4 +1,12 @@
-<lib-two-months-datepicker
-  [calendarBefore]="1"
+<mat-form-field class="example-form-field" appearance="fill">
+  <mat-label>selected date</mat-label>
+  <input matInput type="date" [(ngModel)]="value" />
+  <button matSuffix mat-icon-button aria-label="Clear" (click)="openDialog()">
+    <mat-icon>calendar_month</mat-icon>
+  </button>
+</mat-form-field>
+
+<!-- <lib-two-months-datepicker
+  [calendarBefore]="0"
   [calendarAfter]="1"
-></lib-two-months-datepicker>
+></lib-two-months-datepicker> -->

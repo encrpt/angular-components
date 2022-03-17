@@ -14,7 +14,7 @@ export class TwoMonthsDatepickerDemoComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(TwoMonthsDatepickerComponent, {
-      data: { value: this.value, calendarBefore: 2, calendarAfter: 1 },
+      data: { value: this.value, calendarBefore: 0, calendarAfter: 1 },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

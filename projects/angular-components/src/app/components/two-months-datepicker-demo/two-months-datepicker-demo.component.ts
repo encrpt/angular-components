@@ -19,7 +19,6 @@ export class TwoMonthsDatepickerDemoComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log(result);
         const value = `${result.getFullYear()}-${(result.getMonth() + 1)
           .toString()
           .padStart(2, '0')}-${result.getDate().toString().padStart(2, '0')}`;

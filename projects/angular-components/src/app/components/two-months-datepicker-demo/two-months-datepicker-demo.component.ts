@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { TwoMonthsDatepickerComponent } from 'projects/matx/src/lib/components/two-months-datepicker/two-months-datepicker.component';
+import { MultipleMonthsDatepickerComponent } from '../../../../../matx/src/lib/components/multiple-months-datepicker/multiple-months-datepicker.component';
 
 @Component({
   selector: 'app-two-months-datepicker-demo',
@@ -13,7 +13,7 @@ export class TwoMonthsDatepickerDemoComponent implements OnInit {
   ngOnInit(): void {}
 
   openDialog() {
-    const dialogRef = this.dialog.open(TwoMonthsDatepickerComponent, {
+    const dialogRef = this.dialog.open(MultipleMonthsDatepickerComponent, {
       data: { value: this.value, calendarBefore: 0, calendarAfter: 1 },
     });
 

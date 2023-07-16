@@ -14,12 +14,12 @@ import { MatCalendar } from '@angular/material/datepicker';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'lib-two-months-datepicker-header',
-  templateUrl: './two-months-datepicker-header.component.html',
-  styleUrls: ['./two-months-datepicker-header.component.css'],
+  selector: 'lib-multiple-months-datepicker-header',
+  templateUrl: './multiple-months-datepicker-header.component.html',
+  styleUrls: ['./multiple-months-datepicker-header.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TwoMonthsDatepickerHeaderComponent<D> implements OnDestroy {
+export class MultipleMonthsDatepickerHeaderComponent<D> implements OnDestroy {
   private destroyed = new Subject<void>();
   constructor(
     private calendar: MatCalendar<D>,

@@ -17,7 +17,7 @@ import {
 import { MatCalendar } from '@angular/material/datepicker';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EmpytyDatepickerHeaderComponent } from '../empyty-datepicker-header/empyty-datepicker-header.component';
-import { TwoMonthsDatepickerHeaderComponent } from '../two-months-datepicker-header/two-months-datepicker-header.component';
+import { MultipleMonthsDatepickerHeaderComponent } from '../multiple-months-datepicker-header/multiple-months-datepicker-header.component';
 
 export interface DialogData {
   value: any;
@@ -26,11 +26,13 @@ export interface DialogData {
 }
 
 @Component({
-  selector: 'lib-two-months-datepicker',
-  templateUrl: './two-months-datepicker.component.html',
-  styleUrls: ['./two-months-datepicker.component.css'],
+  selector: 'lib-multiple-months-datepicker',
+  templateUrl: './multiple-months-datepicker.component.html',
+  styleUrls: ['./multiple-months-datepicker.component.css'],
 })
-export class TwoMonthsDatepickerComponent<D> implements OnInit, AfterViewInit {
+export class MultipleMonthsDatepickerComponent<D>
+  implements OnInit, AfterViewInit
+{
   @ViewChildren('beforeCalendar')
   matCalendarsBefore: QueryList<MatCalendar<D>>;
 
@@ -54,13 +56,14 @@ export class TwoMonthsDatepickerComponent<D> implements OnInit, AfterViewInit {
   calendarBeforeArray: any[] = [];
   calendarAfterArray: any[] = [];
   showCloseButton = false;
-  calendarHeader = TwoMonthsDatepickerHeaderComponent;
+  calendarHeader = MultipleMonthsDatepickerHeaderComponent;
   emptyHeader = EmpytyDatepickerHeaderComponent;
 
   constructor(
     private dateAdapter: DateAdapter<D>,
     @Inject(MAT_DATE_FORMATS) private dateFormats: MatDateFormats,
-    @Optional() public dialogRef: MatDialogRef<TwoMonthsDatepickerComponent<D>>,
+    @Optional()
+    public dialogRef: MatDialogRef<MultipleMonthsDatepickerComponent<D>>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
     if (data && data.value) {

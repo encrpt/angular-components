@@ -21,6 +21,13 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "max-len": [
+          "error",
+          {
+            "code": 120,
+            "ignoreStrings": true
+          }
+        ],
         "@typescript-eslint/no-non-null-assertion": "off",
         "@angular-eslint/no-empty-lifecycle-method": "off",
         "@typescript-eslint/no-empty-function": "off"

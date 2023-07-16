@@ -35,10 +35,10 @@ import { OptionLabelPipe } from './components/level-edit/option-label.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AutocompleteSearchComponent } from './components/autocomplete-search/autocomplete-search.component';
-import { TwoMonthsDatepickerComponent } from './components/two-months-datepicker/two-months-datepicker.component';
+import { MultipleMonthsDatepickerComponent } from './components/multiple-months-datepicker/multiple-months-datepicker.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { TwoMonthsDatepickerHeaderComponent } from './components/two-months-datepicker-header/two-months-datepicker-header.component';
+import { MultipleMonthsDatepickerHeaderComponent } from './components/multiple-months-datepicker-header/multiple-months-datepicker-header.component';
 import { EmpytyDatepickerHeaderComponent } from './components/empyty-datepicker-header/empyty-datepicker-header.component';
 
 @NgModule({
@@ -55,8 +55,8 @@ import { EmpytyDatepickerHeaderComponent } from './components/empyty-datepicker-
     LevelEditComponent,
     AutocompleteSearchComponent,
     OptionLabelPipe,
-    TwoMonthsDatepickerComponent,
-    TwoMonthsDatepickerHeaderComponent,
+    MultipleMonthsDatepickerComponent,
+    MultipleMonthsDatepickerHeaderComponent,
     EmpytyDatepickerHeaderComponent,
   ],
   imports: [
@@ -97,7 +97,7 @@ import { EmpytyDatepickerHeaderComponent } from './components/empyty-datepicker-
     ExtenableTextGridComponent,
     LevelEditComponent,
     AutocompleteSearchComponent,
-    TwoMonthsDatepickerComponent,
+    MultipleMonthsDatepickerComponent,
   ],
 })
 export class MatxModule {}

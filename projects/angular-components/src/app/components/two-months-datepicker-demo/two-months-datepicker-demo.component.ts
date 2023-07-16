@@ -14,11 +14,16 @@ export class TwoMonthsDatepickerDemoComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(MultipleMonthsDatepickerComponent, {
-      data: { value: this.value, calendarBefore: 0, calendarAfter: 1 },
+      data: {
+        value: this.value,
+        calendarBeforeCount: 0,
+        calendarAfterCount: 1,
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        // TODO format
         const value = `${result.getFullYear()}-${(result.getMonth() + 1)
           .toString()
           .padStart(2, '0')}-${result.getDate().toString().padStart(2, '0')}`;

@@ -38,8 +38,10 @@ import { AutocompleteSearchComponent } from './components/autocomplete-search/au
 import { MultipleMonthsDatepickerComponent } from './components/multiple-months-datepicker/multiple-months-datepicker.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MultipleMonthsDatepickerHeaderComponent } from './components/multiple-months-datepicker-header/multiple-months-datepicker-header.component';
-import { EmpytyDatepickerHeaderComponent } from './components/empyty-datepicker-header/empyty-datepicker-header.component';
+import { MultipleMonthsDatepickerHeaderComponent } from './components/datepicker-header/multiple-months-datepicker-header/multiple-months-datepicker-header.component';
+import { EmpytyDatepickerHeaderComponent } from './components/datepicker-header/empyty-datepicker-header/empyty-datepicker-header.component';
+import { DatepickerHeaderPrevComponent } from './components/datepicker-header/datepicker-header-prev/datepicker-header-prev.component';
+import { DatepickerHeaderNextComponent } from './components/datepicker-header/datepicker-header-next/datepicker-header-next.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { EmpytyDatepickerHeaderComponent } from './components/empyty-datepicker-
     MultipleMonthsDatepickerComponent,
     MultipleMonthsDatepickerHeaderComponent,
     EmpytyDatepickerHeaderComponent,
+    DatepickerHeaderPrevComponent,
+    DatepickerHeaderNextComponent,
   ],
   imports: [
     FormsModule,

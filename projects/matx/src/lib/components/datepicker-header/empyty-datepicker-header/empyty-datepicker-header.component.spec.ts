@@ -8,9 +8,8 @@ describe('EmpytyDatepickerHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmpytyDatepickerHeaderComponent ]
-    })
-    .compileComponents();
+      declarations: [EmpytyDatepickerHeaderComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

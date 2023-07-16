@@ -1,0 +1,14 @@
+<div class="calendar-header">
+  <!-- <span class="calendar-header-label">{{ periodLabel }}</span> -->
+  <button mat-icon-button (click)="nextClicked('month')">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="calendar-double-arrow"
+    (click)="nextClicked('year')"
+  >
+    <mat-icon>keyboard_arrow_right</mat-icon>
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
+</div>

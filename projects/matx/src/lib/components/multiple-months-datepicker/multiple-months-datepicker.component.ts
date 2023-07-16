@@ -16,13 +16,15 @@ import {
 } from '@angular/material/core';
 import { MatCalendar } from '@angular/material/datepicker';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { EmpytyDatepickerHeaderComponent } from '../empyty-datepicker-header/empyty-datepicker-header.component';
-import { MultipleMonthsDatepickerHeaderComponent } from '../multiple-months-datepicker-header/multiple-months-datepicker-header.component';
+import { EmpytyDatepickerHeaderComponent } from '../datepicker-header/empyty-datepicker-header/empyty-datepicker-header.component';
+import { MultipleMonthsDatepickerHeaderComponent } from '../datepicker-header/multiple-months-datepicker-header/multiple-months-datepicker-header.component';
+import { DatepickerHeaderPrevComponent } from '../datepicker-header/datepicker-header-prev/datepicker-header-prev.component';
+import { DatepickerHeaderNextComponent } from '../datepicker-header/datepicker-header-next/datepicker-header-next.component';
 
 export interface DialogData {
   value: any;
-  calendarBefore: number;
-  calendarAfter: number;
+  calendarBeforeCount: number;
+  calendarAfterCount: number;
 }
 
 @Component({
@@ -43,10 +45,10 @@ export class MultipleMonthsDatepickerComponent<D>
   calendar1: MatCalendar<D>;
 
   @Input()
-  calendarBefore = 0;
+  calendarBeforeCount = 0;
 
   @Input()
-  calendarAfter = 1;
+  calendarAfterCount = 1;
 
   subCalendarsBefore: MatCalendar<D>[] = [];
   subCalendarsAfter: MatCalendar<D>[] = [];
@@ -55,9 +57,13 @@ export class MultipleMonthsDatepickerComponent<D>
   selected: any;
   calendarBeforeArray: any[] = [];
   calendarAfterArray: any[] = [];
-  showCloseButton = false;
+  showCloseDialogButton = false;
   calendarHeader = MultipleMonthsDatepickerHeaderComponent;
   emptyHeader = EmpytyDatepickerHeaderComponent;
+
+  // FIXME
+  // prevCalendarHeader = DatepickerHeaderPrevComponent;
+  // nextCalendarHeader = DatepickerHeaderNextComponent;
 
   constructor(
     private dateAdapter: DateAdapter<D>,
@@ -68,22 +74,23 @@ export class MultipleMonthsDatepickerComponent<D>
   ) {
     if (data && data.value) {
       this.selected = new Date(data.value);
-      if (data.calendarAfter) {
-        this.calendarAfter = data.calendarAfter;
-        this.calendarBefore = data.calendarBefore;
+      if (data.calendarAfterCount) {
+        this.calendarAfterCount = data.calendarAfterCount;
+        this.calendarBeforeCount = data.calendarBeforeCount;
       }
-      this.showCloseButton = true;
+      this.showCloseDialogButton = true;
     } else {
       this.selected = new Date();
     }
   }
   ngOnInit(): void {
-    this.calendarBeforeArray = Array(this.calendarBefore).fill(true);
-    this.calendarAfterArray = Array(this.calendarAfter).fill(true);
+    this.calendarBeforeArray = Array(this.calendarBeforeCount).fill(true);
+    this.calendarAfterArray = Array(this.calendarAfterCount).fill(true);
   }
 
   ngAfterViewInit(): void {
     const length = this.matCalendarsBefore.length;
+    // set months
     this.matCalendarsBefore.forEach((item, index) => {
       item.activeDate =
         this.calendar1.currentView === 'month'
@@ -134,6 +141,8 @@ export class MultipleMonthsDatepickerComponent<D>
               );
       });
     });
+
+    // FIXME check render
   }
 
   logCalendarState(type: string, calendar: MatCalendar<any>) {
@@ -160,13 +169,17 @@ export class MultipleMonthsDatepickerComponent<D>
     console.log('2', type, event);
   }
   onNoClick(): void {
-    this.dialogRef.close();
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
   }
   onYesClick(): void {
-    // TODO type
-    if (!this.selected.getUTCFullYear) {
-      this.selected = this.selected.toDate();
+    if (this.dialogRef) {
+      // TODO type
+      if (!this.selected.getUTCFullYear) {
+        this.selected = this.selected.toDate();
+      }
+      this.dialogRef.close(this.selected);
     }
-    this.dialogRef.close(this.selected);
   }
 }

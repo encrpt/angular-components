@@ -1,6 +1,6 @@
 <div class="flex-row">
   <ng-container *ngFor="let item of calendarBeforeArray">
-    <mat-card class="demo-inline-calendar-card">
+    <mat-card class="lib-inline-calendar-card">
       <mat-calendar
         #beforeCalendar
         [headerComponent]="emptyHeader"
@@ -11,7 +11,7 @@
       ></mat-calendar>
     </mat-card>
   </ng-container>
-  <mat-card class="demo-inline-calendar-card">
+  <mat-card class="lib-inline-calendar-card">
     <mat-calendar
       #calendarMain
       [headerComponent]="calendarHeader"
@@ -25,7 +25,7 @@
     ></mat-calendar>
   </mat-card>
   <ng-container *ngFor="let item of calendarAfterArray">
-    <mat-card class="demo-inline-calendar-card">
+    <mat-card class="lib-inline-calendar-card">
       <mat-calendar
         #afterCalendar
         [headerComponent]="emptyHeader"
@@ -37,7 +37,7 @@
     </mat-card>
   </ng-container>
 </div>
-<div mat-dialog-actions *ngIf="showCloseButton">
+<div mat-dialog-actions *ngIf="showCloseDialogButton">
   <button mat-button (click)="onNoClick()">Cancel</button>
   <button mat-button (click)="onYesClick()" cdkFocusInitial>Ok</button>
 </div>
